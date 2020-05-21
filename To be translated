@@ -1,0 +1,3 @@
+INPUT sum
+PRINT sum
+FOR I = 1 TO 17
