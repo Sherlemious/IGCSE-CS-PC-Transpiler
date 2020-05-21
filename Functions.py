@@ -25,6 +25,7 @@ def PRINT(Line):
     #satisfy more compount conditions. The use of dictionaries should be explored
 
 def WHILE(File,Flags,no,vars,Line):
+    #Defining the condition
     Lst2=Line.split()
     if Lst2[1] in vars:
         toc1=vars[Lst2[1]]
@@ -50,7 +51,7 @@ def WHILE(File,Flags,no,vars,Line):
     else: print("There is an invalid operand")     
     
     while Line[0:8]!="ENDWHILE" and Flags[no]: #something goes here instead of True (The condition defined in the pseudocode)
-        if Line[0:5]=="PRINT":                 #Prints what is supposed to be printed. I still have to work on printing variables after strings
+        if Line[0:5]=="PRINT":                 
             PRINT(Line)
                 
         elif Line[0:5]=="WHILE":
@@ -72,7 +73,7 @@ def WHILE(File,Flags,no,vars,Line):
         #Assignment statement
         else: pass #This part should carry out an assignment statement
 
-    Line=File.readline()
+        Line=File.readline()
 
 
 def IF(Line,vars,Flags):
@@ -97,8 +98,43 @@ def IF(Line,vars,Flags):
         Flags.append(toc1<=toc2)
     elif op1==">=":
         Flags.append(toc1>=toc2)
-    else: print("There is an invalid operand")
+    else: OpInvalid.isprint()
 
-def FOR():
+def FOR(Line):
     Lst=Line.split()
     LCV=Lst[1]
+    Start=int(Lst[3])
+    End=int(Lst[5])
+    for i in range(Start,End):
+        if Line[0:5]=="PRINT":                 
+            PRINT(Line)
+                
+        elif Line[0:5]=="WHILE":
+            WHILE(File,Flags,no,vars,Line)
+
+
+        elif Line[0:6]=="REPEAT":
+            pass
+
+        elif Line[0:5]=="INPUT":
+            vars[Line[6:len(Line)-1]]=input()
+
+        elif Line[0:3]=="FOR":
+            pass
+
+        elif Line[0:2]=="IF":
+            IF(Line,vars,Flags)
+
+        #Assignment statement
+        else: pass #This part should carry out an assignment statement
+
+        Line=File.readline()
+
+
+
+
+
+
+
+def Assignment():
+    pass
