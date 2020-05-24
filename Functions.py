@@ -1,10 +1,19 @@
 from Errors import *
 
+Variables = {}
+Flags = {}
+
+
+def LineCounter(filename):
+    counter = 0
+    for line in filename:
+        counter += 1
+    return counter
+
 
 def PRINT(line):
     lst1 = line.split()
     printed = ""
-
     for w in range(1, len(lst1)):
 
         word = lst1[w]
@@ -66,7 +75,7 @@ def WHILE(file, CurFlags, counter, variables, CurLine):
             variables[CurLine[6:len(CurLine) - 1]] = input()
 
         elif CurLine[0:3] == "FOR":
-            FOR(CurLine)
+            FOR(CurLine, file)
 
         elif CurLine[0:2] == "IF":
             IF(CurLine, variables, CurFlags)
@@ -100,10 +109,6 @@ def WHILE(file, CurFlags, counter, variables, CurLine):
 
 
 def IF(CurLine, variables, flags):
-    """
-
-    :rtype: object
-    """
     Lst2 = CurLine.split()
     if Lst2[1] in variables:
         toc1 = variables[Lst2[1]]
@@ -148,7 +153,7 @@ def FOR(CurLine, file):
             Variables[CurLine[6:len(CurLine) - 1]] = input()
 
         elif CurLine[0:3] == "FOR":
-            FOR(CurLine)
+            FOR(CurLine, file)
 
         elif CurLine[0:2] == "IF":
             IF(CurLine, Variables, Flags)

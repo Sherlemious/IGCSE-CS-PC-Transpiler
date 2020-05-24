@@ -2,15 +2,18 @@ import sys
 
 from Functions import FOR, PRINT,assignment, WHILE, IF, REPEAT
 from Functions import *
-sys.path.append('F:\\Programming\\Python\\Projects\\IGCSE-CS-PC-Compiler')
 
 
 Variables = {}
-Flags = {}
+
 no = 0
 File = open("F:\\Programming\\Python\\Projects\\IGCSE-CS-PC-Compiler\\To be translated", "r")
-for Line in File:  # Iterates through the lines until no more lines are available
-    if Line[0:5] == "PRINT":  # Prints what is supposed to be printed. I still have to work on printing variables after strings
+
+count = LineCounter(File)
+
+for i in range(count):  # Iterates through the lines until no more lines are available
+    Line = File.readline()
+    if Line[0:5] == "PRINT":
         PRINT(Line)
 
     elif Line[0:5] == "WHILE":
