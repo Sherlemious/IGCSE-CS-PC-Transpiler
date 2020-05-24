@@ -140,6 +140,9 @@ def FOR(CurLine, file):
     Start = int(Lst[3])
     End = int(Lst[5])
     for i in range(Start, End):
+
+        CurLine = file.readline()
+        Lst = CurLine.split()
         if CurLine[0:5] == "PRINT":
             PRINT(CurLine)
 
@@ -161,9 +164,6 @@ def FOR(CurLine, file):
         # Assignment statement
         else:
             pass  # This part should carry out an assignment statement
-
-        CurLine = file.readline()
-        Lst = CurLine.split()
 
 
 def assignment():
