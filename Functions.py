@@ -2,6 +2,7 @@ from Errors import *
 
 Variables = {}
 Flags = {}
+Line = ""
 
 
 def LineCounter(filename):
@@ -134,36 +135,42 @@ def IF(CurLine, variables, flags):
         OpInvalid.isprint()
 
 
-def FOR(CurLine, file):
-    Lst = CurLine.split()
+def FOR(file):
+    global Line
+    Lst = Line.split()
     LCV = Lst[1]
     Start = int(Lst[3])
     End = int(Lst[5])
-    for i in range(Start, End):
 
-        CurLine = file.readline()
-        Lst = CurLine.split()
-        if CurLine[0:5] == "PRINT":
-            PRINT(CurLine)
+    while Lst[1] != "ENDFOR":
+        Line = file.readline()
+        LineList = []
 
-        elif CurLine[0:5] == "WHILE":
-            WHILE(file, Flags, no, Variables, CurLine)
+    for ln in range(Start, End):
+        for Lin in LineList:
+            Lst = Lin.split()
 
-        elif CurLine[0:6] == "REPEAT":
-            REPEAT()  # Haven't added repeat
+            if Line[0:5] == "PRINT":
+                PRINT(Line)
 
-        elif CurLine[0:5] == "INPUT":
-            Variables[CurLine[6:len(CurLine) - 1]] = input()
+            elif Line[0:5] == "WHILE":
+                WHILE(file, Flags, no, Variables, Line)
 
-        elif CurLine[0:3] == "FOR":
-            FOR(CurLine, file)
+            elif Line[0:6] == "REPEAT":
+                REPEAT()  # Haven't added repeat
 
-        elif CurLine[0:2] == "IF":
-            IF(CurLine, Variables, Flags)
+            elif Line[0:5] == "INPUT":
+                Variables[Line[6:len(Line) - 1]] = input()
 
-        # Assignment statement
-        else:
-            pass  # This part should carry out an assignment statement
+            elif Line[0:3] == "FOR":
+                FOR(Line, file)
+
+            elif Line[0:2] == "IF":
+                IF(Line, Variables, Flags)
+
+            # Assignment statement
+            else:
+                pass  # This part should carry out an assignment statement
 
 
 def assignment():
