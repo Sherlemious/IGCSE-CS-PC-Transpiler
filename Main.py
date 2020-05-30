@@ -1,20 +1,58 @@
-import sys
-from Functions import FOR, PRINT, assignment, WHILE, IF, REPEAT
 from Functions import *
 
+# Variables
 variables = {}
-CurFlags = []
+Flags = {}
 LineList = []
 counter = 0
 
+
+# Functions
+def IF():
+    global Lst2, toc1, toc2, op1, Flags
+    Lst2 = Line.split()
+    # First Variable or Number
+    if Lst2[1] in variables:
+        toc1 = variables[Lst2[1]]
+    elif type(float(Lst2[1])) == float or type(int(Lst2[1])) == int:
+        toc1 = variables[Lst2[1]]
+    else:
+        Tocabsent.isprint()
+    # Second Variable or Number
+    if Lst2[3] in variables:
+        toc2 = variables[Lst2[3]]
+    elif type(Lst2[3]) == float or type(Lst2[3]) == int:
+        toc2 = variables[Lst2[3]]
+    # Comparison type
+    if Lst2[2] == ("=" or ">" or "<" or "<=" or ">=" or "<>"):
+        op1 = Lst2[2]
+        if op1 == "=":
+            Flags[counter] = toc1 == toc2
+        elif op1 == ">":
+            Flags[counter] = toc1 > toc2
+        elif op1 == "<":
+            Flags[counter] = toc1 < toc2
+        elif op1 == "<=":
+            Flags[counter] = toc1 <= toc2
+        elif op1 == ">=":
+            Flags[counter] = toc1 >= toc2
+        elif op1 == "<>":
+            Flags[counter] = toc1 != toc2
+        else:
+            OpInvalid.isprint()
+    else:
+        OpInvalid.isprint()
+
+
+# Opening the file
 File = open("F:\\Programming\\Python\\Projects\\IGCSE-CS-PC-Compiler\\To be translated", "r")
 FileList = list(File)
 File.close()
+# Manipulating File Done
 
+for i in range(len(FileList)):  # Iterates through the lines until no more lines are available
+    Line = FileList[i]
 
-for i in FileList:  # Iterates through the lines until no more lines are available
-    Line = i
-    
     if Line[0:5] == "PRINT":
         lst1 = Line.split()
         printed = ""
@@ -36,75 +74,60 @@ for i in FileList:  # Iterates through the lines until no more lines are availab
 
     elif Line[0:5] == "WHILE":
         # Defining the condition
-        Lst2 = Line.split()
-        if Lst2[1] in variables:
-            toc1 = variables[Lst2[1]]
-        elif type(Lst2[1]) == float or type(Lst2[1]) == int:
-            toc1 = variables[Lst2[1]]
-        op1 = Lst2[2]
-        if Lst2[3] in variables:
-            toc2 = variables[Lst2[3]]
-        elif type(Lst2[3]) == float or type(Lst2[3]) == int:
-            toc2 = variables[Lst2[3]]
-        # Listing comparison scenarios for the Conditions
-        if op1 == "=":
-            CurFlags[counter] = toc1 == toc2
-        elif op1 == ">":
-            CurFlags[counter] = toc1 > toc2
-        elif op1 == "<":
-            CurFlags[counter] = toc1 < toc2
-        elif op1 == "<=":
-            CurFlags[counter] = toc1 <= toc2
-        elif op1 == ">=":
-            CurFlags[counter] = toc1 >= toc2
+        IF()
 
-        else:
-            print("There is an invalid operand")
+        Line = FileList[i]
+        Lst = Line.split()
+        LineList.append(Line)
+        end2 += 1
 
-        while Line[0:8] != "ENDWHILE" and CurFlags:
-            if Line[0:5] == "PRINT":
-                PRINT(Line)
+        while Lst[0] != "ENDWHILE":
+            st3 = counter
+            end3 = counter
+            i += 1
+            Line = FileList[i]
+            Lst = Line.split()
+            LineList.append(Line)
+            end3 += 1
 
-            elif Line[0:5] == "WHILE":
-                WHILE(file, CurFlags, counter, variables, Line)
+        while Flags[counter]:
+            for lf in LineList:
 
-            elif Line[0:6] == "REPEAT":
-                pass
+                if lf[0:5] == "PRINT":
+                    lst1 = lf.split()
+                    printed = ""
+                    for w in range(1, len(lst1)):
 
-            elif Line[0:5] == "INPUT":
-                variables[Line[6:len(Line) - 1]] = input()
+                        word = lst1[w]
 
-            elif Line[0:3] == "FOR":
-                FOR(Line, file)
+                        end = int(len(word))
+                        if word in Variables and word[
+                            0] != "\"":  # This checks if it is a variable and if the variable exists
+                            printed += Variables[word]
+                        else:
+                            for c in range(end):
+                                if w == 1 and c == 0 or w == len(lst1) - 1 and c == end - 1:
+                                    pass
+                                else:
+                                    printed += word[c]
+                            printed += " "
+                        print(printed)
 
-            elif Line[0:2] == "IF":
-                IF(Line, variables, CurFlags)
+                elif lf[0:5] == "WHILE":
+                    WHILE(File, Flags, no, Variables, Line)
 
-            # Assignment statement
-            else:
-                pass  # This part should carry out an assignment statement
+                elif lf[0:6] == "REPEAT":
+                    REPEAT()  # Haven't added repeat
 
-            Lst2 = Line.split()
-            if Lst2[1] in variables:
-                toc1 = variables[Lst2[1]]
-            elif type(Lst2[1]) == float or type(Lst2[1]) == int:
-                toc1 = variables[Lst2[1]]
-            op1 = Lst2[2]
-            if Lst2[3] in variables:
-                toc2 = variables[Lst2[3]]
-            elif type(Lst2[3]) == float or type(Lst2[3]) == int:
-                toc2 = variables[Lst2[3]]
-            # Listing comparison scenarios for the Conditions
-            if op1 == "=":
-                CurFlags[counter] = toc1 == toc2
-            elif op1 == ">":
-                CurFlags[counter] = toc1 > toc2
-            elif op1 == "<":
-                CurFlags[counter] = toc1 < toc2
-            elif op1 == "<=":
-                CurFlags[counter] = toc1 <= toc2
-            elif op1 == ">=":
-                CurFlags[counter] = toc1 >= toc2
+                elif lf[0:5] == "INPUT":
+                    Variables[Line[6:len(Line) - 1]] = input()
+
+                elif lf[0:3] == "FOR":
+                    FOR(Line, File)
+
+                elif lf[0:2] == "IF":
+                    IF(Line, Variables, Flags)
+            IF()
 
     elif Line[0:6] == "REPEAT":
         pass
@@ -120,23 +143,28 @@ for i in FileList:  # Iterates through the lines until no more lines are availab
         Start = int(Lst[3])
         End = int(Lst[5])
 
-        while Lst[1] != "ENDFOR":
+        while Lst[0] != "ENDFOR":
             st2 = counter
             end2 = counter
+            i += 1
+            Line = FileList[i]
+            Lst = Line.split()
             LineList.append(Line)
             end2 += 1
-        for ln in range(Start, End):
-            for m in range(st2, end2):
-                Lst = Line[m].split()
 
-                if Line[0:5] == "PRINT":
-                    lst1 = Line.split()
+        for con in range(Start, End):
+            for lf in LineList:
+
+                if lf[0:5] == "PRINT":
+                    lst1 = lf.split()
                     printed = ""
                     for w in range(1, len(lst1)):
 
                         word = lst1[w]
+
                         end = int(len(word))
-                        if word in Variables and word[0] != "\"":  # This checks if it is a variable and if the variable exists
+                        if word in Variables and word[
+                            0] != "\"":  # This checks if it is a variable and if the variable exists
                             printed += Variables[word]
                         else:
                             for c in range(end):
@@ -145,20 +173,21 @@ for i in FileList:  # Iterates through the lines until no more lines are availab
                                 else:
                                     printed += word[c]
                             printed += " "
+                        print(printed)
 
-                elif Line[0:5] == "WHILE":
+                elif lf[0:5] == "WHILE":
                     WHILE(File, Flags, no, Variables, Line)
 
-                elif Line[0:6] == "REPEAT":
+                elif lf[0:6] == "REPEAT":
                     REPEAT()  # Haven't added repeat
 
-                elif Line[0:5] == "INPUT":
+                elif lf[0:5] == "INPUT":
                     Variables[Line[6:len(Line) - 1]] = input()
 
-                elif Line[0:3] == "FOR":
+                elif lf[0:3] == "FOR":
                     FOR(Line, File)
 
-                elif Line[0:2] == "IF":
+                elif lf[0:2] == "IF":
                     IF(Line, Variables, Flags)
 
                 # Assignment statement
@@ -166,29 +195,7 @@ for i in FileList:  # Iterates through the lines until no more lines are availab
                     pass  # This part should carry out an assignment statement
 
     elif Line[0:2] == "IF":
-        Lst2 = Line.split()
-        if Lst2[1] in variables:
-            toc1 = variables[Lst2[1]]
-        elif type(Lst2[1]) == float or type(Lst2[1]) == int:
-            toc1 = variables[Lst2[1]]
-        op1 = Lst2[2]
-        if Lst2[3] in variables:
-            toc2 = variables[Lst2[3]]
-        elif type(Lst2[3]) == float or type(Lst2[3]) == int:
-            toc2 = variables[Lst2[3]]
-        # Listing comparison scenarios for the
-        if op1 == "=":
-            flags.append(toc1 == toc2)
-        elif op1 == ">":
-            flags.append(toc1 > toc2)
-        elif op1 == "<":
-            flags.append(toc1 < toc2)
-        elif op1 == "<=":
-            flags.append(toc1 <= toc2)
-        elif op1 == ">=":
-            flags.append(toc1 >= toc2)
-        else:
-            OpInvalid.isprint()
+        IF()
 
     else:
         assignment()
