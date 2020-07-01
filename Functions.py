@@ -3,6 +3,8 @@ from Errors import *
 Variables = {}
 Flags = {}
 Line = ""
+
+
 def op_dict(toc1, toc2)
     return {
         "=": toc1 == toc2,
