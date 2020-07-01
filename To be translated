@@ -1,3 +1,4 @@
-WHILE number <> 5
-INPUT number
+FOR I = 17 TO 25
+Hello = I
 ENDFOR
+PRINT Hello

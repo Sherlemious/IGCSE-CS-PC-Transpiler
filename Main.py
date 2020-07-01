@@ -5,6 +5,7 @@ variables = {}
 Flags = {}
 LineList = []
 counter = 0
+tobeeval = ""
 
 
 # Functions
@@ -45,13 +46,14 @@ def IF():
 
 
 # Opening the file
-File = open("F:\\Programming\\Python\\Projects\\IGCSE-CS-PC-Compiler\\To be translated", "r")
+File = open("F:\\Projects\\Applications\\IGCSE-CS-PC-Compiler\\To be translated", "r")
 FileList = list(File)
 File.close()
 # Manipulating File Done
 
 for i in range(len(FileList)):  # Iterates through the lines until no more lines are available
     Line = FileList[i]
+    Line = Line.rstrip('\n')
 
     if Line[0:5] == "PRINT":
         lst1 = Line.split()
@@ -60,8 +62,8 @@ for i in range(len(FileList)):  # Iterates through the lines until no more lines
 
             word = lst1[w]
             end = int(len(word))
-            if word in Variables and word[0] != "\"":  # This checks if it is a variable and if the variable exists
-                printed += Variables[word]
+            if word in variables and word[0] != "\"":  # This checks if it is a variable and if the variable exists
+                printed += str(variables[word])
             else:
                 for c in range(end):
                     if w == 1 and c == 0 or w == len(lst1) - 1 and c == end - 1:
@@ -151,7 +153,8 @@ for i in range(len(FileList)):  # Iterates through the lines until no more lines
             Lst = Line.split()
             LineList.append(Line)
             end2 += 1
-
+        i += 1
+        Line = FileList[i]
         for con in range(Start, End):
             for lf in LineList:
 
@@ -192,12 +195,26 @@ for i in range(len(FileList)):  # Iterates through the lines until no more lines
 
                 # Assignment statement
                 else:
-                    pass  # This part should carry out an assignment statement
-
+                    eqfound = False
+                    lst3 = Line.split()
+                    for vr in lst3:
+                        if vr == "=" or eqfound:
+                            eqfound = True
+                        if eqfound:
+                            tobeeval += vr
+                    variables[lst3[0]] = eval(tobeeval[1:])
+                    variables[LCV] = con
     elif Line[0:2] == "IF":
         IF()
 
     else:
-        assignment()
+        eqfound = False
+        lst3 = Line.split()
+        for vr in lst3:
+            if vr == "=" or eqfound:
+                eqfound = True
+            if eqfound:
+                tobeeval += vr
+        variables[lst3[0]] = eval(tobeeval[1:])
 
     counter += 1
