@@ -58,7 +58,7 @@ def WHILE(file, CurFlags, counter, variables, CurLine):
     elif type(Lst2[3]) == float or type(Lst2[3]) == int:
         toc2 = variables[Lst2[3]]
     # Listing comparison scenarios for the Conditions
-    if op1 in ['=', '>', '<', '<=', >=]:
+    if op1 in ['=', '>', '<', '<=', '>=']:
         CurFlags[counter] = op_dict(toc1, toc2)[op1]
     else:
         print("There is an invalid operand")
@@ -98,7 +98,7 @@ def WHILE(file, CurFlags, counter, variables, CurLine):
         elif type(Lst2[3]) == float or type(Lst2[3]) == int:
             toc2 = variables[Lst2[3]]
         # Listing comparison scenarios for the Conditions
-        if op1 in ['=', '>', '<', '<=', >=]:
+        if op1 in ['=', '>', '<', '<=', '>=']:
             CurFlags[counter] = op_dict(toc1, toc2)[op1]
 
 
@@ -114,7 +114,7 @@ def IF(CurLine, variables, flags):
     elif type(Lst2[3]) == float or type(Lst2[3]) == int:
         toc2 = variables[Lst2[3]]
     # Listing comparison scenarios for the
-    if op1 in ['=', '>', '<', '<=', >=]:
+    if op1 in ['=', '>', '<', '<=', '>=']:
         flags.append(op_dict(toc1, toc2)[op1])
     else:
         OpInvalid.isprint()
