@@ -3,6 +3,13 @@ from Errors import *
 Variables = {}
 Flags = {}
 Line = ""
+op_dict = {
+    "=": toc1 == toc2,
+    ">": toc1 > toc2,
+    "<": toc1 < toc2,
+    "<=": toc1 <= toc2,
+    ">=": toc1 >= toc2
+}
 
 
 def LineCounter(filename):
@@ -48,17 +55,8 @@ def WHILE(file, CurFlags, counter, variables, CurLine):
     elif type(Lst2[3]) == float or type(Lst2[3]) == int:
         toc2 = variables[Lst2[3]]
     # Listing comparison scenarios for the Conditions
-    if op1 == "=":
-        CurFlags[counter] = toc1 == toc2
-    elif op1 == ">":
-        CurFlags[counter] = toc1 > toc2
-    elif op1 == "<":
-        CurFlags[counter] = toc1 < toc2
-    elif op1 == "<=":
-        CurFlags[counter] = toc1 <= toc2
-    elif op1 == ">=":
-        CurFlags[counter] = toc1 >= toc2
-
+    if op1 in op_dict:
+        CurFlags[counter] = op_dict[op1]
     else:
         print("There is an invalid operand")
 
@@ -97,16 +95,8 @@ def WHILE(file, CurFlags, counter, variables, CurLine):
         elif type(Lst2[3]) == float or type(Lst2[3]) == int:
             toc2 = variables[Lst2[3]]
         # Listing comparison scenarios for the Conditions
-        if op1 == "=":
-            CurFlags[counter] = toc1 == toc2
-        elif op1 == ">":
-            CurFlags[counter] = toc1 > toc2
-        elif op1 == "<":
-            CurFlags[counter] = toc1 < toc2
-        elif op1 == "<=":
-            CurFlags[counter] = toc1 <= toc2
-        elif op1 == ">=":
-            CurFlags[counter] = toc1 >= toc2
+        if op1 in op_dict:
+            CurFlags[counter] = op_dict[op1]
 
 
 def IF(CurLine, variables, flags):
@@ -121,16 +111,8 @@ def IF(CurLine, variables, flags):
     elif type(Lst2[3]) == float or type(Lst2[3]) == int:
         toc2 = variables[Lst2[3]]
     # Listing comparison scenarios for the
-    if op1 == "=":
-        flags.append(toc1 == toc2)
-    elif op1 == ">":
-        flags.append(toc1 > toc2)
-    elif op1 == "<":
-        flags.append(toc1 < toc2)
-    elif op1 == "<=":
-        flags.append(toc1 <= toc2)
-    elif op1 == ">=":
-        flags.append(toc1 >= toc2)
+    if op1 in op_dict:
+        flags.append(op_dict[op1])
     else:
         OpInvalid.isprint()
 
