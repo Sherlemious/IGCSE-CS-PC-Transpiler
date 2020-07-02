@@ -5,7 +5,7 @@ Flags = {}
 Line = ""
 
 
-op_list = ['=', '>', '<', '<=', '>=']
+op_list = ['=', '>', '<', '<=', '>=', '<>']
 def op_dict(toc1, toc2)
     return {
         "=": toc1 == toc2,
