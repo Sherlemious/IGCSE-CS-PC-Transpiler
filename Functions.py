@@ -12,7 +12,8 @@ def op_dict(toc1, toc2)
         ">": toc1 > toc2,
         "<": toc1 < toc2,
         "<=": toc1 <= toc2,
-        ">=": toc1 >= toc2
+        ">=": toc1 >= toc2,
+        "<>": toc1 != toc2
     }
 
 
