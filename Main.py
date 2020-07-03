@@ -25,22 +25,8 @@ def IF():
     elif type(Lst2[3]) == float or type(Lst2[3]) == int:
         toc2 = variables[Lst2[3]]
     # Comparison type
-    if Lst2[2] == ("=" or ">" or "<" or "<=" or ">=" or "<>"):
-        op1 = Lst2[2]
-        if op1 == "=":
-            Flags[counter] = toc1 == toc2
-        elif op1 == ">":
-            Flags[counter] = toc1 > toc2
-        elif op1 == "<":
-            Flags[counter] = toc1 < toc2
-        elif op1 == "<=":
-            Flags[counter] = toc1 <= toc2
-        elif op1 == ">=":
-            Flags[counter] = toc1 >= toc2
-        elif op1 == "<>":
-            Flags[counter] = toc1 != toc2
-        else:
-            OpInvalid.isprint()
+    if Lst2[2] in op_list:
+        Flags[counter] = op_dict(toc1, toc2)[Lst2[2]]
     else:
         OpInvalid.isprint()
 
