@@ -6,9 +6,7 @@ Flags = {}
 LineList = []
 counter = 0
 tobeeval = ""
-print_list = [
-    (1, 0), (len(lst1) - 1, end - 1)
-]
+
 
 # Functions
 def IF():
@@ -54,7 +52,7 @@ for i in range(len(FileList)):  # Iterates through the lines until no more lines
                 printed += str(variables[word])
             else:
                 for c in range(end):
-                    if (w, c) not in print_list:
+                    if (w, c) not in [(1, 0), (len(lst1) - 1, end - 1)]:
                         printed += word[c]
                 printed += " "
 
@@ -94,7 +92,7 @@ for i in range(len(FileList)):  # Iterates through the lines until no more lines
                             printed += Variables[word]
                         else:
                             for c in range(end):
-                                if (w, c) not in print_list:
+                                if (w, c) not in [(1, 0), (len(lst1) - 1, end - 1)]:
                                     printed += word[c]
                             printed += " "
                         print(printed)
@@ -155,7 +153,7 @@ for i in range(len(FileList)):  # Iterates through the lines until no more lines
                             printed += Variables[word]
                         else:
                             for c in range(end):
-                                if (w, c) not in print_list:
+                                if (w, c) not in [(1, 0), (len(lst1) - 1, end - 1)]:
                                     printed += word[c]
                             printed += " "
                         print(printed)
