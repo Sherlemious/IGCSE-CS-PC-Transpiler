@@ -6,7 +6,7 @@ Line = ""
 
 
 op_list = ['=', '>', '<', '<=', '>=', '<>']
-def op_dict(toc1, toc2)
+def op_dict(toc1, toc2):
     return {
         "=": toc1 == toc2,
         ">": toc1 > toc2,

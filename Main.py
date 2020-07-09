@@ -6,6 +6,7 @@ Flags = {}
 LineList = []
 counter = 0
 tobeeval = ""
+i = 0
 
 
 # Functions
@@ -37,7 +38,7 @@ FileList = list(File)
 File.close()
 # Manipulating File Done
 
-for i in range(len(FileList)):  # Iterates through the lines until no more lines are available
+while i < len(FileList):  # Iterates through the lines until no more lines are available
     Line = FileList[i]
     Line = Line.rstrip('\n')
 
@@ -52,7 +53,7 @@ for i in range(len(FileList)):  # Iterates through the lines until no more lines
                 printed += str(variables[word])
             else:
                 for c in range(end):
-                    if w == 1 and c == 0 or w == len(lst1) - 1 and c == end - 1:
+                    if w == 1 and c == 0:
                         pass
                     else:
                         printed += word[c]
@@ -89,9 +90,9 @@ for i in range(len(FileList)):  # Iterates through the lines until no more lines
                         word = lst1[w]
 
                         end = int(len(word))
-                        if word in Variables and word[
+                        if word in variables and word[
                             0] != "\"":  # This checks if it is a variable and if the variable exists
-                            printed += Variables[word]
+                            printed += variables[word]
                         else:
                             for c in range(end):
                                 if w == 1 and c == 0 or w == len(lst1) - 1 and c == end - 1:
@@ -102,19 +103,19 @@ for i in range(len(FileList)):  # Iterates through the lines until no more lines
                         print(printed)
 
                 elif lf[0:5] == "WHILE":
-                    WHILE(File, Flags, no, Variables, Line)
+                    WHILE(File, Flags, no, variables, Line)
 
                 elif lf[0:6] == "REPEAT":
                     REPEAT()  # Haven't added repeat
 
                 elif lf[0:5] == "INPUT":
-                    Variables[Line[6:len(Line) - 1]] = input()
+                    variables[Line[6:len(Line) - 1]] = input()
 
                 elif lf[0:3] == "FOR":
                     FOR(Line, File)
 
                 elif lf[0:2] == "IF":
-                    IF(Line, Variables, Flags)
+                    IF(Line, variables, Flags)
             IF()
 
     elif Line[0:6] == "REPEAT":
@@ -123,27 +124,28 @@ for i in range(len(FileList)):  # Iterates through the lines until no more lines
     elif Line[0:5] == "INPUT":
         varwanted = Line.split()
         varwanted = varwanted[1]
-        Variables[varwanted] = input()
+        variables[varwanted] = input()
 
     elif Line[0:3] == "FOR":
         Lst = Line.split()
         LCV = Lst[1]
         Start = int(Lst[3])
         End = int(Lst[5])
-
+        variables[LCV] = LCV
         while Lst[0] != "ENDFOR":
             st2 = counter
             end2 = counter
             i += 1
             Line = FileList[i]
             Lst = Line.split()
+            if Lst[0] == "ENDFOR":
+                break
             LineList.append(Line)
             end2 += 1
-        i += 1
         Line = FileList[i]
-        for con in range(Start, End):
+        for con in range(Start, End + 1):
+            variables[LCV] = con
             for lf in LineList:
-
                 if lf[0:5] == "PRINT":
                     lst1 = lf.split()
                     printed = ""
@@ -152,9 +154,9 @@ for i in range(len(FileList)):  # Iterates through the lines until no more lines
                         word = lst1[w]
 
                         end = int(len(word))
-                        if word in Variables and word[
+                        if word in variables and word[
                             0] != "\"":  # This checks if it is a variable and if the variable exists
-                            printed += Variables[word]
+                            printed += variables[word]
                         else:
                             for c in range(end):
                                 if w == 1 and c == 0 or w == len(lst1) - 1 and c == end - 1:
@@ -165,42 +167,51 @@ for i in range(len(FileList)):  # Iterates through the lines until no more lines
                         print(printed)
 
                 elif lf[0:5] == "WHILE":
-                    WHILE(File, Flags, no, Variables, Line)
+                    WHILE(File, Flags, no, variables, Line)
 
                 elif lf[0:6] == "REPEAT":
                     REPEAT()  # Haven't added repeat
 
                 elif lf[0:5] == "INPUT":
-                    Variables[Line[6:len(Line) - 1]] = input()
+                    variables[Line[6:len(Line) - 1]] = input()
 
                 elif lf[0:3] == "FOR":
                     FOR(Line, File)
 
                 elif lf[0:2] == "IF":
-                    IF(Line, Variables, Flags)
+                    IF(Line, variables, Flags)
 
                 # Assignment statement
                 else:
                     eqfound = False
-                    lst3 = Line.split()
+                    tobeeval = ""
+                    lst3 = lf.split()
                     for vr in lst3:
                         if vr == "=" or eqfound:
                             eqfound = True
                         if eqfound:
-                            tobeeval += vr
-                    variables[lst3[0]] = eval(tobeeval[1:])
+                            if vr in variables:
+                                tobeeval += str(variables[vr])
+                            elif isinstance(vr, int):
+                                tobeeval += vr
+                    variables[lst3[0]] = eval(tobeeval[:])
                     variables[LCV] = con
     elif Line[0:2] == "IF":
         IF()
 
     else:
+        tobeeval = ""
         eqfound = False
         lst3 = Line.split()
         for vr in lst3:
             if vr == "=" or eqfound:
                 eqfound = True
             if eqfound:
-                tobeeval += vr
+                if vr in variables:
+                    tobeeval += str(variables[vr])
+                elif isinstance(vr, int):
+                    tobeeval += vr
         variables[lst3[0]] = eval(tobeeval[1:])
 
     counter += 1
+    i += 1
