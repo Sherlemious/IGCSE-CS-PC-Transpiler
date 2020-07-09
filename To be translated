@@ -1,4 +1,4 @@
-FOR I = 17 TO 25
+FOR I = 17 TO 24
 Hello = I
 ENDFOR
 PRINT Hello
