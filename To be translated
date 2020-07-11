@@ -1,4 +1,5 @@
-FOR I = 17 TO 24
-Hello = I
+Hello = 23
+FOR I = 1 TO 3
+Hello = Hello + 1
 ENDFOR
 PRINT Hello
