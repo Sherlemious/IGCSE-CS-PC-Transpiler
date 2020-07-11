@@ -1,5 +1,5 @@
-Hello = 23
-FOR I = 1 TO 3
-Hello = Hello + 1
+FOR I = 1 TO 6
+INPUT VAR
+TOTAL = TOTAL + VAR
 ENDFOR
-PRINT Hello
+PRINT TOTAL
