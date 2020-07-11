@@ -62,7 +62,7 @@ A conditional loop that is repeated as long as a condition is being met. Any sta
 ##### Note that this does not currently support nested WHILE Loops.
 
 ### REPEAT Loop (Under development)
-A conditional loop that is repeated as long as a condition is being met. Any statements should be insterted between the REPEAT and the UNTIL STATEMENT
+A conditional loop that is repeated as long as a condition is being met. Any statements should be insterted between the REPEAT and the UNTIL statement.
   ```
   REPEAT
   PRINT "HELLO WORLD !"
