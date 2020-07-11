@@ -1,3 +1,4 @@
+import Config
 no = 0
 
 
