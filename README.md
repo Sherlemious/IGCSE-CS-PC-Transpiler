@@ -1,4 +1,4 @@
-# IGCSE CS PseudoCode Interpreter (Translator) 
+# IGCSE CS PseudoCode Transpiler 
 This program translates the Pseudocode syntax studied in the IGCSE Computer Science 0478 Syllabus as no other application is available to do this.
 
 ## Note
