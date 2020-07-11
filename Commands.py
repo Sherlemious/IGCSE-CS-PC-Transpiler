@@ -122,7 +122,7 @@ def ASSIGNMENT(lineused):
     for vr in lst3:
         try:
             vr = int(vr)
-        except:
+        except ValueError:
             pass
         if vr == '=' or eqfound:
             eqfound = True
