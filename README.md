@@ -74,7 +74,7 @@ A conditional loop that is repeated as long as a condition is being met. Any sta
 A conditional statement that carries out a group of statements between the IF statement and the ENDIF statement. The ELSE statement will also be functional.
   ```
   IF I = T
-  PRINT "HELLO WORLD !"
+  THEN PRINT "HELLO WORLD !"
   I = I + 1
   ENDIF
   ```
