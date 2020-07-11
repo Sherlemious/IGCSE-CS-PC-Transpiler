@@ -3,7 +3,7 @@ This program translates the Pseudocode syntax studied in the IGCSE Computer Scie
 
 ## Note
 This program is still under development and won't be fully functional for a while. For any suggestions or bug reports, please send me a message on Github. If you liked it, please don't forget to star this repository. Thanks!
-In order to use this repository, Python should be installed first.
+In order to use this repository, [Python](https://www.python.org/downloads/) should be installed first.
 
 ## Syntax
 For starters, it is required to leave a space character between each variable, function or operator. 
