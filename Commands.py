@@ -77,7 +77,6 @@ def WHILE():
     end2 += 1
 
     while Lst[0] != "ENDWHILE":
-        st3 = Config.counter
         end3 = Config.counter
         Config.i += 1
         Line = Config.FileList[Config.i]
@@ -118,7 +117,6 @@ def ASSIGNMENT(lineused):
     tobeeval = ""
     eqfound = False
     lst3 = lineused.split()
-    newvar = lst3[0]
     for vr in lst3:
         try:
             vr = int(vr)
