@@ -18,7 +18,7 @@ While this, on the other hand, will not work,
 
 ## Available Functions
 
-### FOR Loop
+### FOR Loop (Fully functional)
 This is to repeat a number of statements, which are inserted between the FOR "LCV" = "Start" TO "End" and the ENDFOR/ NEXT "LCV", for a set number of times.
 For example,
   ```
@@ -34,14 +34,48 @@ or
   ```
 ###### Note that If you use the ENDFOR version, you should ***never*** use nested loops.
 
-### PRINT 
+### PRINT (Fully functional)
 This is a simple statement use as in the following examples
   ```
   PRINT "HELLO WORLD !"
   ```
 To print a string, which is to be inserted between two quotation marks "". 
-###### Note that you should ***never*** insert another quotation mark insider the 2 quotation marks. You should also never use a backslash character "\".
+##### Note that you should ***never*** insert another quotation mark insider the 2 quotation marks. You should also never use a backslash character "\".
 It is also possible to print a variable
   ```
   PRINT Variableexample
   ```
+
+### INPUT (Fully functional)
+This is a simple statement that can be used as in the following example
+  ```
+  INPUT Variableexample
+  ```
+### WHILE Loop
+A conditional loop that is repeated as long as a condition is being met. Any statements should be insterted between the WHILE "Condition" and the ENDWHILE STATEMENT
+  ```
+  WHILE I < 5
+  PRINT "HELLO WORLD !"
+  I = I + 1
+  ENDWHILE
+  ```
+##### Note that this does not currently support nested WHILE Loops.
+
+### REPEAT Loop (Under development)
+A conditional loop that is repeated as long as a condition is being met. Any statements should be insterted between the REPEAT and the UNTIL STATEMENT
+  ```
+  REPEAT
+  PRINT "HELLO WORLD !"
+  I = I + 1
+  UNTIL I = 5
+  ```
+
+### IF (Under development)
+A conditional statement that carries out a group of statements between the IF statement and the ENDIF statement. The ELSE statement will also be functional.
+  ```
+  IF I = T
+  PRINT "HELLO WORLD !"
+  I = I + 1
+  ENDIF
+  ```
+##### Note that this does not currently support nested IF statements.
