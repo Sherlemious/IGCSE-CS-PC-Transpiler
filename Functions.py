@@ -1,4 +1,4 @@
-op_list = ['=', '>', '<', '<=', '>=', '<>']
+import Config
 
 
 def op_dict(toc1, toc2):
