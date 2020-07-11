@@ -3,7 +3,7 @@ import Commands as cc
 import Config
 
 # Opening the file
-File = open("F:\\Projects\\Applications\\IGCSE-CS-PC-Compiler\\To be translated", "r")
+File = open("F:\\Projects\\Applications\\IGCSE-CS-PC-Transpiler\\To be translated", "r")
 Config.FileList = list(File)
 File.close()
 # Manipulating File Done
