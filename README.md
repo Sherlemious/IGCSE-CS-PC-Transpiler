@@ -11,7 +11,7 @@ For example, when assigning a value to a variable, this is the correct way to be
   ```
   variableexample = 16 * 14 + Varexample2
   ```
-While this, on the other hand, will not work,
+While this, on the other hand, will not work
   ```
   variableexample=16*14+Varexample2
   ```
@@ -40,7 +40,7 @@ This is a simple statement use as in the following examples
   PRINT "HELLO WORLD !"
   ```
 To print a string, which is to be inserted between two quotation marks "". 
-##### Note that you should ***never*** insert another quotation mark insider the 2 quotation marks. You should also never use a backslash character "\".
+##### Note that you should ***never*** insert another quotation mark insider the 2 quotation marks. You should also never use a backslash character "\\".
 It is also possible to print a variable
   ```
   PRINT Variableexample
