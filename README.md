@@ -4,8 +4,10 @@ This program translates the Pseudocode syntax studied in the IGCSE Computer Scie
 ## Note
 This program is still under development and won't be fully functional for a while. For any suggestions or bug reports, please send me a message on Github. If you liked it, please don't forget to star this repository. Thanks!
 
+
 ## Prerequisites
 [Python](https://www.python.org/downloads/)
+
 
 ## How to use
 ### Syntax
@@ -82,3 +84,7 @@ A conditional statement that carries out a group of statements between the IF st
   ENDIF
   ```
 ##### Note that this does not currently support nested IF statements.
+
+
+## Contributing
+Please read CONTRIBUTING.md for details on our code of conduct, and the process for submitting pull requests to us.
