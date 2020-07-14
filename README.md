@@ -3,9 +3,12 @@ This program translates the Pseudocode syntax studied in the IGCSE Computer Scie
 
 ## Note
 This program is still under development and won't be fully functional for a while. For any suggestions or bug reports, please send me a message on Github. If you liked it, please don't forget to star this repository. Thanks!
-In order to use this repository, [Python](https://www.python.org/downloads/) should be installed first.
 
-## Syntax
+## Prerequisites
+```[Python](https://www.python.org/downloads/)```
+
+## How to use
+### Syntax
 For starters, it is required to leave a space character between each variable, function or operator. 
 For example, when assigning a value to a variable, this is the correct way to be used
   ```
@@ -16,7 +19,7 @@ While this, on the other hand, will not work
   variableexample=16*14+Varexample2
   ```
 
-## Available Functions
+### Available Functions
 
 ### FOR Loop (Fully functional)
 This is to repeat a number of statements, which are inserted between the FOR "LCV" = "Start" TO "End" and the ENDFOR/ NEXT "LCV", for a set number of times.
