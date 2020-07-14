@@ -87,4 +87,4 @@ A conditional statement that carries out a group of statements between the IF st
 
 
 ## Contributing
-Please read CONTRIBUTING.md for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md](https://github.com/Sherlemious/IGCSE-CS-PC-Transpiler/blob/master/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
