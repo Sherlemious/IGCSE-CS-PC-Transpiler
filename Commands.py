@@ -1,28 +1,20 @@
 import Errors
 import functions as f
 import Config
-
+import Main
 
 def IF():
     Lst2 = Config.Line.split()
-    # First Variable or Number
-    if Lst2[1] in Config.variables:
-        toc1 = Config.variables[Lst2[1]]
-    elif type(float(Lst2[1])) == float or type(int(Lst2[1])) == int:
-        toc1 = Config.variables[Lst2[1]]
-    else:
-        Errors.Tocabsent.isprint()
-    # Second Variable or Number
-    if Lst2[3] in Config.variables:
-        toc2 = Config.variables[Lst2[3]]
-    elif type(Lst2[3]) == float or type(Lst2[3]) == int:
-        toc2 = Config.variables[Lst2[3]]
-    # Comparison type
-    if Lst2[2] in Config.op_list:
-        Config.Flags[Config.counter] = f.op_dict(toc1, toc2)[Lst2[2]]
-    else:
-        Errors.OpInvalid.isprint()
-
+    if len(Lst2) == 4:
+        print(f.comp(Lst2[1], Lst2[3], Lst2[2]))
+    elif len(Lst2) == 8:
+        if Lst2[5] == "AND":
+            if f.comp(Lst2[1], Lst2[3], Lst2[2]) and f.comp(Lst2[5], Lst2[7], Lst2[6]):
+                while Lst2[0] != "ENDIF":
+                    Main.main()
+        elif Lst2[5] == "OR":
+            if f.comp(Lst2[1], Lst2[3], Lst2[2]) or f.comp(Lst2[5], Lst2[7], Lst2[6]):
+                pass
 
 def FOR():
     Lst = Config.Line.split()
@@ -44,26 +36,7 @@ def FOR():
     for con in range(Start, End + 1):
         Config.variables[LCV] = con
         for lf in Config.LineList:
-            if lf[0:5] == "PRINT":
-                PRINT()
-
-            elif lf[0:5] == "WHILE":
-                WHILE()
-
-            elif lf[0:6] == "REPEAT":
-                REPEAT()
-
-            elif lf[0:5] == "INPUT":
-                INPUT()
-
-            elif lf[0:3] == "FOR":
-                FOR()
-
-            elif lf[0:2] == "IF":
-                IF()
-
-            else:
-                ASSIGNMENT(lf)
+            Main.main(lf)
 
 
 def WHILE():
@@ -86,29 +59,10 @@ def WHILE():
 
     while Config.Flags[Config.counter]:
         for lf in Config.LineList:
-            if Line[0:5] == "PRINT":
-                PRINT()
+            Main.main(lf)
+        # Recheck condition
 
-            elif Line[0:5] == "WHILE":
-                WHILE()
-
-            elif Line[0:6] == "REPEAT":
-                REPEAT()
-
-            elif Line[0:5] == "INPUT":
-                INPUT()
-
-            elif Line[0:3] == "FOR":
-                FOR()
-
-            elif Line[0:2] == "IF":
-                IF()
-
-            else:
-                ASSIGNMENT(lf)
-        IF()
-
-
+ 
 def REPEAT():
     pass
 
@@ -134,8 +88,8 @@ def ASSIGNMENT(lineused):
     Config.variables[lst3[0]] = eval(tobeeval)
 
 
-def INPUT():
-    varwanted = Config.Line.split()
+def INPUT(lineused):
+    varwanted = lineused.split()
     varwanted = varwanted[1]
     Config.variables[varwanted] = input()
 
