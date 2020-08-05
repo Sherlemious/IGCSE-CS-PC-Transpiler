@@ -1,2 +1,4 @@
-Hello = 16
-IF Hello = 16
+FOR I = 1 TO 5
+PRINT "AMR"
+ENDFOR
+PRINT "Hello"
