@@ -1,4 +1,4 @@
-import Commands as cc
+import Commands as do
 import Config
 
 # Opening the file
@@ -7,33 +7,30 @@ Config.FileList = list(File)
 File.close()
 # Manipulating File Done
 
-def main(lineused):
-    while Config.i < len(Config.FileList):  # Iterates through the lines until no more lines are available
-        Config.Line = Config.FileList[Config.i]
-        Config.Line = Config.Line.rstrip('\n')
+while Config.i < len(Config.FileList):  # Iterates through the lines until no more lines are available
+    Config.Line = Config.FileList[Config.i]
+    Config.Line = Config.Line.rstrip('\n')
 
-        if Config.Line[0:5] == "PRINT":
-            cc.PRINT()
+    if Config.Line[0:5] == "PRINT":
+        do.PRINT(Config.Line)
 
-        elif Config.Line[0:5] == "WHILE":
-            cc.WHILE()
+    elif Config.Line[0:5] == "WHILE":
+        do.WHILE()
 
-        elif Config.Line[0:6] == "REPEAT":
-            cc.REPEAT()
+    elif Config.Line[0:6] == "REPEAT":
+        do.REPEAT()
 
-        elif Config.Line[0:5] == "INPUT":
-            cc.INPUT(lineused)
+    elif Config.Line[0:5] == "INPUT":
+        do.INPUT(Config.Line)
 
-        elif Config.Line[0:3] == "FOR":
-            cc.FOR()
+    elif Config.Line[0:3] == "FOR":
+        do.FOR()
 
-        elif Config.Line[0:2] == "IF":
-            cc.IF()
+    elif Config.Line[0:2] == "IF":
+        do.IF()
 
-        else:
-            cc.ASSIGNMENT(lineused)
+    else:
+        do.ASSIGNMENT(Config.Line)
 
-        Config.counter += 1
-        Config.i += 1
-
-main(Config.Line)
+    Config.counter += 1
+    Config.i += 1

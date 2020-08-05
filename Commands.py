@@ -1,7 +1,32 @@
 import Errors
 import functions as f
 import Config
-import Main
+
+
+def main(lineused):
+    lineused = lineused.rstrip('\n')
+
+    if lineused[0:5] == "PRINT":
+        PRINT(lineused)
+
+    elif lineused[0:5] == "WHILE":
+        WHILE()
+
+    elif lineused[0:6] == "REPEAT":
+        REPEAT()
+
+    elif lineused[0:5] == "INPUT":
+        INPUT(lineused)
+
+    elif lineused[0:3] == "FOR":
+        FOR()
+
+    elif lineused[0:2] == "IF":
+        IF()
+
+    else:
+        ASSIGNMENT(lineused)
+
 
 def IF():
     Lst2 = Config.Line.split()
@@ -11,24 +36,25 @@ def IF():
         if Lst2[5] == "AND":
             if f.comp(Lst2[1], Lst2[3], Lst2[2]) and f.comp(Lst2[5], Lst2[7], Lst2[6]):
                 while Lst2[0] != "ENDIF":
-                    Main.main()
+                    main()
         elif Lst2[5] == "OR":
             if f.comp(Lst2[1], Lst2[3], Lst2[2]) or f.comp(Lst2[5], Lst2[7], Lst2[6]):
                 pass
 
+
 def FOR():
-    Lst = Config.Line.split()
-    LCV = Lst[1]
-    Start = int(Lst[3])
-    End = int(Lst[5])
+    curline = Config.Line.split()
+    LCV = curline[1]
+    Start = int(curline[3])
+    End = int(curline[5])
     Config.variables[LCV] = LCV
-    while Lst[0] != "ENDFOR":
+    while curline[0] != "ENDFOR":
         end2: int = Config.counter
         Config.i += 1
         Config.Line = Config.FileList[Config.i]
         Config.Line = Config.Line.rstrip('\n')
-        Lst = Config.Line.split()
-        if Lst[0] == "ENDFOR":
+        curline = Config.Line.split()
+        if curline[0] == "ENDFOR":
             break
         Config.LineList.append(Config.Line)
         end2 += 1
@@ -36,7 +62,7 @@ def FOR():
     for con in range(Start, End + 1):
         Config.variables[LCV] = con
         for lf in Config.LineList:
-            Main.main(lf)
+            main(lf)
 
 
 def WHILE():
@@ -59,10 +85,10 @@ def WHILE():
 
     while Config.Flags[Config.counter]:
         for lf in Config.LineList:
-            Main.main(lf)
+            main(lf)
         # Recheck condition
 
- 
+
 def REPEAT():
     pass
 
@@ -94,8 +120,8 @@ def INPUT(lineused):
     Config.variables[varwanted] = input()
 
 
-def PRINT():
-    lst1 = Config.Line.split()
+def PRINT(lineused):
+    lst1 = lineused.split()
     printed = ""
     for w in range(1, len(lst1)):
 
@@ -104,7 +130,7 @@ def PRINT():
         if word in Config.variables and word[0] != "\"":  # This checks if it is a variable and if the variable exists
             printed += str(Config.variables[word])
         else:
-            for c in range(end):
+            for c in range(end-1):
                 if w == 1 and c == 0:
                     pass
                 else:
