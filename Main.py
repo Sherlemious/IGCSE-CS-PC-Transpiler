@@ -24,10 +24,10 @@ while Config.i < len(Config.FileList):  # Iterates through the lines until no mo
         do.INPUT(Config.Line)
 
     elif Config.Line[0:3] == "FOR":
-        do.FOR()
+        do.FOR(Config.i, Config.Line, Config.FileList)
 
     elif Config.Line[0:2] == "IF":
-        do.IF()
+        do.IF(Config.i)
 
     else:
         do.ASSIGNMENT(Config.Line)

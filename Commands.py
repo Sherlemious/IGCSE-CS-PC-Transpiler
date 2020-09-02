@@ -3,7 +3,7 @@ import functions as f
 import Config
 
 
-def main(lineused):
+def main(index, lineused, linelist):
     lineused = lineused.rstrip('\n')
 
     if lineused[0:5] == "PRINT":
@@ -19,56 +19,72 @@ def main(lineused):
         INPUT(lineused)
 
     elif lineused[0:3] == "FOR":
-        FOR()
+        FOR(index, lineused, linelist)
 
     elif lineused[0:2] == "IF":
-        IF()
+        IF(index, lineused, linelist)
 
     else:
         ASSIGNMENT(lineused)
 
 
-def IF():
+def IF(index, lineused, linelist):
     Lst2 = Config.Line.split()
     if len(Lst2) == 4:
-        print(f.comp(Lst2[1], Lst2[3], Lst2[2]))
+        if f.comp(Lst2[1], Lst2[3], Lst2[2]):
+            while Lst2[0] != "ENDIF":
+                main(index, lineused, linelist)
+                lineused = linelist[index]
+                index += 1
+            lineused = linelist[index]
+            index += 1
     elif len(Lst2) == 8:
         if Lst2[5] == "AND":
             if f.comp(Lst2[1], Lst2[3], Lst2[2]) and f.comp(Lst2[5], Lst2[7], Lst2[6]):
                 while Lst2[0] != "ENDIF":
-                    main()
+                    main(index, lineused, linelist)
         elif Lst2[5] == "OR":
             if f.comp(Lst2[1], Lst2[3], Lst2[2]) or f.comp(Lst2[5], Lst2[7], Lst2[6]):
-                pass
+                while Lst2[0] != "ENDIF":
+                    main(index, lineused, linelist)
 
 
-def FOR():
-    curline = Config.Line.split()
+def FOR(index, lineused, linelist):
+    curline = lineused.split()
     LCV = curline[1]
     Start = int(curline[3])
     End = int(curline[5])
     Config.variables[LCV] = LCV
-    while curline[0] != "ENDFOR":
-        end2: int = Config.counter
-        Config.i += 1
-        Config.Line = Config.FileList[Config.i]
-        Config.Line = Config.Line.rstrip('\n')
-        curline = Config.Line.split()
-        if curline[0] == "ENDFOR":
-            break
-        Config.LineList.append(Config.Line)
-        end2 += 1
-    Config.Line = Config.FileList[Config.i + 1]
+    for t in range(index+1, len(linelist)):
+        end2: int = index
+        index += 1
+        try:
+            curline = linelist[t]
+            curline = curline.rstrip('\n')
+            curline = curline.split()
+            if curline[0] == "ENDFOR":
+                break
+            Config.LineList.append(curline)
+            end2 += 1
+        except IndexError:
+            pass
+        if curline[0] != "ENDFOR": break
+    try:
+        curline = linelist[index + 1]
+    except IndexError:
+        pass
     for con in range(Start, End + 1):
         Config.variables[LCV] = con
-        for lf in Config.LineList:
-            main(lf)
+        lf = 0
+        while lf < len(linelist):
+            curline = linelist[lf]
+            main(index, lineused, linelist)
+            lf += 1
 
 
-def WHILE():
+def WHILE(index, lineused, linelist):
     # Defining the condition
     end2 = 0
-    IF()
 
     Line = Config.FileList[Config.i]
     Lst = Line.split()
@@ -85,7 +101,7 @@ def WHILE():
 
     while Config.Flags[Config.counter]:
         for lf in Config.LineList:
-            main(lf)
+            main(index, lineused, linelist)
         # Recheck condition
 
 
@@ -130,7 +146,7 @@ def PRINT(lineused):
         if word in Config.variables and word[0] != "\"":  # This checks if it is a variable and if the variable exists
             printed += str(Config.variables[word])
         else:
-            for c in range(end-1):
+            for c in range(end - 1):
                 if w == 1 and c == 0:
                     pass
                 else:

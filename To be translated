@@ -1,4 +1,7 @@
-FOR I = 1 TO 5
-PRINT "AMR"
+Max = -1000
+FOR i = 1 TO 10
+INPUT Num
+IF Num > Max
+Max = Num
+ENDIF
 ENDFOR
-PRINT "Hello"
