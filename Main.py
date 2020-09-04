@@ -1,4 +1,4 @@
-import Commands as do
+import Commands as Do
 import Config
 
 # Opening the file
@@ -12,25 +12,25 @@ while Config.i < len(Config.FileList):  # Iterates through the lines until no mo
     Config.Line = Config.Line.rstrip('\n')
 
     if Config.Line[0:5] == "PRINT":
-        do.PRINT(Config.Line)
+        Do.PRINT(Config.Line)
 
     elif Config.Line[0:5] == "WHILE":
-        do.WHILE()
+        Do.WHILE(Config.Line)
 
     elif Config.Line[0:6] == "REPEAT":
-        do.REPEAT()
+        Do.REPEAT()
 
     elif Config.Line[0:5] == "INPUT":
-        do.INPUT(Config.Line)
+        Do.INPUT(Config.Line)
 
     elif Config.Line[0:3] == "FOR":
-        do.FOR()
+        Do.FOR()
 
     elif Config.Line[0:2] == "IF":
-        do.IF()
+        Do.IF(Config.Line)
 
     else:
-        do.ASSIGNMENT(Config.Line)
+        Do.ASSIGNMENT(Config.Line)
 
     Config.counter += 1
     Config.i += 1
