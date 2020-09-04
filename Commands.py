@@ -10,7 +10,7 @@ def main(lineused):
         PRINT(lineused)
 
     elif lineused[0:5] == "WHILE":
-        WHILE()
+        WHILE(Config.i)
 
     elif lineused[0:6] == "REPEAT":
         REPEAT()
