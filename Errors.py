@@ -1,4 +1,3 @@
-import Config
 no = 0
 
 
@@ -20,5 +19,4 @@ OpInvalid = Error("There is an invalid operand")
 
 Tocabsent = Error("There is an invalid operand. Please input a valid variable or number")
 
-Backslash = Error("Please do not use a backslash in a string : \\")
-
+Backslash = Error("Please Do not use a backslash in a string : \\")
