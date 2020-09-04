@@ -22,13 +22,13 @@ def main(lineused):
         FOR()
 
     elif lineused[0:2] == "IF":
-        IF()
+        IF(lineused)
 
     else:
         ASSIGNMENT(lineused)
 
 
-def IF():
+def IF(lineused):
     Lst2 = Config.Line.split()
     if len(Lst2) == 4:
         print(f.comp(Lst2[1], Lst2[3], Lst2[2]))
@@ -36,10 +36,13 @@ def IF():
         if Lst2[5] == "AND":
             if f.comp(Lst2[1], Lst2[3], Lst2[2]) and f.comp(Lst2[5], Lst2[7], Lst2[6]):
                 while Lst2[0] != "ENDIF":
-                    main()
+                    main(lineused)
         elif Lst2[5] == "OR":
-            if f.comp(Lst2[1], Lst2[3], Lst2[2]) or f.comp(Lst2[5], Lst2[7], Lst2[6]):
-                pass
+            try:
+                if f.comp(Lst2[1], Lst2[3], Lst2[2]) or f.comp(Lst2[5], Lst2[7], Lst2[6]):
+                    pass
+            except IndexError:
+                Errors.OpInvalid.isprint()
 
 
 def FOR():
@@ -51,24 +54,30 @@ def FOR():
     while curline[0] != "ENDFOR":
         end2: int = Config.counter
         Config.i += 1
-        Config.Line = Config.FileList[Config.i]
-        Config.Line = Config.Line.rstrip('\n')
-        curline = Config.Line.split()
+        try:
+            Config.Line = Config.FileList[Config.i]
+            Config.Line = Config.Line.rstrip('\n')
+            curline = Config.Line.split()
+        except IndexError:
+            pass
         if curline[0] == "ENDFOR":
             break
         Config.LineList.append(Config.Line)
         end2 += 1
-    Config.Line = Config.FileList[Config.i + 1]
+    try:
+        Config.Line = Config.FileList[Config.i + 1]
+    except IndexError:
+        pass
     for con in range(Start, End + 1):
         Config.variables[LCV] = con
         for lf in Config.LineList:
             main(lf)
 
 
-def WHILE():
+def WHILE(lineused):
     # Defining the condition
     end2 = 0
-    IF()
+    IF(lineused)
 
     Line = Config.FileList[Config.i]
     Lst = Line.split()
