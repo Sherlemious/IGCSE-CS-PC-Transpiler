@@ -1,4 +1,4 @@
-no = 0
+import Config
 
 
 class Error:
@@ -7,7 +7,7 @@ class Error:
 
     def isprint(self):
         print(self.printed)
-        print(f"This error has been generated in Line number #{no+1}")
+        print(f"This error has been generated in Line number #{Config.i}")
 
 
 VarNotPresent = Error("Variable Identifier does not exist.")
