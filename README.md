@@ -23,7 +23,7 @@ While this, on the other hand, will not work
 
 ### Available Functions
 
-### FOR Loop (Fully functional)
+### FOR Loop (Fully functional (Nested FOR Loops under devalopment))
 This is to repeat a number of statements, which are inserted between the FOR "LCV" = "Start" TO "End" and the ENDFOR/ NEXT "LCV", for a set number of times.
 For example,
   ```
