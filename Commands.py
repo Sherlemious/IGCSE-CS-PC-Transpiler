@@ -52,7 +52,6 @@ def FOR():
     End = int(curline[5])
     Config.variables[LCV] = LCV
     while curline[0] != "ENDFOR":
-        end2: int = Config.counter
         Config.i += 1
         try:
             Config.Line = Config.FileList[Config.i]
@@ -63,7 +62,6 @@ def FOR():
         if curline[0] == "ENDFOR":
             break
         Config.LineList.append(Config.Line)
-        end2 += 1
     try:
         Config.Line = Config.FileList[Config.i + 1]
     except IndexError:
