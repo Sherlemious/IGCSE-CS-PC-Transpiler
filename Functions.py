@@ -47,3 +47,11 @@ def comp(val1, val2, operand):
                 return op_dict(toc1, toc2)[operand]
             else:
                 Errors.OpInvalid.isprint()
+
+
+def lastkey(dictionary):
+    Max = 0
+    for item in dictionary:
+        if item > Max:
+            Max = item
+    return Max
