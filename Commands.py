@@ -1,10 +1,9 @@
 import Errors
-import functions as f
+import Functions as Fun
 import Config
 
 
 def main(lineused):
-    lineused = lineused.rstrip('\n')
 
     if lineused[0:5] == "PRINT":
         PRINT(lineused)
@@ -31,15 +30,15 @@ def main(lineused):
 def IF(lineused):
     Lst2 = Config.Line.split()
     if len(Lst2) == 4:
-        print(f.comp(Lst2[1], Lst2[3], Lst2[2]))
+        print(Fun.comp(Lst2[1], Lst2[3], Lst2[2]))
     elif len(Lst2) == 8:
         if Lst2[5] == "AND":
-            if f.comp(Lst2[1], Lst2[3], Lst2[2]) and f.comp(Lst2[5], Lst2[7], Lst2[6]):
+            if Fun.comp(Lst2[1], Lst2[3], Lst2[2]) and Fun.comp(Lst2[5], Lst2[7], Lst2[6]):
                 while Lst2[0] != "ENDIF":
                     main(lineused)
         elif Lst2[5] == "OR":
             try:
-                if f.comp(Lst2[1], Lst2[3], Lst2[2]) or f.comp(Lst2[5], Lst2[7], Lst2[6]):
+                if Fun.comp(Lst2[1], Lst2[3], Lst2[2]) or Fun.comp(Lst2[5], Lst2[7], Lst2[6]):
                     pass
             except IndexError:
                 Errors.OpInvalid.isprint()
