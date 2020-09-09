@@ -55,3 +55,8 @@ def lastkey(dictionary):
         if item > Max:
             Max = item
     return Max
+
+
+def Removeend(thelist):
+    for line in range(len(thelist)):
+        thelist[line] = thelist[line].rstrip('\n')
