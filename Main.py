@@ -11,7 +11,6 @@ Fun.Removeend(Config.FileList)
 
 while Config.i < len(Config.FileList):  # Iterates through the lines until no more lines are available
     Config.Line = Config.FileList[Config.i]
-    Config.Line = Config.Line.rstrip('\n')
 
     if Config.Line[0:5] == "PRINT":
         Do.PRINT(Config.Line)
