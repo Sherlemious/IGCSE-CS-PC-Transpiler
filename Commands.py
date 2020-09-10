@@ -46,7 +46,7 @@ def IF(lineused):
 
 
 def listnumgen():
-    Config.iteratables.append("Number" + str(len(Config.iteratables)))
+    Config.iteratables.append("Loop " + str(len(Config.iteratables)))
 
 
 def FOR():
@@ -55,6 +55,7 @@ def FOR():
     if len(Config.iteratables) == 1:
         curlinesplit = Config.Line.split()
         lcv = curlinesplit[1]
+        Config.variables[lcv] = lcv
         Start = int(curlinesplit[3])
         End = int(curlinesplit[5])+1
         while True:
@@ -76,15 +77,17 @@ def FOR():
 
         Config.iteratables[-1] = Classes.Loop(linelist=linelist, LCV=lcv, start=Start, end=End)
         for i in range(Config.iteratables[-1].start, Config.iteratables[-1].end):
-            Config.iteratables[-1].curlinenumber = 0
+            Config.variables[lcv] = i
             while Config.iteratables[-1].curlinenumber < len(Config.iteratables[-1].linelist):
                 curline = Config.iteratables[-1].linelist[Config.iteratables[-1].curlinenumber]
                 main(curline)
                 Config.iteratables[-1].curlinenumber += 1
+            Config.iteratables[-1].curlinenumber = 0
         del Config.iteratables[-1]
     else:
         curlinesplit = Config.iteratables[-2].linelist[Config.iteratables[-2].curlinenumber].split()
         lcv = curlinesplit[1]
+        Config.variables[lcv] = lcv
         Start = int(curlinesplit[3])
         End = int(curlinesplit[5])+1
         while True:
@@ -98,19 +101,20 @@ def FOR():
             if curlinesplit[0] == "NEXT" and curlinesplit[1] == lcv:
                 del linelist[-1]
                 break
-        Config.iteratables[-2].curlinenumber += 1
+        #Config.iteratables[-2].curlinenumber += 1
         try:
-            Config.iteratables[-2].curline = Config.FileList[Config.i]
+            Config.iteratables[-2].curline = Config.iteratables[-2].linelist[Config.iteratables[-2].curlinenumber]
         except IndexError:
             pass
 
         Config.iteratables[-1] = Classes.Loop(linelist=linelist, LCV=lcv, start=Start, end=End)
         for i in range(Config.iteratables[-1].start, Config.iteratables[-1].end):
-            Config.iteratables[-1].curlinenumber = 0
+            Config.variables[lcv] = i
             while Config.iteratables[-1].curlinenumber < len(Config.iteratables[-1].linelist):
                 curline = Config.iteratables[-1].linelist[Config.iteratables[-1].curlinenumber]
                 main(curline)
                 Config.iteratables[-1].curlinenumber += 1
+            Config.iteratables[-1].curlinenumber = 0
         del Config.iteratables[-1]
 
 
