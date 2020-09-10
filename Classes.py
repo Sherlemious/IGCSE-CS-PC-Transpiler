@@ -5,3 +5,4 @@ class Loop:
         self.start = start
         self.end = end
         self.curlinenumber = 0
+        self.curline = ""

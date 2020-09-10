@@ -13,11 +13,6 @@ def op_dict(toc1, toc2):
     }
 
 
-def LineCounter(filename):
-    counter = 0
-    for _ in range(filename):
-        counter += 1
-    return counter
 
 
 def comp(val1, val2, operand):
@@ -48,13 +43,6 @@ def comp(val1, val2, operand):
             else:
                 Errors.OpInvalid.isprint()
 
-
-def lastkey(dictionary):
-    Max = 0
-    for item in dictionary:
-        if item > Max:
-            Max = item
-    return Max
 
 
 def Removeend(thelist):
