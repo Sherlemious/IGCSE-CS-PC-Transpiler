@@ -23,7 +23,7 @@ While this, on the other hand, will not work
 
 ### Available Functions
 
-### FOR Loop (Fully functional (Nested FOR Loops under devalopment))
+### FOR Loop (Fully functional)
 This is to repeat a number of statements, which are inserted between the FOR "LCV" = "Start" TO "End" and the ENDFOR/ NEXT "LCV", for a set number of times.
 For example,
   ```
@@ -56,7 +56,7 @@ This is a simple statement that can be used as in the following example
   ```
   INPUT Variableexample
   ```
-### WHILE Loop
+### WHILE Loop (Under development)
 A conditional loop that is repeated as long as a condition is being met. Any statements should be insterted between the WHILE "Condition" and the ENDWHILE STATEMENT
   ```
   WHILE I < 5
