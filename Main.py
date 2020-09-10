@@ -16,7 +16,7 @@ while Config.i < len(Config.FileList):
         Do.PRINT(Config.Line)
 
     elif Config.Line[0:5] == "WHILE":
-        Do.WHILE(Config.Line)
+        Do.WHILE()
 
     elif Config.Line[0:6] == "REPEAT":
         Do.REPEAT()
