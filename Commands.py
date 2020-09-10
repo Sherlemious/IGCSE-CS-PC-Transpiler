@@ -1,6 +1,7 @@
 import Errors
 import Functions as Fun
 import Config
+import Classes
 
 
 def main(lineused):
@@ -9,7 +10,7 @@ def main(lineused):
         PRINT(lineused)
 
     elif lineused[0:5] == "WHILE":
-        WHILE(Config.i)
+        WHILE()
 
     elif lineused[0:6] == "REPEAT":
         REPEAT()
@@ -44,33 +45,34 @@ def IF(lineused):
                 Errors.OpInvalid.isprint()
 
 
+def listnumgen():
+    Config.iteratables.append("Number" + str(len(Config.iteratables)))
+
+
 def FOR():
-    curline = Config.Line.split()
-    LCV = curline[1]
-    Start = int(curline[3])
-    End = int(curline[5])
-    Config.variables[LCV] = LCV
-    while curline[0] != "ENDFOR":
+    listnumgen()
+    linelist = []
+    if len(Config.iteratables) == 1:
+        curlinesplit = Config.Line.split()
+        lcv = curlinesplit[1]
+        Start = int(curlinesplit[3])
+        End = int(curlinesplit[5])+1
+        while True:
+            Config.i += 1
+            try:
+                Config.Line = Config.FileList[Config.i]
+                linelist.append(Config.Line)
+                curlinesplit = Config.Line.split()
+            except IndexError:
+                pass
+            if curlinesplit[0] == "NEXT" and curlinesplit[1] == lcv:
+                del linelist[-1]
+                break
         Config.i += 1
         try:
             Config.Line = Config.FileList[Config.i]
-            Config.Line = Config.Line.rstrip('\n')
-            curline = Config.Line.split()
         except IndexError:
             pass
-        if curline[0] == "ENDFOR":
-            break
-        Config.LineList.append(Config.Line)
-    try:
-        Config.Line = Config.FileList[Config.i + 1]
-    except IndexError:
-        pass
-    for con in range(Start, End + 1):
-        Config.variables[LCV] = con
-        for lf in Config.LineList:
-            main(lf)
-
-
 def WHILE(lineused):
     # Defining the condition
     end2 = 0
@@ -93,6 +95,47 @@ def WHILE(lineused):
         for lf in Config.LineList:
             main(lf)
         # Recheck condition
+
+        Config.iteratables[-1] = Classes.Loop(linelist=linelist, LCV=lcv, start=Start, end=End)
+        for i in range(Config.iteratables[-1].start, Config.iteratables[-1].end):
+            Config.iteratables[-1].curlinenumber = 0
+            while Config.iteratables[-1].curlinenumber < len(Config.iteratables[-1].linelist):
+                curline = Config.iteratables[-1].linelist[Config.iteratables[-1].curlinenumber]
+                main(curline)
+                Config.iteratables[-1].curlinenumber += 1
+        del Config.iteratables[-1]
+    else:
+        curlinesplit = Config.iteratables[-2].linelist[Config.iteratables[-2].curlinenumber].split()
+        lcv = curlinesplit[1]
+        Start = int(curlinesplit[3])
+        End = int(curlinesplit[5])+1
+        while True:
+            Config.iteratables[-2].curlinenumber += 1
+            try:
+                Config.iteratables[-2].curline = Config.iteratables[-2].linelist[Config.iteratables[-2].curlinenumber]
+                linelist.append(Config.iteratables[-2].curline)
+                curlinesplit = Config.iteratables[-2].curline.split()
+            except IndexError:
+                pass
+            if curlinesplit[0] == "NEXT" and curlinesplit[1] == lcv:
+                del linelist[-1]
+                break
+        Config.iteratables[-2].curlinenumber += 1
+        try:
+            Config.iteratables[-2].curline = Config.FileList[Config.i]
+        except IndexError:
+            pass
+
+        Config.iteratables[-1] = Classes.Loop(linelist=linelist, LCV=lcv, start=Start, end=End)
+        for i in range(Config.iteratables[-1].start, Config.iteratables[-1].end):
+            Config.iteratables[-1].curlinenumber = 0
+            while Config.iteratables[-1].curlinenumber < len(Config.iteratables[-1].linelist):
+                curline = Config.iteratables[-1].linelist[Config.iteratables[-1].curlinenumber]
+                main(curline)
+                Config.iteratables[-1].curlinenumber += 1
+        del Config.iteratables[-1]
+
+
 
 
 def REPEAT():
