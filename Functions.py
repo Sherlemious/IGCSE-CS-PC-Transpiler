@@ -49,13 +49,6 @@ def comp(val1, val2, operand):
                 Errors.OpInvalid.isprint()
 
 
-def lastkey(dictionary):
-    Max = 0
-    for item in dictionary:
-        if item > Max:
-            Max = item
-    return Max
-
 
 def Removeend(thelist):
     for line in range(len(thelist)):
