@@ -9,7 +9,7 @@ File.close()
 # Manipulating File Done
 Fun.Removeend(Config.FileList)
 
-while Config.i < len(Config.FileList):  # Iterates through the lines until no more lines are available
+while Config.i < len(Config.FileList):
     Config.Line = Config.FileList[Config.i]
 
     if Config.Line[0:5] == "PRINT":
