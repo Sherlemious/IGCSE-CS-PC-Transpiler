@@ -5,7 +5,6 @@ import Classes
 
 
 def main(lineused):
-
     if lineused[0:5] == "PRINT":
         PRINT(lineused)
 
@@ -57,7 +56,7 @@ def FOR():
         lcv = curlinesplit[1]
         Config.variables[lcv] = lcv
         Start = int(curlinesplit[3])
-        End = int(curlinesplit[5])+1
+        End = int(curlinesplit[5]) + 1
         while True:
             Config.i += 1
             try:
@@ -89,7 +88,7 @@ def FOR():
         lcv = curlinesplit[1]
         Config.variables[lcv] = lcv
         Start = int(curlinesplit[3])
-        End = int(curlinesplit[5])+1
+        End = int(curlinesplit[5]) + 1
         while True:
             Config.iteratables[-2].curlinenumber += 1
             try:
@@ -101,7 +100,7 @@ def FOR():
             if curlinesplit[0] == "NEXT" and curlinesplit[1] == lcv:
                 del linelist[-1]
                 break
-        #Config.iteratables[-2].curlinenumber += 1
+        # Config.iteratables[-2].curlinenumber += 1 # I have no idea why removing this line works but it does.
         try:
             Config.iteratables[-2].curline = Config.iteratables[-2].linelist[Config.iteratables[-2].curlinenumber]
         except IndexError:
@@ -117,6 +116,8 @@ def FOR():
             Config.iteratables[-1].curlinenumber = 0
         del Config.iteratables[-1]
 
+
+# TODO: Add the code to the WHILE and REPEAT FUNCTIONS
 
 def WHILE():
     pass
@@ -163,7 +164,7 @@ def PRINT(lineused):
         if word in Config.variables and word[0] != "\"":  # This checks if it is a variable and if the variable exists
             printed += str(Config.variables[word])
         else:
-            for c in range(end-1):
+            for c in range(end - 1):
                 if w == 1 and c == 0:
                     pass
                 else:
