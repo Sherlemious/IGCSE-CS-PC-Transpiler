@@ -73,28 +73,6 @@ def FOR():
             Config.Line = Config.FileList[Config.i]
         except IndexError:
             pass
-def WHILE(lineused):
-    # Defining the condition
-    end2 = 0
-    IF(lineused)
-
-    Line = Config.FileList[Config.i]
-    Lst = Line.split()
-    Config.LineList.append(Line)
-    end2 += 1
-
-    while Lst[0] != "ENDWHILE":
-        end3 = Config.counter
-        Config.i += 1
-        Line = Config.FileList[Config.i]
-        Lst = Line.split()
-        Config.LineList.append(Line)
-        end3 += 1
-
-    while Config.Flags[Config.counter]:
-        for lf in Config.LineList:
-            main(lf)
-        # Recheck condition
 
         Config.iteratables[-1] = Classes.Loop(linelist=linelist, LCV=lcv, start=Start, end=End)
         for i in range(Config.iteratables[-1].start, Config.iteratables[-1].end):
@@ -136,6 +114,8 @@ def WHILE(lineused):
         del Config.iteratables[-1]
 
 
+def WHILE():
+    pass
 
 
 def REPEAT():
