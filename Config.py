@@ -1,11 +1,11 @@
 Line = ""
 variables = {}
 Flags = {}
-LineList = []
 counter = 0
 tobeeval = ""
-ListDictionary = {}
 i = 0
+iteratables = []
+Line = ""
 FileList = []
 op_list = ['=', '>', '<', '<=', '>=', '<>']
 mops = ["+", "-", "*", "/"]

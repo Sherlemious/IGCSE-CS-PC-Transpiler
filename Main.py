@@ -14,19 +14,15 @@ while Config.i < len(Config.FileList):  # Iterates through the lines until no mo
 
     if Config.Line[0:5] == "PRINT":
         Do.PRINT(Config.Line)
-        continue
 
     elif Config.Line[0:5] == "WHILE":
         Do.WHILE(Config.Line)
-        continue
 
     elif Config.Line[0:6] == "REPEAT":
         Do.REPEAT()
-        continue
 
     elif Config.Line[0:5] == "INPUT":
         Do.INPUT(Config.Line)
-        continue
 
     elif Config.Line[0:3] == "FOR":
         Do.FOR()
@@ -34,7 +30,6 @@ while Config.i < len(Config.FileList):  # Iterates through the lines until no mo
 
     elif Config.Line[0:2] == "IF":
         Do.IF(Config.Line)
-        continue
 
     else:
         Do.ASSIGNMENT(Config.Line)

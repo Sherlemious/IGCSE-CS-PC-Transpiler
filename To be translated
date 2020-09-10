@@ -1,4 +1,7 @@
 FOR I = 1 TO 5
-PRINT "AMR"
-ENDFOR
+FOR T = 1 TO 3
 PRINT "Hello"
+NEXT T
+PRINT "World"
+NEXT I
+PRINT "Done"

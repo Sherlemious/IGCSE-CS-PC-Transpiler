@@ -13,11 +13,6 @@ def op_dict(toc1, toc2):
     }
 
 
-def LineCounter(filename):
-    counter = 0
-    for _ in range(filename):
-        counter += 1
-    return counter
 
 
 def comp(val1, val2, operand):
