@@ -45,7 +45,7 @@ def IF(lineused):
 
 
 def listnumgen():
-    Config.iteratables.append("FORLOOP " + str(len(Config.iteratables)))
+    Config.iteratables.append("Loop " + str(len(Config.iteratables)))
 
 
 def FOR():
@@ -74,7 +74,7 @@ def FOR():
         except IndexError:
             pass
 
-        Config.iteratables[-1] = Classes.FORLOOP(linelist=linelist, LCV=lcv, start=Start, end=End)
+        Config.iteratables[-1] = Classes.Loop(linelist=linelist, LCV=lcv, start=Start, end=End)
         for i in range(Config.iteratables[-1].start, Config.iteratables[-1].end):
             Config.variables[lcv] = i
             while Config.iteratables[-1].curlinenumber < len(Config.iteratables[-1].linelist):
@@ -106,7 +106,7 @@ def FOR():
         except IndexError:
             pass
 
-        Config.iteratables[-1] = Classes.FORLOOP(linelist=linelist, LCV=lcv, start=Start, end=End)
+        Config.iteratables[-1] = Classes.Loop(linelist=linelist, LCV=lcv, start=Start, end=End)
         for i in range(Config.iteratables[-1].start, Config.iteratables[-1].end):
             Config.variables[lcv] = i
             while Config.iteratables[-1].curlinenumber < len(Config.iteratables[-1].linelist):
