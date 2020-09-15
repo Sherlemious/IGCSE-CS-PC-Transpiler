@@ -27,6 +27,10 @@ def main(lineused):
         ASSIGNMENT(lineused)
 
 
+def listnumgen():
+    Config.iteratables.append("FORLOOP " + str(len(Config.iteratables)))
+
+
 def IF(lineused):
     Lst2 = Config.Line.split()
     if len(Lst2) == 4:
@@ -42,10 +46,6 @@ def IF(lineused):
                     pass
             except IndexError:
                 Errors.OpInvalid.isprint()
-
-
-def listnumgen():
-    Config.iteratables.append("FORLOOP " + str(len(Config.iteratables)))
 
 
 def FOR():
