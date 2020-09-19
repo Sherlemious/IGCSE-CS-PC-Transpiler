@@ -74,15 +74,6 @@ def FOR():
         except IndexError:
             pass
 
-        Config.iteratables[-1] = Classes.FORLOOP(linelist=linelist, LCV=lcv, start=Start, end=End)
-        for i in range(Config.iteratables[-1].start, Config.iteratables[-1].end):
-            Config.variables[lcv] = i
-            while Config.iteratables[-1].curlinenumber < len(Config.iteratables[-1].linelist):
-                curline = Config.iteratables[-1].linelist[Config.iteratables[-1].curlinenumber]
-                main(curline)
-                Config.iteratables[-1].curlinenumber += 1
-            Config.iteratables[-1].curlinenumber = 0
-        del Config.iteratables[-1]
     else:
         curlinesplit = Config.iteratables[-2].linelist[Config.iteratables[-2].curlinenumber].split()
         lcv = curlinesplit[1]
@@ -106,15 +97,15 @@ def FOR():
         except IndexError:
             pass
 
-        Config.iteratables[-1] = Classes.FORLOOP(linelist=linelist, LCV=lcv, start=Start, end=End)
-        for i in range(Config.iteratables[-1].start, Config.iteratables[-1].end):
-            Config.variables[lcv] = i
-            while Config.iteratables[-1].curlinenumber < len(Config.iteratables[-1].linelist):
-                curline = Config.iteratables[-1].linelist[Config.iteratables[-1].curlinenumber]
-                main(curline)
-                Config.iteratables[-1].curlinenumber += 1
-            Config.iteratables[-1].curlinenumber = 0
-        del Config.iteratables[-1]
+    Config.iteratables[-1] = Classes.FORLOOP(linelist=linelist, LCV=lcv, start=Start, end=End)
+    for i in range(Config.iteratables[-1].start, Config.iteratables[-1].end):
+        Config.variables[lcv] = i
+        while Config.iteratables[-1].curlinenumber < len(Config.iteratables[-1].linelist):
+            curline = Config.iteratables[-1].linelist[Config.iteratables[-1].curlinenumber]
+            main(curline)
+            Config.iteratables[-1].curlinenumber += 1
+        Config.iteratables[-1].curlinenumber = 0
+    del Config.iteratables[-1]
 
 
 # TODO: Add the code to the WHILE and REPEAT FUNCTIONS
