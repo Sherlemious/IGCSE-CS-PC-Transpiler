@@ -12,7 +12,7 @@ This program is still under development and won't be fully functional for a whil
 ## How to use
 ### Syntax
 For starters, it is required to leave a space character between each variable, function or operator. 
-For example, when assigning a value to a variable, this is the correct way to be used
+For example, when assigning a value to a variable, this is the correct way to do this
   ```
   variableexample = 16 * 14 + Varexample2
   ```
