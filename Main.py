@@ -1,9 +1,12 @@
+import os
 import Commands as Do
 import Config
 import Functions as Fun
 
 # Opening the file
-File = open("F:\\Projects\\Applications\\IGCSE-CS-PC-Transpiler\\To be translated", "r")
+dirname = os.path.dirname(__file__)
+dirname += "\\To be translated"
+File = open(dirname, "r")
 Config.FileList = list(File)
 File.close()
 # Manipulating File Done
