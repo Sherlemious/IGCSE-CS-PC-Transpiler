@@ -203,11 +203,19 @@ def PRINT(lineused):
         if word in Config.variables and word[0] != "\"":  # This checks if it is a variable and if the variable exists
             printed += str(Config.variables[word])
         else:
-            for c in range(end - 1):
-                if w == 1 and c == 0:
-                    pass
-                else:
-                    printed += word[c]
-            printed += " "
+            if word[-1] == "\"":
+                for c in range(end - 1):
+                    if w == 1 and c == 0:
+                        pass
+                    else:
+                        printed += word[c]
+                printed += " "
+            else:
+                for c in range(end):
+                    if w == 1 and c == 0:
+                        pass
+                    else:
+                        printed += word[c]
+                printed += " "
 
     print(printed)
