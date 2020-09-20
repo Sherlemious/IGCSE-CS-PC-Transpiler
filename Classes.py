@@ -14,8 +14,9 @@ class FORLOOP(FUNCTIONS):
 
 
 class IFSTATEMENT(FUNCTIONS):
-    def __init__(self, condition, iftrue, iffalse):
+    def __init__(self, condition, iftrue, iffalse, elsestarter):
         super().__init__()
         self.condtion = condition
         self.iftrue = iftrue
         self.iffalse = iffalse
+        self.elsestarter = elsestarter
