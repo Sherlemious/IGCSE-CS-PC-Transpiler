@@ -28,72 +28,24 @@ def main(lineused):
 
 
 def listnumgen():
-    Config.iteratables.append("Statement " + str(len(Config.iteratables)))
+    Config.iteratables.append("FORLOOP " + str(len(Config.iteratables)))
 
 
 def IF(lineused):
-    listnumgen()
-    linelisttrue = []
-    linelistfalse = []
-    elsestarter = 1
-    if len(Config.iteratables) == 1:
-        Lst = Config.Line.split()
-        Cond = Lst
-        while True:
-            Config.i += 1
+    Lst2 = Config.Line.split()
+    if len(Lst2) == 4:
+        print(Fun.comp(Lst2[1], Lst2[3], Lst2[2]))
+    elif len(Lst2) == 8:
+        if Lst2[5] == "AND":
+            if Fun.comp(Lst2[1], Lst2[3], Lst2[2]) and Fun.comp(Lst2[5], Lst2[7], Lst2[6]):
+                while Lst2[0] != "ENDIF":
+                    main(lineused)
+        elif Lst2[5] == "OR":
             try:
-                Config.Line = Config.FileList[Config.i]
-                if Config.Line != "THEN":
-                    linelisttrue.append(Config.Line)
-                curlinesplit = Config.Line.split()
-                elsestarter += 1
-                if curlinesplit[0] == "ELSE" or curlinesplit[0] == "ENDIF":
-                    del linelisttrue[-1]
-                    if curlinesplit[0] == "ELSE":
-                        while True:
-                            Config.i += 1
-                            try:
-                                Config.Line = Config.FileList[Config.i]
-                                linelistfalse.append(Config.Line)
-                                curlinesplit = Config.Line.split()
-                            except IndexError:
-                                pass
-                            if curlinesplit[0] == "ENDIF":
-                                del linelistfalse[-1]
-                                break
-                        break
-
+                if Fun.comp(Lst2[1], Lst2[3], Lst2[2]) or Fun.comp(Lst2[5], Lst2[7], Lst2[6]):
+                    pass
             except IndexError:
-                pass
-
-        if len(Cond) == 4:
-            Config.iteratables[-1] = Classes.IFSTATEMENT(condition=Cond, iffalse=linelistfalse, iftrue=linelisttrue,
-                                                         elsestarter=elsestarter)
-            Config.iteratables[-1].condition = Fun.comp(Cond[1], Cond[3], Cond[2])
-            if Config.iteratables[-1].condition:
-                while Config.iteratables[-1].curlinenumber < len(Config.iteratables[-1].iftrue):
-                    curline = Config.iteratables[-1].iftrue[Config.iteratables[-1].curlinenumber]
-                    main(curline)
-                    Config.iteratables[-1].curlinenumber += 1
-            else:
-                Config.iteratables[-1].curlinenumber = Config.iteratables[-1].elsestarter
-                while Config.iteratables[-1].curlinenumber < len(Config.iteratables[-1].iffalse):
-                    curline = Config.iteratables[-1].iffalse[Config.iteratables[-1].curlinenumber]
-                    main(curline)
-                    Config.iteratables[-1].curlinenumber += 1
-
-
-        elif len(Lst) == 8:
-            if Lst[5] == "AND":
-                if Fun.comp(Lst[1], Lst[3], Lst[2]) and Fun.comp(Lst[5], Lst[7], Lst[6]):
-                    while Lst[0] != "ENDIF":
-                        main(lineused)
-            elif Lst[5] == "OR":
-                try:
-                    if Fun.comp(Lst[1], Lst[3], Lst[2]) or Fun.comp(Lst[5], Lst[7], Lst[6]):
-                        pass
-                except IndexError:
-                    Errors.OpInvalid.isprint()
+                Errors.OpInvalid.isprint()
 
 
 def FOR():
