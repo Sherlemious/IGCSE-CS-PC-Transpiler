@@ -13,14 +13,12 @@ def op_dict(toc1, toc2):
     }
 
 
-
-
 def comp(val1, val2, operand):
     # First Variable or Number
     flag1 = False
     flag2 = False
     if val1 in Config.variables:
-        toc1 = Config.variables[val1]
+        toc1 = float(Config.variables[val1])
         flag1 = True
     elif type(float(val1)) == float or type(int(val1)) == int:
         toc1 = float(val1)
@@ -30,7 +28,7 @@ def comp(val1, val2, operand):
     # Second Variable or Number
     if flag1:
         if val2 in Config.variables:
-            toc2 = Config.variables[val2]
+            toc2 = float(Config.variables[val2])
             flag2 = True
         elif type(float(val2)) == float or type(int(val2)) == int:
             toc2 = float(val2)
@@ -42,7 +40,6 @@ def comp(val1, val2, operand):
                 return op_dict(toc1, toc2)[operand]
             else:
                 Errors.OpInvalid.isprint()
-
 
 
 def Removeend(thelist):
