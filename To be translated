@@ -1,6 +1,8 @@
 INPUT H
 IF H = 0
 THEN
-PRINT H
+PRINT "Is equal to zero"
+ELSE
+PRINT "Is not equal to zero"
 ENDIF
 PRINT "DONE"
