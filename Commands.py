@@ -82,6 +82,7 @@ def IF(lineused):
                     curline = Config.iteratables[-1].iffalse[Config.iteratables[-1].elsecurline]
                     main(curline)
                     Config.iteratables[-1].curline += 1
+                    Config.iteratables[-1].elsecurline += 1
 
         elif len(lst) == 8:
             if lst[5] == "AND":
