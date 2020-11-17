@@ -1,8 +1,9 @@
-INPUT H
-IF H = 0
-THEN
-PRINT "Is equal to zero"
-ELSE
-PRINT "Is not equal to zero"
-ENDIF
-PRINT "DONE"
+m = 0
+FOR i = 1 TO 6
+FOR t = 1 TO 7
+FOR l = 1 to 9
+m = m + 1
+NEXT l
+NEXT t
+NEXT i
+PRINT m
