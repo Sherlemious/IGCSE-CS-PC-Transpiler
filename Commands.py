@@ -34,7 +34,8 @@ def IF(lineused):
     listnumgen()
     linelisttrue = []
     linelistfalse = []
-    elsestarter = 1
+    elsestarter = Config.i
+    Config.CountDict["IFSTATEMENT"] += 1
     if len(Config.iteratables) == 1:
         lst = Config.Line.split()
         cond = lst
