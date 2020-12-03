@@ -84,17 +84,17 @@ def IF(lineused):
                     Config.iteratables[-1].curline += 1
                     Config.iteratables[-1].elsecurline += 1
 
-        elif len(lst) == 8:
-            if lst[5] == "AND":
-                if Fun.comp(lst[1], lst[3], lst[2]) and Fun.comp(lst[5], lst[7], lst[6]):
-                    while lst[0] != "ENDIF":
-                        main(lineused)
-            elif lst[5] == "OR":
-                try:
-                    if Fun.comp(lst[1], lst[3], lst[2]) or Fun.comp(lst[5], lst[7], lst[6]):
-                        pass
-                except IndexError:
-                    Errors.OpInvalid.isprint()
+        # elif len(lst) == 8:
+        #     if lst[5] == "AND":
+        #         if Fun.comp(lst[1], lst[3], lst[2]) and Fun.comp(lst[5], lst[7], lst[6]):
+        #             while lst[0] != "ENDIF":
+        #                 main(lineused)
+        #     elif lst[5] == "OR":
+        #         try:
+        #             if Fun.comp(lst[1], lst[3], lst[2]) or Fun.comp(lst[5], lst[7], lst[6]):
+        #                 pass
+        #         except IndexError:
+        #             Errors.OpInvalid.isprint()
 
 
 def FOR():
