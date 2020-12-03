@@ -48,6 +48,7 @@ def IF(lineused):
                 curlinesplit = Config.Line.split()
                 elsestarter += 1
                 if curlinesplit[0] == "ELSE" or curlinesplit[0] == "ENDIF":
+                # if curlinesplit[0] == "ELSE" or curlinesplit[0] == "ENDIF" and Config.CountDict["IFSTATEMENT"] == 1:
                     del linelisttrue[-1]
                     if curlinesplit[0] == "ELSE":
                         while True:
@@ -60,8 +61,10 @@ def IF(lineused):
                                 pass
                             if curlinesplit[0] == "ENDIF":
                                 del linelistfalse[-1]
+                                # Config.CountDict["IFSTATEMENT"] -= 1
                                 break
                         ending = Config.i
+                        # Config.CountDict["IFSTATEMENT"] -= 1
                         break
 
             except IndexError:
