@@ -34,6 +34,9 @@ while Config.i < len(Config.FileList):
     elif Config.Line[0:2] == "IF":
         Do.IF(Config.Line)
 
+    elif Config.Line[0:2] == "//":
+        pass
+
     else:
         Do.ASSIGNMENT(Config.Line)
 
