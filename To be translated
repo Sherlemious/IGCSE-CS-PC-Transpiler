@@ -1,9 +1,16 @@
-m = 0
-FOR i = 1 TO 6
-FOR t = 1 TO 7
-FOR l = 1 to 9
-m = m + 1
-NEXT l
-NEXT t
-NEXT i
-PRINT m
+// m = 0
+// FOR i = 1 TO 6
+// FOR t = 1 TO 7
+// FOR l = 1 to 9
+// m = m + 1
+// NEXT l
+// NEXT t
+// NEXT i
+// PRINT m
+INPUT H
+IF H > 0
+THEN
+PRINT "Greater than 0"
+ELSE
+PRINT "Other"
+ENDIF
