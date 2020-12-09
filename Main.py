@@ -9,11 +9,13 @@ dirname += "\\To be translated"
 File = open(dirname, "r")
 Config.FileList = list(File)
 File.close()
+
 # Manipulating File Done
 Fun.Removeend(Config.FileList)
 
 while Config.i < len(Config.FileList):
     Config.Line = Config.FileList[Config.i]
+    splitlines = Config.Line.split()
 
     if Config.Line[0:5] == "PRINT":
         Do.PRINT(Config.Line)
@@ -37,7 +39,7 @@ while Config.i < len(Config.FileList):
     elif Config.Line[0:2] == "//":
         pass
 
-    else:
+    elif splitlines[1] == "=":
         Do.ASSIGNMENT(Config.Line)
 
     Config.counter += 1
