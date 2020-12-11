@@ -12,6 +12,15 @@ def op_dict(toc1, toc2):
         "<>": toc1 != toc2
     }
 
+def log_dict(exp1,exp2):
+    return{
+        "AND": exp1 and exp2,
+        "OR": exp1 or exp2,
+        "XOR": exp1 != exp2,
+        "NAND": not(exp1 and exp2),
+        "NOR": not(exp1 or exp2)
+    }
+
 
 def comp(val1, val2, operand):
     # First Variable or Number
@@ -40,6 +49,15 @@ def comp(val1, val2, operand):
                 return op_dict(toc1, toc2)[operand]
             else:
                 Errors.OpInvalid.isprint()
+
+def compExpressions(exp1,exp2,logic_gate):
+    if logic_gate in Config.logic_list:
+        flag1 = comp(exp1[0],exp1[1],exp1[2])
+        flag2 = comp(exp2[0],exp2[1],exp2[2])
+        return log_dict(flag1,flag2)[logic_gate]
+    else: 
+        Errors.LogInvalid.isprint()
+
 
 
 def Removeend(thelist):
