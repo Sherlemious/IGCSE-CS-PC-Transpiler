@@ -49,15 +49,19 @@ def comp(val1, val2, operand):
                 return op_dict(toc1, toc2)[operand]
             else:
                 Errors.OpInvalid.isprint()
-
+# Compares two expressions by using comp function
 def compExpressions(exp1,exp2,logic_gate):
+    logicEval = None
     if logic_gate in Config.logic_list:
+        # expressions should be passed in as array in form [val1,val2,operand]
         flag1 = comp(exp1[0],exp1[1],exp1[2])
         flag2 = comp(exp2[0],exp2[1],exp2[2])
-        return log_dict(flag1,flag2)[logic_gate]
+        logicEval = log_dict(flag1,flag2)[logic_gate]
     else: 
         Errors.LogInvalid.isprint()
 
+    if logicEval is not None:
+        return log_dict(flag1,flag2)[logic_gate]
 
 
 def Removeend(thelist):

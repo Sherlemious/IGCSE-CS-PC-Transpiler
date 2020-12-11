@@ -9,6 +9,7 @@ class Error:
     def isprint(self):
         print(self.printed)
         print(f"This error has been generated in Line number #{Config.i}")
+        #added system exit on error 
         sys.exit(-1)
 
 
