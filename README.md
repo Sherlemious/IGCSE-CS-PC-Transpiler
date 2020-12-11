@@ -75,7 +75,7 @@ A conditional loop that is repeated until a certin condition is met. Any stateme
   UNTIL I = 5
   ```
 
-### IF (Under development)
+### IF (Fully functional)
 A conditional statement that carries out a group of statements between the IF statement and the ENDIF statement. The ELSE statement will also be functional.
   ```
   IF I = T
@@ -85,6 +85,12 @@ A conditional statement that carries out a group of statements between the IF st
   ENDIF
   ```
 ##### Note that this does not currently support nested IF statements.
+
+### Commenting
+Comments should be preceded by two slashes and a space character as follows.
+  ```
+  // This is a comment
+  ```
 
 
 ## Contributing
