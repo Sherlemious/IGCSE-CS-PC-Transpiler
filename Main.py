@@ -34,7 +34,7 @@ while Config.i < len(Config.FileList):
         continue
 
     elif Config.Line[0:2] == "IF":
-        Do.IF(Config.Line)
+        Do.IF()
 
     elif Config.Line[0:2] == "//":
         pass
