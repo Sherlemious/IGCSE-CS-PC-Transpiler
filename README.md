@@ -24,20 +24,12 @@ While this, on the other hand, will not work
 ### Available Functions
 
 ### FOR Loop (Fully functional)
-This is to repeat a number of statements, which are inserted between the FOR "LCV" = "Start" TO "End" and the ENDFOR/ NEXT "LCV", for a set number of times.
-For example,
-  ```
-  FOR I = 1 TO 5
-  PRINT "HELLO WORLD !"
-  ENDFOR
-  ```
-or 
+This is to repeat a number of statements, which are inserted between the FOR "LCV" = "Start" TO "End" and the NEXT "LCV", for a set number of times.
   ```
   FOR I = 1 TO 5
   PRINT "HELLO WORLD !"
   NEXT I
   ```
-###### Note that If you use the ENDFOR version, you should ***never*** use nested loops.
 
 ### PRINT (Fully functional)
 This is a simple statement use as in the following examples
