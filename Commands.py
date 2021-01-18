@@ -20,7 +20,7 @@ def main(lineused):
         FOR()
 
     elif lineused[0:2] == "IF":
-        IF(lineused)
+        IF()
 
     else:
         ASSIGNMENT(lineused)
