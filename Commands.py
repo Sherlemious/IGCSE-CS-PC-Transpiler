@@ -26,6 +26,20 @@ def main(lineused):
         ASSIGNMENT(lineused)
 
 
+def checkopener(line):
+    line = line.strip()
+    if line[0] == "IF": Config.CountDict["IFSTATEMENT"] += 1
+    if line[0] == "WHILE": Config.CountDict["WHILELOOP"] += 1
+    if line[0] == "REPEAT": Config.CountDict["REPEATLOOP"] += 1
+
+
+def checkending(line):
+    line = line.strip()
+    if line[0] == "ENDIF" : Config.CountDict["IFSTATEMENT"] -= 1
+    if line[0] == "ENDWHILE" : Config.CountDict["WHILELOOP"] -= 1
+    if line[0] == "UNTIL": Config.CountDict["REPEATLOOP"] -= 1
+
+
 def listnumgen():
     Config.iteratables.append("Statement " + str(len(Config.iteratables)))
 
