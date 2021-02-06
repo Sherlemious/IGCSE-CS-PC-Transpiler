@@ -43,6 +43,7 @@ def check_ending(line):
     if line[0] == "ENDWHILE":
         Config.CountDict["WHILELOOP"] -= 1
     if line[0] == "UNTIL":
+        Config.CountDict["REPEATLOOP"] -= 1
 
 
 def object_gen():
