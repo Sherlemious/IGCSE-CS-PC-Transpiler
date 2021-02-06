@@ -22,4 +22,4 @@ class IFSTATEMENT(FUNCTIONS):
         self.else_starter = elsestarter
         self.falsending = falsending
         self.elsecurline = 0
-        self.linelist = outerlinelist
+        self.line_list = outerlinelist
