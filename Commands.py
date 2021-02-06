@@ -29,21 +29,21 @@ def main(line_used):
 def check_opener(line):
     line = line.strip()
     if line[0] == "IF":
-        Config.CountDict["IFSTATEMENT"] += 1
+        Config.CountDict["IF_ST"] += 1
     if line[0] == "WHILE":
-        Config.CountDict["WHILELOOP"] += 1
+        Config.CountDict["WHILE_L"] += 1
     if line[0] == "REPEAT":
-        Config.CountDict["REPEATLOOP"] += 1
+        Config.CountDict["REPEAT_L"] += 1
 
 
 def check_ending(line):
     line = line.strip()
     if line[0] == "ENDIF":
-        Config.CountDict["IFSTATEMENT"] -= 1
+        Config.CountDict["IF_ST"] -= 1
     if line[0] == "ENDWHILE":
-        Config.CountDict["WHILELOOP"] -= 1
+        Config.CountDict["WHILE_L"] -= 1
     if line[0] == "UNTIL":
-        Config.CountDict["REPEATLOOP"] -= 1
+        Config.CountDict["REPEAT_L"] -= 1
 
 
 def object_gen():
