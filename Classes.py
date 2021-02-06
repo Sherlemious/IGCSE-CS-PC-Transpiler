@@ -5,10 +5,10 @@ class FUNCTIONS:
 
 
 class FORLOOP(FUNCTIONS):
-    def __init__(self, linelist, LCV, start, end):
+    def __init__(self, line_list, lcv, start, end):
         super().__init__()
-        self.linelist = linelist
-        self.LCV = LCV
+        self.line_list = line_list
+        self.LCV = lcv
         self.start = start
         self.end = end
 
@@ -19,7 +19,7 @@ class IFSTATEMENT(FUNCTIONS):
         self.condtion = condition
         self.iftrue = iftrue
         self.iffalse = iffalse
-        self.elsestarter = elsestarter
+        self.else_starter = elsestarter
         self.falsending = falsending
         self.elsecurline = 0
         self.linelist = outerlinelist
