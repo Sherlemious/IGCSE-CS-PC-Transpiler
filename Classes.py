@@ -1,25 +1,32 @@
-class FUNCTIONS:
-    def __init__(self):
-        self.curlinenumber = 0
-        self.curline = ""
-
-
-class FORLOOP(FUNCTIONS):
-    def __init__(self, line_list, lcv, start, end):
-        super().__init__()
+class FUNCTION:
+    def __init__(self, line_list):
+        self.line_number = 0
+        self.cur_line = ""
         self.line_list = line_list
+
+
+class FOR_LOOP(FUNCTION):
+    def __init__(self, lcv, start, end, line_list):
+        super().__init__(self)
         self.LCV = lcv
         self.start = start
         self.end = end
+        self.line_list = line_list
 
 
-class IFSTATEMENT(FUNCTIONS):
-    def __init__(self, condition, iftrue, iffalse, elsestarter, falsending, outerlinelist):
-        super().__init__()
-        self.condtion = condition
-        self.iftrue = iftrue
-        self.iffalse = iffalse
-        self.else_starter = elsestarter
-        self.falsending = falsending
-        self.elsecurline = 0
-        self.line_list = outerlinelist
+class IF_STATEMENT(FUNCTION):
+    def __init__(self):
+        super().__init__(self)
+        self.Condition = ""
+        self.If_True = ""
+        self.If_False = ""
+        self.else_starter = 0
+        self.False_end = 0
+
+
+class Loop_Counts:
+    def __init__(self):
+        pass
+    While = 0
+    Repeat = 0
+    If = 0
