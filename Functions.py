@@ -70,3 +70,27 @@ def compExpressions(exp1, exp2, logic_gate):
 def rem_end(the_list):
     for line in range(len(the_list)):
         the_list[line] = the_list[line].rstrip('\n')
+
+
+def check_opener(line):
+    line = line.strip()
+    if line[0] == "IF":
+        Config.CountDict["IF_ST"] += 1
+    if line[0] == "WHILE":
+        Config.CountDict["WHILE_L"] += 1
+    if line[0] == "REPEAT":
+        Config.CountDict["REPEAT_L"] += 1
+
+
+def check_ending(line):
+    line = line.strip()
+    if line[0] == "ENDIF":
+        Config.CountDict["IF_ST"] -= 1
+    if line[0] == "ENDWHILE":
+        Config.CountDict["WHILE_L"] -= 1
+    if line[0] == "UNTIL":
+        Config.CountDict["REPEAT_L"] -= 1
+
+
+def object_gen():
+    Config.iteratables.append("Statement " + str(len(Config.iteratables)))

@@ -26,33 +26,9 @@ def main(line_used):
         ASSIGNMENT(line_used)
 
 
-def check_opener(line):
-    line = line.strip()
-    if line[0] == "IF":
-        Config.CountDict["IF_ST"] += 1
-    if line[0] == "WHILE":
-        Config.CountDict["WHILE_L"] += 1
-    if line[0] == "REPEAT":
-        Config.CountDict["REPEAT_L"] += 1
-
-
-def check_ending(line):
-    line = line.strip()
-    if line[0] == "ENDIF":
-        Config.CountDict["IF_ST"] -= 1
-    if line[0] == "ENDWHILE":
-        Config.CountDict["WHILE_L"] -= 1
-    if line[0] == "UNTIL":
-        Config.CountDict["REPEAT_L"] -= 1
-
-
-def object_gen():
-    Config.iteratables.append("Statement " + str(len(Config.iteratables)))
-
-
 def IF():
     outer_list = []
-    object_gen()
+    Fun.object_gen()
     true_lines = []
     false_lines = []
     Config.CountDict["IF_ST"] += 1
@@ -66,8 +42,8 @@ def IF():
             Config.i += 1
             try:
                 Config.Line = Config.FileList[Config.i]
-                check_opener(Config.Line)
-                check_ending(Config.Line)
+                Fun.check_opener(Config.Line)
+                Fun.check_ending(Config.Line)
                 if Config.Line != "THEN":
                     outer_list.append(Config.Line)
                     true_lines.append(Config.Line)
@@ -138,10 +114,12 @@ def IF():
                                 cur_line_split = Config.iteratables[-2].curline.split()
                             except IndexError:
                                 pass
-                            if (cur_line_split[0] == "ELSE" or cur_line_split[0] == "ENDIF") and Config.CountDict["IF_ST"] == 1:
-                                del false_lines[-1]
-                                Config.CountDict["IF_ST"] -= 1
-                                break
+                            if cur_line_split[0] != "ELSE" and cur_line_split[0] != "ENDIF" or Config.CountDict[
+                                "IF_ST"] != 1:
+                                continue
+                            del false_lines[-1]
+                            Config.CountDict["IF_ST"] -= 1
+                            break
                         ending = Config.i
                         break
 
@@ -176,7 +154,7 @@ def IF():
 
 
 def FOR():
-    object_gen()
+    Fun.object_gen()
     line_list = []
     if len(Config.iteratables) == 1:
         cur_line_split = Config.Line.split()
