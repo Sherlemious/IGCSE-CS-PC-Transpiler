@@ -218,7 +218,6 @@ def FOR():
             if cur_line_split[0] == "NEXT" and cur_line_split[1] == lcv:
                 del line_list[-1]
                 break
-        # Config.iteratables[-2].curlinenumber += 1 # I have no idea why removing this line works but it does.
         try:
             Config.iteratables[-2].curline = Config.iteratables[-2].line_list[Config.iteratables[-2].curlinenumber]
         except IndexError:
