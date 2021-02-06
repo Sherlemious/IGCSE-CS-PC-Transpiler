@@ -50,49 +50,55 @@ def object_gen():
     Config.iteratables.append("Statement " + str(len(Config.iteratables)))
 
 
-def IF(lineused):
-    listnumgen()
-    linelisttrue = []
-    linelistfalse = []
-    elsestarter = Config.i
+def IF():
+    outer_list = []
+    object_gen()
+    true_lines = []
+    false_lines = []
     Config.CountDict["IFSTATEMENT"] += 1
+    # then_found = False
+
     if len(Config.iteratables) == 1:
+        else_starter = Config.i
         lst = Config.Line.split()
         cond = lst
         while True:
             Config.i += 1
             try:
                 Config.Line = Config.FileList[Config.i]
+                check_opener(Config.Line)
+                check_ending(Config.Line)
                 if Config.Line != "THEN":
-                    linelisttrue.append(Config.Line)
-                curlinesplit = Config.Line.split()
-                elsestarter += 1
-                if curlinesplit[0] == "ELSE" or curlinesplit[0] == "ENDIF":
-                # if curlinesplit[0] == "ELSE" or curlinesplit[0] == "ENDIF" and Config.CountDict["IFSTATEMENT"] == 1:
-                    del linelisttrue[-1]
-                    if curlinesplit[0] == "ELSE":
+                    outer_list.append(Config.Line)
+                    true_lines.append(Config.Line)
+                    # then_found = True
+                cur_line_split = Config.Line.split()
+                else_starter += 1
+                if (cur_line_split[0] == "ELSE" or cur_line_split[0] == "ENDIF") and Config.CountDict["IFSTATEMENT"] == 1:
+                    del true_lines[-1]
+                    if cur_line_split[0] == "ELSE":
                         while True:
                             Config.i += 1
                             try:
                                 Config.Line = Config.FileList[Config.i]
-                                linelistfalse.append(Config.Line)
-                                curlinesplit = Config.Line.split()
+                                false_lines.append(Config.Line)
+                                cur_line_split = Config.Line.split()
                             except IndexError:
                                 pass
-                            if curlinesplit[0] == "ENDIF":
-                                del linelistfalse[-1]
-                                # Config.CountDict["IFSTATEMENT"] -= 1
+                            if cur_line_split[0] == "ENDIF":
+                                del false_lines[-1]
+                                Config.CountDict["IF_ST"] -= 1
                                 break
                         ending = Config.i
-                        # Config.CountDict["IFSTATEMENT"] -= 1
                         break
 
             except IndexError:
                 pass
 
         if len(cond) == 4:
-            Config.iteratables[-1] = Classes.IFSTATEMENT(condition=cond, iffalse=linelistfalse, iftrue=linelisttrue,
-                                                         elsestarter=elsestarter, falsending=ending)
+            Config.iteratables[-1] = Classes.IFSTATEMENT(condition=cond, iffalse=false_lines, iftrue=true_lines,
+                                                         elsestarter=else_starter, falsending=ending,
+                                                         outerlinelist=outer_list)
             Config.iteratables[-1].condition = Fun.comp(cond[1], cond[3], cond[2])
             if Config.iteratables[-1].condition:
                 while Config.iteratables[-1].curlinenumber < len(Config.iteratables[-1].iftrue):
