@@ -118,8 +118,6 @@ def FOR():
     del Config.iteratables[-1]
 
 
-# TODO: Add the code to the WHILE and REPEAT FUNCTIONS
-
 def WHILE():
     pass
 
