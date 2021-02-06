@@ -3,44 +3,49 @@ import Config
 import Classes
 
 
-def main(lineused):
-    if lineused[0:5] == "PRINT":
-        PRINT(lineused)
+def main(line_used):
+    if line_used[0:5] == "PRINT":
+        PRINT(line_used)
 
-    elif lineused[0:5] == "WHILE":
+    elif line_used[0:5] == "WHILE":
         WHILE()
 
-    elif lineused[0:6] == "REPEAT":
+    elif line_used[0:6] == "REPEAT":
         REPEAT()
 
-    elif lineused[0:5] == "INPUT":
-        INPUT(lineused)
+    elif line_used[0:5] == "INPUT":
+        INPUT(line_used)
 
-    elif lineused[0:3] == "FOR":
+    elif line_used[0:3] == "FOR":
         FOR()
 
-    elif lineused[0:2] == "IF":
+    elif line_used[0:2] == "IF":
         IF()
 
     else:
-        ASSIGNMENT(lineused)
+        ASSIGNMENT(line_used)
 
 
-def checkopener(line):
+def check_opener(line):
     line = line.strip()
-    if line[0] == "IF": Config.CountDict["IFSTATEMENT"] += 1
-    if line[0] == "WHILE": Config.CountDict["WHILELOOP"] += 1
-    if line[0] == "REPEAT": Config.CountDict["REPEATLOOP"] += 1
+    if line[0] == "IF":
+        Config.CountDict["IFSTATEMENT"] += 1
+    if line[0] == "WHILE":
+        Config.CountDict["WHILELOOP"] += 1
+    if line[0] == "REPEAT":
+        Config.CountDict["REPEATLOOP"] += 1
 
 
-def checkending(line):
+def check_ending(line):
     line = line.strip()
-    if line[0] == "ENDIF" : Config.CountDict["IFSTATEMENT"] -= 1
-    if line[0] == "ENDWHILE" : Config.CountDict["WHILELOOP"] -= 1
-    if line[0] == "UNTIL": Config.CountDict["REPEATLOOP"] -= 1
+    if line[0] == "ENDIF":
+        Config.CountDict["IFSTATEMENT"] -= 1
+    if line[0] == "ENDWHILE":
+        Config.CountDict["WHILELOOP"] -= 1
+    if line[0] == "UNTIL":
 
 
-def listnumgen():
+def object_gen():
     Config.iteratables.append("Statement " + str(len(Config.iteratables)))
 
 
@@ -90,22 +95,71 @@ def IF(lineused):
             Config.iteratables[-1].condition = Fun.comp(cond[1], cond[3], cond[2])
             if Config.iteratables[-1].condition:
                 while Config.iteratables[-1].curlinenumber < len(Config.iteratables[-1].iftrue):
-                    curline = Config.iteratables[-1].iftrue[Config.iteratables[-1].curlinenumber]
-                    main(curline)
+                    cur_line = Config.iteratables[-1].iftrue[Config.iteratables[-1].curlinenumber]
+                    main(cur_line)
                     Config.iteratables[-1].curlinenumber += 1
             else:
-                Config.iteratables[-1].curline = Config.iteratables[-1].elsestarter
-                while Config.iteratables[-1].curline < (Config.iteratables[-1].falsending-1):
-                    curline = Config.iteratables[-1].iffalse[Config.iteratables[-1].elsecurline]
-                    main(curline)
+                Config.iteratables[-1].curline = Config.iteratables[-1].else_starter
+                while Config.iteratables[-1].curline < (Config.iteratables[-1].falsending - 1):
+                    cur_line = Config.iteratables[-1].iffalse[Config.iteratables[-1].elsecurline]
+                    main(cur_line)
                     Config.iteratables[-1].curline += 1
                     Config.iteratables[-1].elsecurline += 1
+                    Config.iteratables[-2].curlinenumber += 1
+    else:
+        else_starter = Config.iteratables[-2].curlinenumber
+        lst = Config.iteratables[-2].line_list[Config.iteratables[-2].curlinenumber].split()
+        cond = lst
+        while True:
+            Config.iteratables[-2].curlinenumber += 1
+            try:
+                outer_list.append(Config.Line)
+                Config.iteratables[-2].curline = Config.FileList[Config.iteratables[-2].curlinenumber]
+                if Config.Line != "THEN":
+                    true_lines.append(Config.iteratables[-2].curline)
+                cur_line_split = Config.iteratables[-2].curline.split()
+                else_starter += 1
+                if (cur_line_split[0] == "ELSE" or cur_line_split[0] == "ENDIF") and Config.CountDict["IF_ST"] == 1:
+                    del true_lines[-1]
+                    if cur_line_split[0] == "ELSE":
+                        while True:
+                            Config.iteratables[-2].curlinenumber += 1
+                            try:
+                                Config.iteratables[-2].curline = Config.iteratables[-2].line_list[
+                                    Config.iteratables[-2].curlinenumber]
+                                false_lines.append(Config.Line)
+                                cur_line_split = Config.iteratables[-2].curline.split()
+                            except IndexError:
+                                pass
+                            if (cur_line_split[0] == "ELSE" or cur_line_split[0] == "ENDIF") and Config.CountDict["IF_ST"] == 1:
+                                del false_lines[-1]
+                                Config.CountDict["IF_ST"] -= 1
+                                break
+                        ending = Config.i
+                        break
+
+            except IndexError:
+                pass
+
+        if len(cond) == 4:
+            Config.iteratables[-1] = Classes.IFSTATEMENT(condition=cond, iffalse=false_lines, iftrue=true_lines,
+                                                         elsestarter=else_starter, falsending=ending,
+                                                         outerlinelist=outer_list)
+            Config.iteratables[-1].condition = Fun.comp(cond[1], cond[3], cond[2])
+            if Config.iteratables[-1].condition:
+                Config.iteratables[-1].line_list = Config.iteratables[-1].iftrue
+            else:
+                Config.iteratables[-1].line_list = Config.iteratables[-1].iffalse
+            while Config.iteratables[-1].curlinenumber < len(Config.iteratables[-1].iftrue):
+                cur_line = Config.iteratables[-1].line_list[Config.iteratables[-1].curlinenumber]
+                main(cur_line)
+                Config.iteratables[-1].curlinenumber += 1
 
         # elif len(lst) == 8:
         #     if lst[5] == "AND":
         #         if Fun.comp(lst[1], lst[3], lst[2]) and Fun.comp(lst[5], lst[7], lst[6]):
         #             while lst[0] != "ENDIF":
-        #                 main(lineused)
+        #                 main(line_used)
         #     elif lst[5] == "OR":
         #         try:
         #             if Fun.comp(lst[1], lst[3], lst[2]) or Fun.comp(lst[5], lst[7], lst[6]):
@@ -115,24 +169,24 @@ def IF(lineused):
 
 
 def FOR():
-    listnumgen()
-    linelist = []
+    object_gen()
+    line_list = []
     if len(Config.iteratables) == 1:
-        curlinesplit = Config.Line.split()
-        lcv = curlinesplit[1]
+        cur_line_split = Config.Line.split()
+        lcv = cur_line_split[1]
         Config.variables[lcv] = lcv
-        start = int(curlinesplit[3])
-        end = int(curlinesplit[5]) + 1
+        start = int(cur_line_split[3])
+        end = int(cur_line_split[5]) + 1
         while True:
             Config.i += 1
             try:
                 Config.Line = Config.FileList[Config.i]
-                linelist.append(Config.Line)
-                curlinesplit = Config.Line.split()
+                line_list.append(Config.Line)
+                cur_line_split = Config.Line.split()
             except IndexError:
                 pass
-            if curlinesplit[0] == "NEXT" and curlinesplit[1] == lcv:
-                del linelist[-1]
+            if cur_line_split[0] == "NEXT" and cur_line_split[1] == lcv:
+                del line_list[-1]
                 break
         Config.i += 1
         try:
@@ -141,34 +195,34 @@ def FOR():
             pass
 
     else:
-        curlinesplit = Config.iteratables[-2].linelist[Config.iteratables[-2].curlinenumber].split()
-        lcv = curlinesplit[1]
+        cur_line_split = Config.iteratables[-2].line_list[Config.iteratables[-2].curlinenumber].split()
+        lcv = cur_line_split[1]
         Config.variables[lcv] = lcv
-        start = int(curlinesplit[3])
-        end = int(curlinesplit[5]) + 1
+        start = int(cur_line_split[3])
+        end = int(cur_line_split[5]) + 1
         while True:
             Config.iteratables[-2].curlinenumber += 1
             try:
-                Config.iteratables[-2].curline = Config.iteratables[-2].linelist[Config.iteratables[-2].curlinenumber]
-                linelist.append(Config.iteratables[-2].curline)
-                curlinesplit = Config.iteratables[-2].curline.split()
+                Config.iteratables[-2].curline = Config.iteratables[-2].line_list[Config.iteratables[-2].curlinenumber]
+                line_list.append(Config.iteratables[-2].curline)
+                cur_line_split = Config.iteratables[-2].curline.split()
             except IndexError:
                 pass
-            if curlinesplit[0] == "NEXT" and curlinesplit[1] == lcv:
-                del linelist[-1]
+            if cur_line_split[0] == "NEXT" and cur_line_split[1] == lcv:
+                del line_list[-1]
                 break
         # Config.iteratables[-2].curlinenumber += 1 # I have no idea why removing this line works but it does.
         try:
-            Config.iteratables[-2].curline = Config.iteratables[-2].linelist[Config.iteratables[-2].curlinenumber]
+            Config.iteratables[-2].curline = Config.iteratables[-2].line_list[Config.iteratables[-2].curlinenumber]
         except IndexError:
             pass
 
-    Config.iteratables[-1] = Classes.FORLOOP(linelist=linelist, LCV=lcv, start=start, end=end)
+    Config.iteratables[-1] = Classes.FORLOOP(line_list=line_list, lcv=lcv, start=start, end=end)
     for i in range(Config.iteratables[-1].start, Config.iteratables[-1].end):
         Config.variables[lcv] = i
-        while Config.iteratables[-1].curlinenumber < len(Config.iteratables[-1].linelist):
-            curline = Config.iteratables[-1].linelist[Config.iteratables[-1].curlinenumber]
-            main(curline)
+        while Config.iteratables[-1].curlinenumber < len(Config.iteratables[-1].line_list):
+            cur_line = Config.iteratables[-1].line_list[Config.iteratables[-1].curlinenumber]
+            main(cur_line)
             Config.iteratables[-1].curlinenumber += 1
         Config.iteratables[-1].curlinenumber = 0
     del Config.iteratables[-1]
@@ -184,35 +238,35 @@ def REPEAT():
     pass
 
 
-def ASSIGNMENT(lineused):
-    tobeeval = ""
-    eqfound = False
-    lst3 = lineused.split()
+def ASSIGNMENT(line_used):
+    to_be_eval = ""
+    eq_found = False
+    lst3 = line_used.split()
     for vr in lst3:
         try:
             vr = int(vr)
         except ValueError:
             pass
-        if vr == '=' or eqfound:
-            eqfound = True
-        if eqfound:
+        if vr == '=' or eq_found:
+            eq_found = True
+        if eq_found:
             if vr in Config.variables:
-                tobeeval += str(Config.variables[vr])
+                to_be_eval += str(Config.variables[vr])
             elif isinstance(vr, int):
-                tobeeval += str(vr)
+                to_be_eval += str(vr)
             elif vr in Config.mops:
-                tobeeval += str(vr)
-    Config.variables[lst3[0]] = eval(tobeeval)
+                to_be_eval += str(vr)
+    Config.variables[lst3[0]] = eval(to_be_eval)
 
 
-def INPUT(lineused):
-    varwanted = lineused.split()
+def INPUT(line_used):
+    varwanted = line_used.split()
     varwanted = varwanted[1]
     Config.variables[varwanted] = input()
 
 
-def PRINT(lineused):
-    lst1 = lineused.split()
+def PRINT(line_used):
+    lst1 = line_used.split()
     printed = ""
     for w in range(1, len(lst1)):
 
