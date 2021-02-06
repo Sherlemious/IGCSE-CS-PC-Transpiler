@@ -11,7 +11,7 @@ Config.FileList = list(File)
 File.close()
 
 # Manipulating File Done
-Fun.Removeend(Config.FileList)
+Fun.rem_end(Config.FileList)
 
 while Config.i < len(Config.FileList):
     Config.Line = Config.FileList[Config.i]
