@@ -1,3 +1,4 @@
+import Classes
 import Config
 import Errors
 
@@ -72,25 +73,65 @@ def rem_end(the_list):
         the_list[line] = the_list[line].rstrip('\n')
 
 
-def check_opener(line):
-    line = line.strip()
-    if line[0] == "IF":
-        Config.CountDict["IF_ST"] += 1
-    if line[0] == "WHILE":
-        Config.CountDict["WHILE_L"] += 1
-    if line[0] == "REPEAT":
-        Config.CountDict["REPEAT_L"] += 1
-
-
-def check_ending(line):
-    line = line.strip()
-    if line[0] == "ENDIF":
-        Config.CountDict["IF_ST"] -= 1
-    if line[0] == "ENDWHILE":
-        Config.CountDict["WHILE_L"] -= 1
-    if line[0] == "UNTIL":
-        Config.CountDict["REPEAT_L"] -= 1
-
-
 def object_gen():
     Config.iteratables.append("Statement " + str(len(Config.iteratables)))
+
+
+def check_opener_ending(line):
+    cm = line.split()[0]
+    if cm == "IF":
+        Classes.Loop_Counts.If += 1
+    else:
+        if cm == "ENDIF":
+            Classes.Loop_Counts.If -= 1
+        else:
+            if cm == "WHILE":
+                Classes.Loop_Counts.While += 1
+            else:
+                if cm == "ENDWHILE":
+                    Classes.Loop_Counts.While -= 1
+                else:
+                    if cm == "REPEAT":
+                        Classes.Loop_Counts.Repeat += 1
+                    else:
+                        if cm == "UNTIL":
+                            Classes.Loop_Counts.Repeat -= 1
+
+
+# Switch cases
+# def Inc_If():
+#     Classes.Loop_Counts.If += 1
+#
+#
+# def Dec_If():
+#     Classes.Loop_Counts.If -= 1
+#
+#
+# def Inc_While():
+#     Classes.Loop_Counts.While += 1
+#
+#
+# def Dec_While():
+#     Classes.Loop_Counts.While -= 1
+#
+#
+# def Inc_Repeat():
+#     Classes.Loop_Counts.Repeat += 1
+#
+#
+# def Dec_Repeat():
+#     Classes.Loop_Counts.Repeat -= 1
+#
+#
+# def check_opener_ending(line):
+#     line = line.strip()
+#     cases = {
+#         "IF": Inc_If(),
+#         "ENDIF": Dec_If(),
+#         "WHILE": Inc_While(),
+#         "ENDWHILE": Dec_While(),
+#         "REPEAT": Inc_Repeat(),
+#         "UNTIL": Dec_Repeat(),
+#     }
+#     function = cases.get(line[0])
+#     return function
