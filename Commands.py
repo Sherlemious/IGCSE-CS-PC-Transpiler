@@ -55,7 +55,7 @@ def IF():
     object_gen()
     true_lines = []
     false_lines = []
-    Config.CountDict["IFSTATEMENT"] += 1
+    Config.CountDict["IF_ST"] += 1
     # then_found = False
 
     if len(Config.iteratables) == 1:
@@ -74,7 +74,7 @@ def IF():
                     # then_found = True
                 cur_line_split = Config.Line.split()
                 else_starter += 1
-                if (cur_line_split[0] == "ELSE" or cur_line_split[0] == "ENDIF") and Config.CountDict["IFSTATEMENT"] == 1:
+                if (cur_line_split[0] == "ELSE" or cur_line_split[0] == "ENDIF") and Config.CountDict["IF_ST"] == 1:
                     del true_lines[-1]
                     if cur_line_split[0] == "ELSE":
                         while True:
