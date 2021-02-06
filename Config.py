@@ -2,11 +2,11 @@ Line = ""
 variables = {}
 Flags = {}
 counter = 0
-tobeeval = ""
+to_be_eval = ""
 i = 0
 iteratables = []
-CountDict = {"IFSTATEMENT": 0, "WHILELOOP": 0, "REPEATLOOP": 0}
+CountDict = {"IF_ST": 0, "WHILE_L": 0, "REPEAT_L": 0}
 FileList = []
 op_list = ['=', '>', '<', '<=', '>=', '<>']
-logic_list = ['AND',"OR","XOR","NAND","NOR"]
+logic_list = ['AND', "OR", "XOR", "NAND", "NOR"]
 mops = ["+", "-", "*", "/"]
