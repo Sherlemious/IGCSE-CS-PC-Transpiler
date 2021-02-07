@@ -20,4 +20,5 @@ Config.iteratables[0] = Classes.FUNCTION(Config.FileList)
 while Config.iteratables[-1].line_number < len(Config.iteratables[-1].line_list):
     cur_line = Config.iteratables[-1].line_list[Config.iteratables[-1].line_number]
     Do.main(cur_line)
+    Fun.check_opener_ending(cur_line, "All")
     Config.iteratables[-1].line_number += 1
