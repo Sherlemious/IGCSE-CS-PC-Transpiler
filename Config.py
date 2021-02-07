@@ -1,4 +1,3 @@
-Line = ""
 variables = {}
 Flags = {}
 counter = 0
