@@ -18,10 +18,6 @@ class IF_STATEMENT(FUNCTION):
     def __init__(self):
         super().__init__(self)
         self.Condition = ""
-        self.If_True = ""
-        self.If_False = ""
-        self.else_starter = 0
-        self.False_end = 0
 
 
 class Loop_Counts:
