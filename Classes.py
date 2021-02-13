@@ -14,10 +14,10 @@ class FOR_LOOP(FUNCTION):
         self.line_list = line_list
 
 
-class IF_STATEMENT(FUNCTION):
+class COND_STATEMENT(FUNCTION):
     def __init__(self):
         super().__init__(self)
-        self.Condition = ""
+        self.Cond = ""
 
 
 class Loop_Counts:
