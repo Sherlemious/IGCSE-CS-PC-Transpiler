@@ -1,5 +1,5 @@
 # IGCSE CS PseudoCode Transpiler 
-This program translates the Pseudocode syntax studied in the IGCSE Computer Science 0478 Syllabus.
+This program translates the Pseudocode syntax studied in the IGCSE Computer Science 0478/0984 Syllabus.
 
 ## Note
 This program is still under development and won't be fully functional for a while. For any suggestions or bug reports, please send me a message on Github. If you liked it, please don't forget to star this repository. Thanks!
@@ -38,7 +38,7 @@ This is a simple statement use as in the following examples
   ```
 To print a string, which is to be inserted between two quotation marks "". 
 ##### Note that you should ***never*** insert another quotation mark insider the 2 quotation marks. You should also never use a backslash character "\\".
-It is also possible to print a variable
+It is also possible to print/output the contents of a variable
   ```
   PRINT Variableexample
   ```
@@ -70,13 +70,11 @@ A conditional loop that is repeated until a certin condition is met. Any stateme
 ### IF (Fully functional)
 A conditional statement that carries out a group of statements between the IF statement and the ENDIF statement. The ELSE statement will also be functional.
   ```
-  IF I = T
-  THEN 
+  IF I = T THEN 
   PRINT "HELLO WORLD !"
   I = I + 1
   ENDIF
   ```
-##### Note that this does not currently support nested IF statements.
 
 ### Commenting
 Comments should be preceded by two slashes and a space character as follows.
