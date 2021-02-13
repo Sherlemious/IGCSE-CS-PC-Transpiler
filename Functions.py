@@ -68,13 +68,16 @@ def compExpressions(exp1, exp2, logic_gate):
         return log_dict(flag1, flag2)[logic_gate]
 
 
+# Removes the escape character at the end of all lines
 def rem_end(the_list):
     for line in range(len(the_list)):
         the_list[line] = the_list[line].rstrip('\n')
 
 
+# Creates a string that is appended to the objects list. This string is to be of a function class, where it is going
+# to contain the attributes of the loop/ function
 def object_gen():
-    Config.iteratables.append("Statement " + str(len(Config.iteratables)))
+    Config.Iteratables.append("Statement " + str(len(Config.Iteratables)))
 
 
 def check_opener_ending(line, structure):
