@@ -1,5 +1,5 @@
 # IGCSE CS PseudoCode Transpiler 
-This program translates the Pseudocode syntax studied in the IGCSE Computer Science 0478 Syllabus.
+This program translates the Pseudocode syntax studied in the IGCSE Computer Science 0478/0984 Syllabus.
 
 ## Note
 This program is still under development and won't be fully functional for a while. For any suggestions or bug reports, please send me a message on Github. If you liked it, please don't forget to star this repository. Thanks!
