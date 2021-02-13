@@ -1,9 +1,8 @@
 INPUT H
 INPUT M
-IF H > 0
-THEN
-IF M > 0
-THEN
+IF H > 0 THEN
+PRINT "Outer"
+IF M > 0 THEN
 PRINT "Both Greater than 0"
 ENDIF
 ELSE
