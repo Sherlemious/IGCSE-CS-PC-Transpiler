@@ -38,7 +38,7 @@ This is a simple statement use as in the following examples
   ```
 To print a string, which is to be inserted between two quotation marks "". 
 ##### Note that you should ***never*** insert another quotation mark insider the 2 quotation marks. You should also never use a backslash character "\\".
-It is also possible to print a variable
+It is also possible to print/output the contents of a variable
   ```
   PRINT Variableexample
   ```
