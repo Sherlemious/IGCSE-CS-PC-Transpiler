@@ -30,74 +30,99 @@ def IF():
     Fun.object_gen()
     Config.iteratables[-1] = Classes.IF_STATEMENT()
 
-    true_if_added = 0
-    false_if_added = 0
-    true_lines = []
-    false_lines = []
+    found_endif = False
+    alt_lines = True
+    line_list = []
 
     line_split = Config.iteratables[-2].line_list[Config.iteratables[-2].line_number].split()
-    Config.iteratables[-1].condition = line_split
+
     if line_split[-1] == "THEN":
         del line_split[-1]
-
-    Config.iteratables[-2].line_number += 1
-    while line_split[0] != "ENDIF":
+    else:
         Config.iteratables[-2].line_number += 1
-        try:
-            Config.iteratables[-2].cur_line = Config.iteratables[-2].line_list[Config.iteratables[-2].line_number]
 
-            true_lines.append(Config.iteratables[-2].cur_line)
-            line_split = Config.iteratables[-2].cur_line.split()
-
-            Fun.check_opener_ending(Config.iteratables[-2].cur_line, "IF")
-            if line_split[0] == "IF":
-                true_if_added += 1
-            if line_split[0] == "ENDIF":
-                true_if_added -= 1
-
-            if line_split[0] == "ELSE" and Classes.Loop_Counts.If == 1:
-                del true_lines[-1]
-                while True:
-                    Config.iteratables[-2].line_number += 1
-                    try:
-
-                        Config.iteratables[-2].cur_line = Config.iteratables[-2].line_list[
-                            Config.iteratables[-2].line_number]
-                        false_lines.append(Config.iteratables[-2].cur_line)
-                        line_split = Config.iteratables[-2].cur_line.split()
-
-                        Fun.check_opener_ending(Config.iteratables[-2].cur_line, "IF")
-                        if line_split[0] == "IF":
-                            false_if_added += 1
-                        if line_split[0] == "ENDIF":
-                            false_if_added -= 1
-
-                    except IndexError:
-                        pass
-                    if line_split[0] == "ENDIF" and Classes.Loop_Counts.If == 1:
-                        del false_lines[-1]
-                        break
-            else:
-                if line_split[0] == "ENDIF" and Classes.Loop_Counts.If == 1:
-                    del true_lines[-1]
-                    break
-
-        except IndexError:
-            pass
-
+    Config.iteratables[-1].condition = line_split
     cond = Config.iteratables[-1].condition
     if len(cond) == 4:
         Config.iteratables[-1].condition = Fun.comp(cond[1], cond[3], cond[2])
-        if Config.iteratables[-1].condition:
-            Config.iteratables[-1].line_list = true_lines
-            Classes.Loop_Counts.If -= false_if_added
-        else:
-            Config.iteratables[-1].line_list = false_lines
-            Classes.Loop_Counts.If -= true_if_added
-        while Config.iteratables[-1].line_number < len(Config.iteratables[-1].line_list):
-            cur_line = Config.iteratables[-1].line_list[Config.iteratables[-1].line_number]
-            main(cur_line)
-            Config.iteratables[-1].line_number += 1
+
+    if Config.iteratables[-1].condition:
+
+        while True:
+
+            Config.iteratables[-2].line_number += 1
+            try:
+                Config.iteratables[-2].cur_line = Config.iteratables[-2].line_list[Config.iteratables[-2].line_number]
+
+                line_list.append(Config.iteratables[-2].cur_line)
+                line_split = Config.iteratables[-2].cur_line.split()
+
+                if line_split[0] == "IF":
+                    Classes.Loop_Counts.If += 1
+
+                if line_split[0] == "ENDIF" and Classes.Loop_Counts.If == 0:
+                    found_endif = True
+                    del line_list[-1]
+                    break
+
+                if line_split[0] == "ELSE" and Classes.Loop_Counts.If == 0:
+                    del line_list[-1]
+                    break
+
+                if line_split[0] == "ENDIF":
+                    Classes.Loop_Counts.If -= 1
+
+            except IndexError:
+                pass
+
+        Config.iteratables[-1].line_list = line_list
+        while not found_endif:
+            Config.iteratables[-2].line_number += 1
+            Config.iteratables[-2].cur_line = Config.iteratables[-2].line_list[Config.iteratables[-2].line_number]
+            line_split = Config.iteratables[-2].cur_line.split()
+            if line_split[0] == "IF":
+                Classes.Loop_Counts.If += 1
+            if line_split[0] == "ENDIF":
+                if Classes.Loop_Counts.If == 0:
+                    break
+                else:
+                    Classes.Loop_Counts.If -= 1
+
+    else:
+        while Classes.Loop_Counts.If > 1 and line_split[0] != "ELSE":
+            Config.iteratables[-2].line_number += 1
+            Config.iteratables[-2].cur_line = Config.iteratables[-2].line_list[Config.iteratables[-2].line_number]
+            line_split = Config.iteratables[-2].cur_line.split()
+            if line_split[0] == "IF":
+                Classes.Loop_Counts.If += 1
+            if line_split[0] == "ENDIF":
+                Classes.Loop_Counts.If -= 1
+            if Classes.Loop_Counts.If == 1 and line_split[0] != "ENDIF":
+                alt_lines = False
+                break
+
+        while Classes.Loop_Counts.If > 0 and line_split[0] != "ENDIF" and alt_lines:
+
+            Config.iteratables[-2].line_number += 1
+            try:
+                Config.iteratables[-2].cur_line = Config.iteratables[-2].line_list[Config.iteratables[-2].line_number]
+
+                line_list.append(Config.iteratables[-2].cur_line)
+                line_split = Config.iteratables[-2].cur_line.split()
+
+                if line_split[0] == "IF":
+                    Classes.Loop_Counts.If += 1
+                if line_split[0] == "ENDIF":
+                    Classes.Loop_Counts.If -= 1
+
+            except IndexError:
+                pass
+        Config.iteratables[-1].line_list = line_list
+
+    while Config.iteratables[-1].line_number < len(Config.iteratables[-1].line_list):
+        cur_line = Config.iteratables[-1].line_list[Config.iteratables[-1].line_number]
+        main(cur_line)
+        Config.iteratables[-1].line_number += 1
 
 
 def FOR():
