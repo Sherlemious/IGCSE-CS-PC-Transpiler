@@ -123,6 +123,7 @@ def IF():
         cur_line = Config.Iteratables[-1].line_list[Config.Iteratables[-1].line_number]
         main(cur_line)
         Config.Iteratables[-1].line_number += 1
+    del Config.Iteratables[-1]
 
 
 def FOR():
@@ -212,6 +213,7 @@ def WHILE():
 
         Config.Iteratables[-1].line_number = 0
         Config.Iteratables[-1].Cond = Fun.comp(stat[1], stat[3], stat[2])
+    del Config.Iteratables[-1]
 
 
 def REPEAT():
