@@ -1,6 +1,13 @@
+INPUT H
 INPUT M
-WHILE M > 0 DO
-PRINT "M is POSITIVE"
-INPUT M
-ENDWHILE
+IF H > 0 THEN
+PRINT "Outer"
+IF M > 0 THEN
+PRINT "Both Greater than 0"
+ENDIF
+ELSE
+PRINT "Other"
+ENDIF
 PRINT "Done"
+
+// Problem where the next line is placed.
