@@ -48,7 +48,7 @@ This is a simple statement that can be used as in the following example
   ```
   INPUT Variableexample
   ```
-### WHILE Loop (Under development)
+### WHILE Loop (Fully functional)
 A conditional loop that is repeated as long as a condition is being met. Any statements should be insterted between the WHILE "Condition" and the ENDWHILE STATEMENT
   ```
   WHILE I < 5
@@ -56,7 +56,6 @@ A conditional loop that is repeated as long as a condition is being met. Any sta
   I = I + 1
   ENDWHILE
   ```
-##### Note that this does not currently support nested WHILE Loops.
 
 ### REPEAT Loop (Under development)
 A conditional loop that is repeated until a certin condition is met. Any statements should be insterted between the REPEAT and the UNTIL statement.
@@ -67,7 +66,7 @@ A conditional loop that is repeated until a certin condition is met. Any stateme
   UNTIL I = 5
   ```
 
-### IF (Fully functional)
+### IF (Fully functional - few bugs remain)
 A conditional statement that carries out a group of statements between the IF statement and the ENDIF statement. The ELSE statement will also be functional.
   ```
   IF I = T THEN 
