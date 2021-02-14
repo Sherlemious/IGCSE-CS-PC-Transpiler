@@ -23,14 +23,6 @@ While this, on the other hand, will not work
 
 ### Available Functions
 
-### FOR Loop (Fully functional)
-This is to repeat a number of statements, which are inserted between the FOR "LCV" = "Start" TO "End" and the NEXT "LCV", for a set number of times.
-  ```
-  FOR I = 1 TO 5
-  PRINT "HELLO WORLD !"
-  NEXT I
-  ```
-
 ### PRINT (Fully functional)
 This is a simple statement use as in the following examples
   ```
@@ -48,6 +40,24 @@ This is a simple statement that can be used as in the following example
   ```
   INPUT Variableexample
   ```
+
+### IF (Fully functional - few bugs remain)
+A conditional statement that carries out a group of statements between the IF statement and the ENDIF statement. The ELSE statement will also be functional.
+  ```
+  IF I = T THEN 
+  PRINT "HELLO WORLD !"
+  I = I + 1
+  ENDIF
+  ```
+  
+### FOR Loop (Fully functional)
+This is to repeat a number of statements, which are inserted between the FOR "LCV" = "Start" TO "End" and the NEXT "LCV", for a set number of times.
+  ```
+  FOR I = 1 TO 5
+  PRINT "HELLO WORLD !"
+  NEXT I
+  ```
+
 ### WHILE Loop (Fully functional)
 A conditional loop that is repeated as long as a condition is being met. Any statements should be insterted between the WHILE "Condition" and the ENDWHILE STATEMENT
   ```
@@ -66,14 +76,6 @@ A conditional loop that is repeated until a certin condition is met. Any stateme
   UNTIL I = 5
   ```
 
-### IF (Fully functional - few bugs remain)
-A conditional statement that carries out a group of statements between the IF statement and the ENDIF statement. The ELSE statement will also be functional.
-  ```
-  IF I = T THEN 
-  PRINT "HELLO WORLD !"
-  I = I + 1
-  ENDIF
-  ```
 
 ### Commenting
 Comments should be preceded by two slashes and a space character as follows.
