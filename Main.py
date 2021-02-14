@@ -18,7 +18,7 @@ Fun.object_gen()
 Config.Iteratables[0] = Classes.FUNCTION(Config.FileList)
 
 # Iterates through the list of the lines
-while Config.Iteratables[-1].line_number < len(Config.Iteratables[-1].line_list):
-    cur_line = Config.Iteratables[-1].line_list[Config.Iteratables[-1].line_number]
+while Config.Iteratables[0].line_number < len(Config.Iteratables[0].line_list):
+    cur_line = Config.Iteratables[0].line_list[Config.Iteratables[0].line_number]
     Do.main(cur_line)
-    Config.Iteratables[-1].line_number += 1
+    Config.Iteratables[0].line_number += 1
