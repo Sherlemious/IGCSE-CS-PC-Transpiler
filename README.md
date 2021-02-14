@@ -51,7 +51,7 @@ A conditional statement that carries out a group of statements between the IF st
   I = I + 1
   ENDIF
   ```
-
+(The 'THEN' keyword is optional)
 
 #### FOR Loop (Fully functional)
 This is to repeat a number of statements, which are inserted between the FOR "LCV" = "Start" TO "End" and the NEXT "LCV", for a set number of times.
@@ -65,12 +65,12 @@ This is to repeat a number of statements, which are inserted between the FOR "LC
 #### WHILE Loop (Fully functional)
 A conditional loop that is repeated as long as a condition is being met. Any statements should be insterted between the WHILE "Condition" and the ENDWHILE STATEMENT
   ```
-  WHILE I < 5
+  WHILE I < 5 DO
   PRINT "HELLO WORLD !"
   I = I + 1
   ENDWHILE
   ```
-
+(The 'DO' keyword is optional)
 
 #### REPEAT Loop (Under development)
 A conditional loop that is repeated until a certin condition is met. Any statements should be insterted between the REPEAT and the UNTIL statement.
