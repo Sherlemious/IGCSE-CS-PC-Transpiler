@@ -1,0 +1,62 @@
+// Test cases
+
+m = 0
+FOR i = 1 TO 6
+FOR t = 1 TO 7
+FOR l = 1 to 9
+m = m + 1
+NEXT l
+NEXT t
+NEXT i
+PRINT m
+// Correct Output 378 (Tested)
+
+INPUT H
+INPUT M
+IF H > 0 THEN
+PRINT "Outer"
+IF M > 0 THEN
+PRINT "Both Greater than 0"
+ENDIF
+ELSE
+PRINT "Other"
+ENDIF
+PRINT "Done"
+
+// Works Perfectly
+INPUT M
+WHILE M > 0 DO
+PRINT "M is POSITIVE"
+INPUT H
+WHILE H > 5 DO
+PRINT "H Greater than 5"
+INPUT H
+ENDWHILE
+INPUT M
+ENDWHILE
+
+// Works Perfectly
+INPUT H
+WHILE H > 5 DO
+PRINT "H Greater than 5"
+INPUT H
+ENDWHILE
+
+// Works perfectly
+Count = 1
+WHILE Count < 10 DO
+PRINT Count
+Count = Count + 1
+ENDWHILE
+PRINT "Done"
+
+// Doesn't work with FOR or WHILE. Problem with IF
+FOR I = 1 TO 3
+INPUT H
+IF H > 0 THEN
+PRINT "Positive"
+ENDIF
+NEXT I
+PRINT "Done"
+
+//
