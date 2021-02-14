@@ -10,7 +10,7 @@ This program is still under development and won't be fully functional for a whil
 
 
 ## How to use
-### Syntax
+## Syntax
 For starters, it is required to leave a space character between each variable, function or operator. 
 For example, when assigning a value to a variable, this is the correct way to do this
   ```
@@ -23,25 +23,27 @@ While this, on the other hand, will not work
 
 ### Available Functions
 
-### PRINT (Fully functional)
+#### PRINT (Fully functional)
 This is a simple statement use as in the following examples
   ```
   PRINT "HELLO WORLD !"
   ```
 To print a string, which is to be inserted between two quotation marks "". 
-##### Note that you should ***never*** insert another quotation mark insider the 2 quotation marks. You should also never use a backslash character "\\".
+###### Note that you should ***never*** insert another quotation mark insider the 2 quotation marks. You should also never use a backslash character "\\".
 It is also possible to print/output the contents of a variable
   ```
   PRINT Variableexample
   ```
 
-### INPUT (Fully functional)
+
+#### INPUT (Fully functional)
 This is a simple statement that can be used as in the following example
   ```
   INPUT Variableexample
   ```
 
-### IF (Fully functional - few bugs remain)
+
+#### IF (Fully functional - few bugs remain)
 A conditional statement that carries out a group of statements between the IF statement and the ENDIF statement. The ELSE statement will also be functional.
   ```
   IF I = T THEN 
@@ -49,8 +51,9 @@ A conditional statement that carries out a group of statements between the IF st
   I = I + 1
   ENDIF
   ```
-  
-### FOR Loop (Fully functional)
+
+
+#### FOR Loop (Fully functional)
 This is to repeat a number of statements, which are inserted between the FOR "LCV" = "Start" TO "End" and the NEXT "LCV", for a set number of times.
   ```
   FOR I = 1 TO 5
@@ -58,7 +61,8 @@ This is to repeat a number of statements, which are inserted between the FOR "LC
   NEXT I
   ```
 
-### WHILE Loop (Fully functional)
+
+#### WHILE Loop (Fully functional)
 A conditional loop that is repeated as long as a condition is being met. Any statements should be insterted between the WHILE "Condition" and the ENDWHILE STATEMENT
   ```
   WHILE I < 5
@@ -67,7 +71,8 @@ A conditional loop that is repeated as long as a condition is being met. Any sta
   ENDWHILE
   ```
 
-### REPEAT Loop (Under development)
+
+#### REPEAT Loop (Under development)
 A conditional loop that is repeated until a certin condition is met. Any statements should be insterted between the REPEAT and the UNTIL statement.
   ```
   REPEAT
@@ -77,12 +82,12 @@ A conditional loop that is repeated until a certin condition is met. Any stateme
   ```
 
 
-### Commenting
+#### Commenting
 Comments should be preceded by two slashes and a space character as follows.
   ```
   // This is a comment
   ```
 
 
-## Contributing
+### Contributing
 Please read [CONTRIBUTING.md](https://github.com/Sherlemious/IGCSE-CS-PC-Transpiler/blob/master/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
