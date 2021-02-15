@@ -2,7 +2,7 @@
 This program translates the Pseudocode syntax studied in the IGCSE Computer Science 0478/0984 Syllabus.
 
 ## Note
-This program is still under development and won't be fully functional for a while. For any suggestions or bug reports, please send me a message on Github. If you liked it, please don't forget to star this repository. Thanks!
+This program is currently undergoing the final tweaks. For any suggestions or bug reports, please send me a message on Github. If you liked it, please don't forget to star this repository. Thanks!
 
 
 ## Prerequisites
@@ -19,6 +19,11 @@ For example, when assigning a value to a variable, this is the correct way to do
 While this, on the other hand, will not work
   ```
   variableexample=16*14+Varexample2
+  ```
+##### Arrays (example):
+  ```
+  Numbers = [ 3, 4 ]
+  Numbers[Count] = 123
   ```
 
 ### Available Functions
@@ -43,7 +48,7 @@ This is a simple statement that can be used as in the following example
   ```
 
 
-#### IF (Fully functional - few bugs remain)
+#### IF (Fully functional)
 A conditional statement that carries out a group of statements between the IF statement and the ENDIF statement. The ELSE statement will also be functional.
   ```
   IF I = T THEN 
