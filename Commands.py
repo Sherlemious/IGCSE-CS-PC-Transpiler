@@ -22,6 +22,9 @@ def main(line_used):
     elif line_used[0:2] == "IF":
         IF()
 
+    elif line_used[0:2] == "//":
+        pass
+
     else:
         ASSIGNMENT(line_used)
 
