@@ -137,7 +137,10 @@ def FOR():
     lcv = cur_line_split[1]
     Config.variables[lcv] = lcv
     start = int(cur_line_split[3])
-    end = int(cur_line_split[5]) + 1
+    if cur_line_split[5] in Config.variables:
+        end = int(Config.variables[cur_line_split[5]]) + 1
+    else:
+        end = int(cur_line_split[5]) + 1
     while True:
         Config.Iteratables[-2].line_number += 1
         try:
