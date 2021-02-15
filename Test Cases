@@ -22,6 +22,11 @@ ELSE
 PRINT "Other"
 ENDIF
 PRINT "Done"
+IF M > -5 THEN
+PRINT "Test Done"
+ELSE
+PRINT "ELSE DONE"
+ENDIF
 
 // Works Perfectly
 INPUT M
@@ -50,11 +55,13 @@ Count = Count + 1
 ENDWHILE
 PRINT "Done"
 
-// Doesn't work with FOR or WHILE. Problem with IF
+// Works Perfectly
 FOR I = 1 TO 3
 INPUT H
 IF H > 0 THEN
 PRINT "Positive"
+ELSE 
+PRINT "Negative"
 ENDIF
 NEXT I
 PRINT "Done"
