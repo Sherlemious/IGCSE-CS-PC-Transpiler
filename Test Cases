@@ -80,3 +80,45 @@ ENDIF
 PRINT "Done"
 
 // Problem where the next line is placed.
+
+
+// Fully working
+//  Calculate average of positive numbers with validation. Where number of numbers input is an input Integer (X)
+Total = 0
+INPUT X
+FOR I = 1 TO X
+INPUT T
+WHILE T <= 0 DO
+PRINT "Please Input a positive number"
+INPUT T
+ENDWHILE
+Total = Total + T
+NEXT I
+Average = Total / X
+PRINT "The average is"
+PRINT Average
+
+
+
+//REPEAT // Fully works
+Count = 1
+INPUT X
+REPEAT
+Count = Count + 1
+PRINT Count
+UNTIL Count > 10
+PRINT "Done"
+
+Count = 0
+INPUT X
+REPEAT
+Cf = 0
+PRINT "2nd Repeat"
+REPEAT
+PRINT "Iter"
+Cf = Cf + 1
+UNTIL Cf = 2
+Count = Count + 1
+PRINT Count
+UNTIL Count = X
+PRINT "Done"
