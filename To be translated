@@ -1,13 +1,14 @@
-INPUT H
-INPUT M
-IF H > 0 THEN
-PRINT "Outer"
-IF M > 0 THEN
-PRINT "Both Greater than 0"
-ENDIF
-ELSE
-PRINT "Other"
-ENDIF
-PRINT "Done"
-
-// Problem where the next line is placed.
+//  Calculate average of positive numbers with validation. Where number of numbers input is an input Integer (X)
+Total = 0
+INPUT X
+FOR I = 1 TO X
+INPUT T
+WHILE T <= 0 DO
+PRINT "Please Input a positive number"
+INPUT T
+ENDWHILE
+Total = Total + T
+NEXT I
+Average = Total / X
+PRINT "The average is"
+PRINT Average
