@@ -223,7 +223,59 @@ def WHILE():
 
 
 def REPEAT():
-    pass
+
+    Fun.object_gen()
+    Config.Iteratables[-1] = Classes.COND_STATEMENT()
+
+    line_list = []
+
+    line_split = Config.Iteratables[-2].line_list[Config.Iteratables[-2].line_number].split()
+
+    while True:
+        Config.Iteratables[-2].line_number += 1
+        try:
+            Config.Iteratables[-2].cur_line = Config.Iteratables[-2].line_list[Config.Iteratables[-2].line_number]
+
+            line_list.append(Config.Iteratables[-2].cur_line)
+            line_split = Config.Iteratables[-2].cur_line.split()
+
+            if line_split[0] == "REPEAT":
+                Classes.Loop_Counts.Repeat += 1
+
+            if line_split[0] == "UNTIL" and Classes.Loop_Counts.Repeat == 0:
+
+                Config.Iteratables[-1].Cond = line_split
+                stat = Config.Iteratables[-1].Cond  # Conditional Statement
+                cond = Config.Iteratables[-1].Cond
+
+                if len(cond) == 4:
+                    Config.Iteratables[-1].Cond = Fun.comp(cond[1], cond[3], cond[2])
+
+                del line_list[-1]
+                break
+
+            if line_split[0] == "UNTIL":
+                Classes.Loop_Counts.Repeat -= 1
+
+        except IndexError:
+            pass
+
+    # Config.Iteratables[-2].line_number -= 1
+    Config.Iteratables[-1].line_list = line_list
+
+    while True:
+
+        while Config.Iteratables[-1].line_number < len(Config.Iteratables[-1].line_list):
+            cur_line = Config.Iteratables[-1].line_list[Config.Iteratables[-1].line_number]
+            main(cur_line)
+            Config.Iteratables[-1].line_number += 1
+
+        Config.Iteratables[-1].line_number = 0
+        Config.Iteratables[-1].Cond = Fun.comp(stat[1], stat[3], stat[2])
+
+        if Config.Iteratables[-1].Cond:
+            break
+    del Config.Iteratables[-1]
 
 
 def ASSIGNMENT(line_used):
