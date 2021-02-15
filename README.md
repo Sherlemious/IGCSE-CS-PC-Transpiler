@@ -43,7 +43,7 @@ This is a simple statement that can be used as in the following example
   ```
 
 
-#### IF (Fully functional - few bugs remain)
+#### IF (Fully functional)
 A conditional statement that carries out a group of statements between the IF statement and the ENDIF statement. The ELSE statement will also be functional.
   ```
   IF I = T THEN 
