@@ -72,7 +72,7 @@ A conditional loop that is repeated as long as a condition is being met. Any sta
   ```
 (The 'DO' keyword is optional)
 
-#### REPEAT Loop (Under development)
+#### REPEAT Loop (Fully functional)
 A conditional loop that is repeated until a certin condition is met. Any statements should be insterted between the REPEAT and the UNTIL statement.
   ```
   REPEAT
