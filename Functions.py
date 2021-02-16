@@ -122,9 +122,19 @@ def declare_array(lst):
     c = 1
     for ch in range(len(lst)):
         if lst[ch] == ",":
-            Config.variables[array_name][c] = float(added)
+            try:
+                added = float(added)
+            except ValueError:
+                pass
+            Config.variables[array_name][c] = added
             added = ""
             c += 1
+        elif lst[ch] == " ":
+            continue
         else:
             added += str(lst[ch])
-    Config.variables[array_name][c] = float(added)
+    try:
+        added = float(added)
+    except ValueError:
+        pass
+    Config.variables[array_name][c] = added
