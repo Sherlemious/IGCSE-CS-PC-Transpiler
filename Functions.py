@@ -92,5 +92,34 @@ def fetch_value(word):
     return Config.variables[var][pos_num]
 
 
+def listToString(s):
+    Str = " "
+    return Str.join(s)
 
 
+def check_array_declaration(lst):
+    st = lst.split()
+    del st[0:2]
+    lst = listToString(st)
+    if lst[0] == "[" and lst[-1] == "]":
+        return True
+    else:
+        return False
+
+
+def declare_array(lst):
+    st = lst.split()
+    array_name = st[0]
+    del st[0:2]
+    lst = listToString(st)
+    del lst[0], lst[-1]
+    Config.variables[array_name] = {}
+    added = 0
+    c = 1
+    for ch in len(lst):
+        if ch != ",":
+            Config.variables[array_name][c] = float(added)
+            added = 0
+            c += 1
+        else:
+            added += str(ch)
