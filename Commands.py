@@ -337,7 +337,8 @@ def INPUT(line_used):
 def PRINT(line_used):
     lst = line_used.split()
     printed = ""
-    for w in range(1, len(lst)):
+    del lst[0]
+    for w in range(len(lst)):
 
         word = lst[w]
         end = int(len(word))

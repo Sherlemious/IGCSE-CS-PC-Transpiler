@@ -1,4 +1,3 @@
-import Classes
 import Config
 import Errors
 
@@ -34,6 +33,8 @@ def comp(val1, val2, operand):
     elif type(float(val1)) == float or type(int(val1)) == int:
         toc1 = float(val1)
         flag1 = True
+    elif "[" in val1:
+        fetch_value(val1)
     else:
         Errors.Tocabsent.isprint()
     # Second Variable or Number
@@ -44,6 +45,8 @@ def comp(val1, val2, operand):
         elif type(float(val2)) == float or type(int(val2)) == int:
             toc2 = float(val2)
             flag2 = True
+        elif "[" in val2:
+            fetch_value(val2)
         # Comparison type
         if flag1 and flag2:
             if operand in Config.op_list:
@@ -98,28 +101,30 @@ def listToString(s):
 
 
 def check_array_declaration(lst):
-    st = lst.split()
-    del st[0:2]
-    lst = listToString(st)
-    if lst[0] == "[" and lst[-1] == "]":
+    st = lst[2:]
+    st = listToString(st)
+    if st[0] == "[" and st[-1] == "]":
         return True
     else:
         return False
 
 
 def declare_array(lst):
-    st = lst.split()
+    st = lst
     array_name = st[0]
     del st[0:2]
-    lst = listToString(st)
-    del lst[0], lst[-1]
+    old = listToString(st)
+    lst = ""
+    for ch in range(1, len(old) - 1):
+        lst += str(old[ch])
     Config.variables[array_name] = {}
-    added = 0
+    added = ""
     c = 1
-    for ch in len(lst):
-        if ch != ",":
+    for ch in range(len(lst)):
+        if lst[ch] == ",":
             Config.variables[array_name][c] = float(added)
-            added = 0
+            added = ""
             c += 1
         else:
-            added += str(ch)
+            added += str(lst[ch])
+    Config.variables[array_name][c] = float(added)
