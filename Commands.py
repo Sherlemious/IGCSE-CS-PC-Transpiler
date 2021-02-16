@@ -281,23 +281,48 @@ def REPEAT():
 
 def ASSIGNMENT(line_used):
     to_be_eval = ""
-    eq_found = False
-    lst3 = line_used.split()
-    for vr in lst3:
+    lst = line_used.split()
+    var = lst[0]
+    pos_num = 0
+    array = False
+    temp_dict = {}
+    # Check for array
+    A_S = var.find("[")
+    if A_S == -1:
+        Config.variables[var] = 0
+    else:
+        array = True
+        pos_num = var[A_S+1:-1]
         try:
-            vr = int(vr)
+            pos_num = int(pos_num)
+        except ValueError:
+            pos_num = Config.variables[pos_num]
+        var = var[:A_S]
+        try:
+            Config.variables[var][pos_num] = 0
+        except BaseException:
+            Config.variables[var] = {}
+            Config.variables[var][pos_num] = 0
+    del lst[0:2]
+
+    for V in lst:
+        try:
+            V = float(V)
         except ValueError:
             pass
-        if vr == '=' or eq_found:
-            eq_found = True
-        if eq_found:
-            if vr in Config.variables:
-                to_be_eval += str(Config.variables[vr])
-            elif isinstance(vr, int):
-                to_be_eval += str(vr)
-            elif vr in Config.mops:
-                to_be_eval += str(vr)
-    Config.variables[lst3[0]] = eval(to_be_eval)
+        if "[" in str(V):
+            to_be_eval += str(Fun.fetch_value(V))
+        if V in Config.variables:
+            to_be_eval += str(Config.variables[V])
+        elif isinstance(V, float):
+            to_be_eval += str(V)
+        elif V in Config.mops:
+            to_be_eval += str(V)
+
+    if array:
+        Config.variables[var][pos_num] = eval(to_be_eval)
+    else:
+        Config.variables[var] = eval(to_be_eval)
 
 
 def INPUT(line_used):
@@ -307,14 +332,16 @@ def INPUT(line_used):
 
 
 def PRINT(line_used):
-    lst1 = line_used.split()
+    lst = line_used.split()
     printed = ""
-    for w in range(1, len(lst1)):
+    for w in range(1, len(lst)):
 
-        word = lst1[w]
+        word = lst[w]
         end = int(len(word))
         if word in Config.variables and word[0] != "\"":  # This checks if it is a variable and if the variable exists
             printed += str(Config.variables[word])
+        elif "[" in word:
+            printed += str(Fun.fetch_value(word))
         else:
             if word[-1] == "\"":
                 for c in range(end - 1):
