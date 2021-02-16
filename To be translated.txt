@@ -1,2 +1,2 @@
-X = [7,8,0,10,82]
-PRINT X[5]
+INPUT Num[2]
+PRINT Num[2]
