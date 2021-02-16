@@ -331,7 +331,19 @@ def ASSIGNMENT(line_used):
 def INPUT(line_used):
     varwanted = line_used.split()
     varwanted = varwanted[1]
-    Config.variables[varwanted] = input()
+    if "[" in line_used:
+        A_S = varwanted.find("[")
+        pos_num = varwanted[A_S + 1:-1]
+        try:
+            pos_num = int(pos_num)
+        except ValueError:
+            pos_num = Config.variables[pos_num]
+        var = varwanted[:A_S]
+        if var not in Config.variables:
+            Config.variables[var] = {}
+            Config.variables[var][pos_num] = input()
+    else:
+        Config.variables[varwanted] = input()
 
 
 def PRINT(line_used):
