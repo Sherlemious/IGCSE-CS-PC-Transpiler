@@ -1,2 +1,4 @@
-INPUT Num[2]
+Num[2] = "Hello"
 PRINT Num[2]
+TT = "Hello" + " There!"
+PRINT TT
