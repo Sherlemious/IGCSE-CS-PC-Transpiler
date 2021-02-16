@@ -92,25 +92,5 @@ def fetch_value(word):
     return Config.variables[var][pos_num]
 
 
-def check_opener_ending(line, structure):
-    cm = line.split()[0]
-    if structure == "IF" or structure == "All":
-        if cm == "IF":
-            Classes.Loop_Counts.If += 1
-        else:
-            if cm == "ENDIF":
-                Classes.Loop_Counts.If -= 1
-    elif structure == "WHILE" or structure == "All":
-        if cm == "WHILE":
-            Classes.Loop_Counts.While += 1
-        else:
-            if cm == "ENDWHILE":
-                Classes.Loop_Counts.While -= 1
-    elif structure == "REPEAT" or structure == "All":
-        if cm == "REPEAT":
-            Classes.Loop_Counts.Repeat += 1
-        else:
-            if cm == "UNTIL":
-                Classes.Loop_Counts.Repeat -= 1
 
 
