@@ -1,0 +1,6 @@
+INPUT X
+FOR I = 1 TO X
+Count[I] = I
+NEXT I
+PRINT "DONE"
+PRINT Count[X]
