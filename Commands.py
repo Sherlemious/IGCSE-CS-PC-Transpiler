@@ -226,7 +226,6 @@ def WHILE():
 
 
 def REPEAT():
-
     Fun.object_gen()
     Config.Iteratables[-1] = Classes.COND_STATEMENT()
 
@@ -293,7 +292,7 @@ def ASSIGNMENT(line_used):
             Config.variables[var] = 0
         else:
             array = True
-            pos_num = var[A_S+1:-1]
+            pos_num = var[A_S + 1:-1]
             try:
                 pos_num = int(pos_num)
             except ValueError:
@@ -319,11 +318,17 @@ def ASSIGNMENT(line_used):
                 to_be_eval += str(V)
             elif V in Config.mops:
                 to_be_eval += str(V)
+            elif isinstance(V, str):
+                to_be_eval += " " + str(V)
+        try:
+            to_be_eval = eval(to_be_eval)
+        except:
+            pass
 
         if array:
-            Config.variables[var][pos_num] = eval(to_be_eval)
+            Config.variables[var][pos_num] = to_be_eval
         else:
-            Config.variables[var] = eval(to_be_eval)
+            Config.variables[var] = to_be_eval
     else:
         Fun.declare_array(lst)
 
