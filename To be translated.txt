@@ -1,6 +1,2 @@
-INPUT X
-FOR I = 1 TO X
-Count[I] = I
-NEXT I
-PRINT "DONE"
-PRINT Count[X]
+X = [7,8,0,10,82]
+PRINT [X]
