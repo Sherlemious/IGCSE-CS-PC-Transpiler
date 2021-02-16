@@ -168,6 +168,7 @@ def FOR():
             Config.Iteratables[-1].line_number += 1
         Config.Iteratables[-1].line_number = 0
     del Config.Iteratables[-1]
+    del Config.variables[lcv]
 
 
 def WHILE():
