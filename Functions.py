@@ -80,6 +80,18 @@ def object_gen():
     Config.Iteratables.append("Statement " + str(len(Config.Iteratables)))
 
 
+def fetch_value(word):
+    var = word
+    A_S = var.find("[")
+    pos_num = var[A_S + 1:-1]
+    var = var[:A_S]
+    try:
+        pos_num = int(pos_num)
+    except ValueError:
+        pos_num = int(Config.variables[pos_num])
+    return Config.variables[var][pos_num]
+
+
 def check_opener_ending(line, structure):
     cm = line.split()[0]
     if structure == "IF" or structure == "All":
