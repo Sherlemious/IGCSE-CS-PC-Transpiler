@@ -285,44 +285,47 @@ def ASSIGNMENT(line_used):
     var = lst[0]
     pos_num = 0
     array = False
-    temp_dict = {}
-    # Check for array
-    A_S = var.find("[")
-    if A_S == -1:
-        Config.variables[var] = 0
-    else:
-        array = True
-        pos_num = var[A_S+1:-1]
-        try:
-            pos_num = int(pos_num)
-        except ValueError:
-            pos_num = Config.variables[pos_num]
-        var = var[:A_S]
-        try:
-            Config.variables[var][pos_num] = 0
-        except BaseException:
-            Config.variables[var] = {}
-            Config.variables[var][pos_num] = 0
-    del lst[0:2]
+    # check if this is an array declaration
+    if not Fun.check_array_declaration(lst):
+        # Check for array
+        A_S = var.find("[")
+        if A_S == -1:
+            Config.variables[var] = 0
+        else:
+            array = True
+            pos_num = var[A_S+1:-1]
+            try:
+                pos_num = int(pos_num)
+            except ValueError:
+                pos_num = Config.variables[pos_num]
+            var = var[:A_S]
+            try:
+                Config.variables[var][pos_num] = 0
+            except BaseException:
+                Config.variables[var] = {}
+                Config.variables[var][pos_num] = 0
+        del lst[0:2]
 
-    for V in lst:
-        try:
-            V = float(V)
-        except ValueError:
-            pass
-        if "[" in str(V):
-            to_be_eval += str(Fun.fetch_value(V))
-        if V in Config.variables:
-            to_be_eval += str(Config.variables[V])
-        elif isinstance(V, float):
-            to_be_eval += str(V)
-        elif V in Config.mops:
-            to_be_eval += str(V)
+        for V in lst:
+            try:
+                V = float(V)
+            except ValueError:
+                pass
+            if "[" in str(V):
+                to_be_eval += str(Fun.fetch_value(V))
+            if V in Config.variables:
+                to_be_eval += str(Config.variables[V])
+            elif isinstance(V, float):
+                to_be_eval += str(V)
+            elif V in Config.mops:
+                to_be_eval += str(V)
 
-    if array:
-        Config.variables[var][pos_num] = eval(to_be_eval)
+        if array:
+            Config.variables[var][pos_num] = eval(to_be_eval)
+        else:
+            Config.variables[var] = eval(to_be_eval)
     else:
-        Config.variables[var] = eval(to_be_eval)
+        Fun.declare_array(lst)
 
 
 def INPUT(line_used):
