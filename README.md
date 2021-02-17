@@ -10,6 +10,7 @@ This program is currently undergoing the final tweaks. For any suggestions or bu
 
 
 ## How to use
+
 ### Syntax
 For starters, it is required to leave a space character between each variable, function or operator.
 For example, when assigning a value to a variable, this is the correct way to do this.
@@ -24,7 +25,9 @@ While this, on the other hand, will not work.
   ```
   Numbers = [ 3, 4 ]
   Numbers[Count] = 123
+  INPUT Numbers[3]
   ```
+
 
 ### Available Functions
 
@@ -58,6 +61,7 @@ A conditional statement that carries out a group of statements between the IF st
   ```
 (The 'THEN' keyword is optional)
 
+
 #### FOR Loop (Fully functional):
 This is to repeat a number of statements, which are inserted between the FOR "LCV" = "Start" TO "End" and the NEXT "LCV", for a set number of times.
   ```
@@ -76,6 +80,7 @@ A conditional loop that is repeated as long as a condition is true. Any statemen
   ENDWHILE
   ```
 (The 'DO' keyword is optional)
+
 
 #### REPEAT Loop (Fully functional):
 A conditional loop that is repeated until a certain condition is met. Any statements should be inserted between the REPEAT and the UNTIL statement.
