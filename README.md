@@ -1,24 +1,24 @@
-# IGCSE CS PseudoCode Transpiler 
+# IGCSE CS PseudoCode Transpiler
 This program translates the Pseudocode syntax studied in the IGCSE Computer Science 0478/0984 Syllabus.
 
-## Note
-This program is currently undergoing the final tweaks. For any suggestions or bug reports, please send me a message on Github. If you liked it, please don't forget to star this repository. Thanks!
 
+## Note
+This program is currently undergoing the final tweaks. For any suggestions or bug reports, please send me a message on GitHub. If you liked it, please don't forget to star this repository. Thanks!
 
 ## Prerequisites
-[Python](https://www.python.org/downloads/)
+[Python 3](https://www.python.org/downloads/)
 
 
 ## How to use
-## Syntax
-For starters, it is required to leave a space character between each variable, function or operator. 
-For example, when assigning a value to a variable, this is the correct way to do this
+### Syntax
+For starters, it is required to leave a space character between each variable, function or operator.
+For example, when assigning a value to a variable, this is the correct way to do this.
   ```
-  variableexample = 16 * 14 + Varexample2
+  variable = 16 * 14 + variable2
   ```
-While this, on the other hand, will not work
+While this, on the other hand, will not work.
   ```
-  variableexample=16*14+Varexample2
+  variable=16*14+variable2
   ```
 ##### Arrays (example):
   ```
@@ -28,37 +28,37 @@ While this, on the other hand, will not work
 
 ### Available Functions
 
-#### PRINT (Fully functional)
+#### PRINT (Fully functional):
 This is a simple statement use as in the following examples
   ```
   PRINT "HELLO WORLD !"
   ```
-To print a string, which is to be inserted between two quotation marks "". 
-###### Note that you should ***never*** insert another quotation mark insider the 2 quotation marks. You should also never use a backslash character "\\".
-It is also possible to print/output the contents of a variable
+To print the string between two quotation marks " ".
+###### Note that you should ***never** nest another pair of quotations within pre-existing quotations and/or use a backslash character "\\".
+It is also possible to print/output the contents of a variable.
   ```
-  PRINT Variableexample
-  ```
-
-
-#### INPUT (Fully functional)
-This is a simple statement that can be used as in the following example
-  ```
-  INPUT Variableexample
+  PRINT Variable
   ```
 
 
-#### IF (Fully functional)
+#### INPUT (Fully functional):
+This is a simple statement that can be used as in the following example.
+  ```
+  INPUT Variable
+  ```
+
+
+#### IF (Fully functional):
 A conditional statement that carries out a group of statements between the IF statement and the ENDIF statement. The ELSE statement will also be functional.
   ```
-  IF I = T THEN 
+  IF I = T THEN
   PRINT "HELLO WORLD !"
   I = I + 1
   ENDIF
   ```
 (The 'THEN' keyword is optional)
 
-#### FOR Loop (Fully functional)
+#### FOR Loop (Fully functional):
 This is to repeat a number of statements, which are inserted between the FOR "LCV" = "Start" TO "End" and the NEXT "LCV", for a set number of times.
   ```
   FOR I = 1 TO 5
@@ -67,8 +67,8 @@ This is to repeat a number of statements, which are inserted between the FOR "LC
   ```
 
 
-#### WHILE Loop (Fully functional)
-A conditional loop that is repeated as long as a condition is being met. Any statements should be insterted between the WHILE "Condition" and the ENDWHILE STATEMENT
+#### WHILE Loop (Fully functional):
+A conditional loop that is repeated as long as a condition is true. Any statements should be inserted between the WHILE "Condition" and the ENDWHILE STATEMENT.
   ```
   WHILE I < 5 DO
   PRINT "HELLO WORLD !"
@@ -77,8 +77,8 @@ A conditional loop that is repeated as long as a condition is being met. Any sta
   ```
 (The 'DO' keyword is optional)
 
-#### REPEAT Loop (Fully functional)
-A conditional loop that is repeated until a certin condition is met. Any statements should be insterted between the REPEAT and the UNTIL statement.
+#### REPEAT Loop (Fully functional):
+A conditional loop that is repeated until a certain condition is met. Any statements should be inserted between the REPEAT and the UNTIL statement.
   ```
   REPEAT
   PRINT "HELLO WORLD !"
@@ -87,7 +87,7 @@ A conditional loop that is repeated until a certin condition is met. Any stateme
   ```
 
 
-#### Commenting
+#### Commenting (Functional):
 Comments should be preceded by two slashes and a space character as follows.
   ```
   // This is a comment
