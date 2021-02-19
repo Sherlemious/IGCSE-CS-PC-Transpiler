@@ -13,7 +13,7 @@ This program is currently undergoing the final tweaks. For any suggestions or bu
 
 ### Syntax
 For starters, it is required to leave a space character between each variable, function or operator.
-For example, when assigning a value to a variable, this is the correct way to do this.
+For example, when assigning a value to a variable, this is the correct way to do it.
   ```
   variable = 16 * 14 + variable2
   ```
@@ -52,11 +52,12 @@ This is a simple statement that can be used as in the following example.
 
 
 #### IF (Fully functional):
-A conditional statement that carries out a group of statements between the IF statement and the ENDIF statement. The ELSE statement will also be functional.
+A conditional statement that carries out a number of statements between the IF statement and the ENDIF statement. The ELSE statement will also be functional.
   ```
   IF I = T THEN
   PRINT "HELLO WORLD !"
   I = I + 1
+  ELSE "Print Hello"
   ENDIF
   ```
 (The 'THEN' keyword is optional)
