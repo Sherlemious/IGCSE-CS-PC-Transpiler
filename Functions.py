@@ -36,7 +36,7 @@ def comp(val1, val2, operand):
     elif "[" in val1:
         fetch_value(val1)
     else:
-        Errors.Tocabsent.isprint()
+        Errors.Absent.isprint()
     # Second Variable or Number
     if flag1:
         if val2 in Config.variables:
