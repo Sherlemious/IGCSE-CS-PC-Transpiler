@@ -322,7 +322,7 @@ def ASSIGNMENT(line_used):
                 to_be_eval += " " + str(V)
         try:
             to_be_eval = eval(to_be_eval)
-        except:
+        except ValueError:
             pass
 
         if array:
