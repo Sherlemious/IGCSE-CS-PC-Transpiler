@@ -59,7 +59,8 @@ A conditional statement that carries out a number of statements between the IF s
   IF I = T THEN
   PRINT "HELLO WORLD !"
   I = I + 1
-  ELSE "Print Hello"
+  ELSE 
+  "Print Hello"
   ENDIF
   ```
 (The 'THEN' keyword is optional)
