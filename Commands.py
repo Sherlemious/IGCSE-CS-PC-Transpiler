@@ -284,6 +284,7 @@ def ASSIGNMENT(line_used):
     var = lst[0]
     pos_num = 0
     array = False
+    user_input = False
     # check if this is an array declaration
     if not Fun.check_array_declaration(lst):
         # Check for array
@@ -305,25 +306,28 @@ def ASSIGNMENT(line_used):
                 Config.variables[var][pos_num] = 0
         del lst[0:2]
 
-        for V in lst:
+        if lst[0] == "USERINPUT":
+            to_be_eval = input()
+        else:
+            for V in lst:
+                try:
+                    V = float(V)
+                except ValueError:
+                    pass
+                if "[" in str(V):
+                    to_be_eval += str(Fun.fetch_value(V))
+                if V in Config.variables:
+                    to_be_eval += str(Config.variables[V])
+                elif isinstance(V, float):
+                    to_be_eval += str(V)
+                elif V in Config.mops:
+                    to_be_eval += str(V)
+                elif isinstance(V, str):
+                    to_be_eval += " " + str(V)
             try:
-                V = float(V)
-            except ValueError:
+                to_be_eval = eval(to_be_eval)
+            except:
                 pass
-            if "[" in str(V):
-                to_be_eval += str(Fun.fetch_value(V))
-            if V in Config.variables:
-                to_be_eval += str(Config.variables[V])
-            elif isinstance(V, float):
-                to_be_eval += str(V)
-            elif V in Config.mops:
-                to_be_eval += str(V)
-            elif isinstance(V, str):
-                to_be_eval += " " + str(V)
-        try:
-            to_be_eval = eval(to_be_eval)
-        except:
-            pass
 
         if array:
             Config.variables[var][pos_num] = to_be_eval
