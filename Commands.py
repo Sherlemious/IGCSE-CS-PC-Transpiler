@@ -365,18 +365,10 @@ def PRINT(line_used):
             printed += str(Fun.fetch_value(word))
         else:
             if word[-1] == "\"":
-                for c in range(end - 1):
-                    if w == 1 and c == 0:
-                        pass
-                    else:
-                        printed += word[c]
-                printed += " "
-            else:
-                for c in range(end):
-                    if w == 1 and c == 0:
-                        pass
-                    else:
-                        printed += word[c]
-                printed += " "
+                word = word[:-1]
+            if word[0] == "\"":
+                word = word[1:]
+            printed += word
+            printed += " "
 
     print(printed)
