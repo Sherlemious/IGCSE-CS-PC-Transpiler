@@ -46,8 +46,7 @@ def IF():
 
     Config.Iteratables[-1].Cond = line_split
     cond = Config.Iteratables[-1].Cond
-    if len(cond) == 4:
-        Config.Iteratables[-1].Cond = Fun.comp(cond[1], cond[3], cond[2])
+    Config.Iteratables[-1].Cond = Fun.compare(cond)
 
     if Config.Iteratables[-1].Cond:
 
@@ -182,12 +181,11 @@ def WHILE():
     if line_split[-1] == "DO":
         del line_split[-1]
 
-    Config.Iteratables[-1].Cond = line_split
     stat = Config.Iteratables[-1].Cond  # Conditional Statement
+    Config.Iteratables[-1].Cond = line_split
     cond = Config.Iteratables[-1].Cond
 
-    if len(cond) == 4:
-        Config.Iteratables[-1].Cond = Fun.comp(cond[1], cond[3], cond[2])
+    Config.Iteratables[-1].Cond = Fun.compare(cond)
 
     while True:
         Config.Iteratables[-2].line_number += 1
@@ -221,7 +219,7 @@ def WHILE():
             Config.Iteratables[-1].line_number += 1
 
         Config.Iteratables[-1].line_number = 0
-        Config.Iteratables[-1].Cond = Fun.comp(stat[1], stat[3], stat[2])
+        Config.Iteratables[-1].Cond = Fun.compare(cond)
     del Config.Iteratables[-1]
 
 
@@ -244,12 +242,11 @@ def REPEAT():
 
             if line_split[0] == "UNTIL" and Classes.Loop_Counts.Repeat == 0:
 
-                Config.Iteratables[-1].Cond = line_split
                 stat = Config.Iteratables[-1].Cond  # Conditional Statement
+                Config.Iteratables[-1].Cond = line_split
                 cond = Config.Iteratables[-1].Cond
 
-                if len(cond) == 4:
-                    Config.Iteratables[-1].Cond = Fun.comp(cond[1], cond[3], cond[2])
+                Config.Iteratables[-1].Cond = Fun.compare(cond)
 
                 del line_list[-1]
                 break
@@ -271,7 +268,7 @@ def REPEAT():
             Config.Iteratables[-1].line_number += 1
 
         Config.Iteratables[-1].line_number = 0
-        Config.Iteratables[-1].Cond = Fun.comp(stat[1], stat[3], stat[2])
+        Config.Iteratables[-1].Cond = Fun.compare(cond)
 
         if Config.Iteratables[-1].Cond:
             break
