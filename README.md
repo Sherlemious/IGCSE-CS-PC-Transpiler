@@ -49,8 +49,10 @@ This is a simple statement that can be used as in the following example.
   ```
   INPUT Variable
   ```
-
-
+The keyword, "USERINPUT", can also be used.
+  ```
+  Variable = USERINPUT
+  ```
 #### IF (Fully functional):
 A conditional statement that carries out a number of statements between the IF statement and the ENDIF statement. The ELSE statement will also be functional.
   ```
