@@ -46,8 +46,7 @@ def IF():
 
     Config.Iteratables[-1].Cond = line_split
     cond = Config.Iteratables[-1].Cond
-    if len(cond) == 4:
-        Config.Iteratables[-1].Cond = Fun.comp(cond[1], cond[3], cond[2])
+    Config.Iteratables[-1].Cond = Fun.compare(cond)
 
     if Config.Iteratables[-1].Cond:
 
@@ -182,12 +181,11 @@ def WHILE():
     if line_split[-1] == "DO":
         del line_split[-1]
 
-    Config.Iteratables[-1].Cond = line_split
     stat = Config.Iteratables[-1].Cond  # Conditional Statement
+    Config.Iteratables[-1].Cond = line_split
     cond = Config.Iteratables[-1].Cond
 
-    if len(cond) == 4:
-        Config.Iteratables[-1].Cond = Fun.comp(cond[1], cond[3], cond[2])
+    Config.Iteratables[-1].Cond = Fun.compare(cond)
 
     while True:
         Config.Iteratables[-2].line_number += 1
@@ -221,7 +219,7 @@ def WHILE():
             Config.Iteratables[-1].line_number += 1
 
         Config.Iteratables[-1].line_number = 0
-        Config.Iteratables[-1].Cond = Fun.comp(stat[1], stat[3], stat[2])
+        Config.Iteratables[-1].Cond = Fun.compare(cond)
     del Config.Iteratables[-1]
 
 
@@ -244,12 +242,11 @@ def REPEAT():
 
             if line_split[0] == "UNTIL" and Classes.Loop_Counts.Repeat == 0:
 
-                Config.Iteratables[-1].Cond = line_split
                 stat = Config.Iteratables[-1].Cond  # Conditional Statement
+                Config.Iteratables[-1].Cond = line_split
                 cond = Config.Iteratables[-1].Cond
 
-                if len(cond) == 4:
-                    Config.Iteratables[-1].Cond = Fun.comp(cond[1], cond[3], cond[2])
+                Config.Iteratables[-1].Cond = Fun.compare(cond)
 
                 del line_list[-1]
                 break
@@ -271,7 +268,7 @@ def REPEAT():
             Config.Iteratables[-1].line_number += 1
 
         Config.Iteratables[-1].line_number = 0
-        Config.Iteratables[-1].Cond = Fun.comp(stat[1], stat[3], stat[2])
+        Config.Iteratables[-1].Cond = Fun.compare(cond)
 
         if Config.Iteratables[-1].Cond:
             break
@@ -284,6 +281,7 @@ def ASSIGNMENT(line_used):
     var = lst[0]
     pos_num = 0
     array = False
+    user_input = False
     # check if this is an array declaration
     if not Fun.check_array_declaration(lst):
         # Check for array
@@ -305,25 +303,28 @@ def ASSIGNMENT(line_used):
                 Config.variables[var][pos_num] = 0
         del lst[0:2]
 
-        for V in lst:
+        if lst[0] == "USERINPUT":
+            to_be_eval = input()
+        else:
+            for V in lst:
+                try:
+                    V = float(V)
+                except ValueError:
+                    pass
+                if "[" in str(V):
+                    to_be_eval += str(Fun.fetch_value(V))
+                if V in Config.variables:
+                    to_be_eval += str(Config.variables[V])
+                elif isinstance(V, float):
+                    to_be_eval += str(V)
+                elif V in Config.mops:
+                    to_be_eval += str(V)
+                elif isinstance(V, str):
+                    to_be_eval += " " + str(V)
             try:
-                V = float(V)
+                to_be_eval = eval(to_be_eval)
             except ValueError:
                 pass
-            if "[" in str(V):
-                to_be_eval += str(Fun.fetch_value(V))
-            if V in Config.variables:
-                to_be_eval += str(Config.variables[V])
-            elif isinstance(V, float):
-                to_be_eval += str(V)
-            elif V in Config.mops:
-                to_be_eval += str(V)
-            elif isinstance(V, str):
-                to_be_eval += " " + str(V)
-        try:
-            to_be_eval = eval(to_be_eval)
-        except ValueError:
-            pass
 
         if array:
             Config.variables[var][pos_num] = to_be_eval
@@ -365,18 +366,10 @@ def PRINT(line_used):
             printed += str(Fun.fetch_value(word))
         else:
             if word[-1] == "\"":
-                for c in range(end - 1):
-                    if w == 1 and c == 0:
-                        pass
-                    else:
-                        printed += word[c]
-                printed += " "
-            else:
-                for c in range(end):
-                    if w == 1 and c == 0:
-                        pass
-                    else:
-                        printed += word[c]
-                printed += " "
+                word = word[:-1]
+            if word[0] == "\"":
+                word = word[1:]
+            printed += word
+            printed += " "
 
     print(printed)

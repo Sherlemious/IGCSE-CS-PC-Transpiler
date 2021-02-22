@@ -36,7 +36,7 @@ def comp(val1, val2, operand):
     elif "[" in val1:
         fetch_value(val1)
     else:
-        Errors.Tocabsent.isprint()
+        Errors.Absent.isprint()
     # Second Variable or Number
     if flag1:
         if val2 in Config.variables:
@@ -61,14 +61,23 @@ def compExpressions(exp1, exp2, logic_gate):
     logic_eval = None
     if logic_gate in Config.logic_list:
         # expressions should be passed in as array in form [val1,val2,operand]
-        flag1 = comp(exp1[0], exp1[1], exp1[2])
-        flag2 = comp(exp2[0], exp2[1], exp2[2])
+        flag1 = comp(exp1[0], exp1[2], exp1[1])
+        flag2 = comp(exp2[0], exp2[2], exp2[1])
         logic_eval = log_dict(flag1, flag2)[logic_gate]
     else:
         Errors.LogInvalid.isprint()
 
     if logic_eval is not None:
         return log_dict(flag1, flag2)[logic_gate]
+
+
+def compare(lst):
+    if lst[0] == "IF" or lst[0] == "WHILE" or lst[0] == "UNTIL":
+        del lst[0]
+    if len(lst) == 3:
+        return comp(lst[0], lst[2], lst[1])
+    elif len(lst) == 7:
+        return compExpressions(lst[0:3], lst[4:], lst[3])
 
 
 # Removes the escape character at the end of all lines

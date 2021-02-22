@@ -1,4 +1,13 @@
-Num[2] = "Hello"
-PRINT Num[2]
-TT = "Hello" + " There!"
-PRINT TT
+FOR I = 1 TO 3
+H = USERINPUT
+WHILE H = 0 OR H = 0
+PRINT "Please input a value other than zero"
+INPUT H
+ENDWHILE
+IF H > 0 THEN
+PRINT "Positive"
+ELSE
+PRINT "Negative"
+ENDIF
+NEXT I
+PRINT "Done"
