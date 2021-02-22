@@ -9,7 +9,9 @@ def op_dict(toc1, toc2):
         "<": toc1 < toc2,
         "<=": toc1 <= toc2,
         ">=": toc1 >= toc2,
-        "<>": toc1 != toc2
+        "<>": toc1 != toc2,
+        "MOD": toc1 % toc2,
+        "DIV": toc1 // toc2,
     }
 
 
@@ -78,6 +80,8 @@ def compare(lst):
         return comp(lst[0], lst[2], lst[1])
     elif len(lst) == 7:
         return compExpressions(lst[0:3], lst[4:], lst[3])
+    elif lst[1] == "DIV" or lst[1] == "MOD":
+        return comp(op_dict(lst[0], lst[2]), lst[2], lst[1])
 
 
 # Removes the escape character at the end of all lines
