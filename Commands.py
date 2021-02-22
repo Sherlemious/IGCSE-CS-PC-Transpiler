@@ -181,7 +181,6 @@ def WHILE():
     if line_split[-1] == "DO":
         del line_split[-1]
 
-    stat = Config.Iteratables[-1].Cond  # Conditional Statement
     Config.Iteratables[-1].Cond = line_split
     cond = Config.Iteratables[-1].Cond
 
@@ -242,7 +241,6 @@ def REPEAT():
 
             if line_split[0] == "UNTIL" and Classes.Loop_Counts.Repeat == 0:
 
-                stat = Config.Iteratables[-1].Cond  # Conditional Statement
                 Config.Iteratables[-1].Cond = line_split
                 cond = Config.Iteratables[-1].Cond
 
@@ -281,7 +279,6 @@ def ASSIGNMENT(line_used):
     var = lst[0]
     pos_num = 0
     array = False
-    user_input = False
     # check if this is an array declaration
     if not Fun.check_array_declaration(lst):
         # Check for array
@@ -359,7 +356,6 @@ def PRINT(line_used):
     for w in range(len(lst)):
 
         word = lst[w]
-        end = int(len(word))
         if word in Config.variables and word[0] != "\"":  # This checks if it is a variable and if the variable exists
             printed += str(Config.variables[word])
         elif "[" in word:
