@@ -316,6 +316,11 @@ def ASSIGNMENT(line_used):
                     to_be_eval += str(V)
                 elif V in Config.mops:
                     to_be_eval += str(V)
+                elif V == "DIV" or V == "MOD":
+                    if V == "MOD":
+                        to_be_eval += "%"
+                    else:
+                        to_be_eval += "//"
                 elif isinstance(V, str):
                     to_be_eval += " " + str(V)
             try:
