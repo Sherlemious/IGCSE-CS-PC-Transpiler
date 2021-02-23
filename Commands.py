@@ -349,7 +349,7 @@ def INPUT(line_used):
         var = varwanted[:A_S]
         if var not in Config.variables:
             Config.variables[var] = {}
-            Config.variables[var][pos_num] = input()
+        Config.variables[var][pos_num] = input()
     else:
         Config.variables[varwanted] = input()
 
