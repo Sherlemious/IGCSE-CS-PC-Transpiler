@@ -1,13 +1,49 @@
-FOR I = 1 TO 3
-H = USERINPUT
-WHILE H = 0 OR H = 0
-PRINT "Please input a value other than zero"
-INPUT H
-ENDWHILE
-IF H > 0 THEN
-PRINT "Positive"
-ELSE
-PRINT "Negative"
+INPUT Name
+INPUT St_num
+INPUT Cand_num
+
+FOR Count = 1 TO Cand_num
+INPUT Candidate[Count]
+PRINT Count
+NEXT Count
+
+Abstain = 0
+
+FOR I = 1 TO St_num
+vote = USERINPUT
+IF vote = "abstain" THEN
+Abstain = Abstain + 1
 ENDIF
+FOR J = 1 TO Cand_num
+IF vote = Candidate[J]
+Votes[J] = Votes[J] + 1
+ENDIF
+NEXT J
 NEXT I
-PRINT "Done"
+
+Max = -1000
+FOR Count = 1 TO Can_num
+IF Votes[Count] > Max THEN
+Max = Votes[Count]
+ENDIF
+NEXT Count
+
+NumOfWinners = 0
+Winner = ""
+
+FOR Count = 1 TO Cand_Num
+IF Votes[Count] = Max THEN
+Winner = Winner + ”,” + Candidate[Count]
+NumOfWinners = NumOfWinners + 1
+ENDIF
+NEXT Count
+PRINT tutName
+FOR Count = 1 TO Cand_num
+PRINT "candidate:"
+PRINT Candidate[Count]
+PRINT "got"
+PRINT votesOfCand[Count]
+PRINT "votes"
+NEXT Count
+PRINT Winner
+PRINT "Won the election"
