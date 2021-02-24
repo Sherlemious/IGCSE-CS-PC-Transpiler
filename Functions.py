@@ -9,9 +9,9 @@ def op_dict(toc1, toc2):
         "<": toc1 < toc2,
         "<=": toc1 <= toc2,
         ">=": toc1 >= toc2,
-        "<>": toc1 != toc2,
-        "MOD": toc1 % toc2,
-        "DIV": toc1 // toc2,
+        "<>": toc1 != toc2
+        # "MOD": toc1 % toc2,
+        # "DIV": toc1 // toc2,
     }
 
 

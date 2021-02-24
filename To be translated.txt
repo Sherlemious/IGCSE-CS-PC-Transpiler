@@ -22,7 +22,7 @@ NEXT J
 NEXT I
 
 Max = -1000
-FOR Count = 1 TO Can_num
+FOR Count = 1 TO Cand_num
 IF Votes[Count] > Max THEN
 Max = Votes[Count]
 ENDIF
