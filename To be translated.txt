@@ -1,6 +1,6 @@
-INPUT Name
-INPUT St_num
-INPUT Cand_num
+Name = "Whatever"
+St_num = 3
+Cand_num = 2
 
 FOR Count = 1 TO Cand_num
 INPUT Candidate[Count]
@@ -8,6 +8,10 @@ PRINT Count
 NEXT Count
 
 Abstain = 0
+
+FOR J = 1 TO Cand_num
+Votes[J] = 0
+NEXT J
 
 FOR I = 1 TO St_num
 vote = USERINPUT
