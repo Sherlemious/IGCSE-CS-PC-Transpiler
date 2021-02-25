@@ -8,7 +8,7 @@ import Functions as Fun
 # Taking in the Pseudocode (currently through a text file)
 dirname = os.path.dirname(__file__)
 dirname += "\\To be translated.txt"
-File = open(dirname, "r", encoding="UTF8")
+File = open(dirname, "r")
 Config.FileList = list(File)
 File.close()
 
