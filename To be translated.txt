@@ -19,7 +19,7 @@ IF vote = "abstain" THEN
 Abstain = Abstain + 1
 ENDIF
 FOR J = 1 TO Cand_num
-IF vote = Candidate[J]
+IF vote = Candidate[J] THEN
 Votes[J] = Votes[J] + 1
 ENDIF
 NEXT J
@@ -37,7 +37,7 @@ Winner = ""
 
 FOR Count = 1 TO Cand_Num
 IF Votes[Count] = Max THEN
-Winner = Winner + ”,” + Candidate[Count]
+Winner = Winner + "," + Candidate[Count]
 NumOfWinners = NumOfWinners + 1
 ENDIF
 NEXT Count
