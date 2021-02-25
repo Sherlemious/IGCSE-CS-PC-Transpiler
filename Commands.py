@@ -284,7 +284,8 @@ def ASSIGNMENT(line_used):
         # Check for array
         A_S = var.find("[")
         if A_S == -1:
-            Config.variables[var] = 0
+            if var not in Config.variables:
+                Config.variables[var] = 0
         else:
             array = True
             pos_num = var[A_S + 1:-1]
