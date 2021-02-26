@@ -23,6 +23,7 @@ class COND_STATEMENT(FUNCTION):
 class Loop_Counts:
     def __init__(self):
         pass
+
     While = 0
     Repeat = 0
     If = 0
