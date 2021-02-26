@@ -302,21 +302,34 @@ def INPUT(line_used):
 
 def PRINT(line_used):
     lst = line_used.split()
+    string_flag = False
     printed = ""
     del lst[0]
     for w in range(len(lst)):
 
         word = lst[w]
-        if word in Config.variables and word[0] != "\"":  # This checks if it is a variable and if the variable exists
-            printed += str(Config.variables[word])
-        elif "[" in word:
-            printed += str(Fun.fetch_value(word))
-        else:
-            if word[-1] == "\"":
-                word = word[:-1]
-            if word[0] == "\"":
-                word = word[1:]
-            printed += word
+        if word[0] == '\"':
+            string_flag = True
+            if word[-1] == '\"':
+                string_flag = False
+                printed += word[1:-1]
+                continue
+            else:
+                printed += word[1:]
             printed += " "
-
+        elif word[-1] == '\"':
+            string_flag = False
+            printed += word[:-1]
+            printed += " "
+        elif string_flag:
+            printed += word[:]
+            printed += " "
+        if not string_flag:
+            if word in Config.variables:  # This checks if it is a variable and if the variable exists
+                printed += str(Config.variables[word])
+                continue
+            elif "[" in word:
+                printed += str(Fun.fetch_value(word))
+            elif word == ",":
+                printed += " "
     print(printed)
