@@ -274,65 +274,10 @@ def REPEAT():
 
 
 def ASSIGNMENT(line_used):
-    to_be_eval = ""
     lst = line_used.split()
-    var = lst[0]
-    pos_num = 0
-    array = False
     # check if this is an array declaration
     if not Fun.check_array_declaration(lst):
-        # Check for array
-        A_S = var.find("[")
-        if A_S == -1:
-            if var not in Config.variables:
-                Config.variables[var] = 0
-        else:
-            array = True
-            pos_num = var[A_S + 1:-1]
-            try:
-                pos_num = int(pos_num)
-            except ValueError:
-                pos_num = Config.variables[pos_num]
-            var = var[:A_S]
-            try:
-                Config.variables[var][pos_num] = 0
-            except BaseException:
-                Config.variables[var] = {}
-                Config.variables[var][pos_num] = 0
-        del lst[0:2]
-
-        if lst[0] == "USERINPUT":
-            to_be_eval = input()
-        else:
-            for V in lst:
-                try:
-                    V = float(V)
-                except ValueError:
-                    pass
-                if "[" in str(V):
-                    to_be_eval += str(Fun.fetch_value(V))
-                if V in Config.variables:
-                    to_be_eval += str(Config.variables[V])
-                elif isinstance(V, float):
-                    to_be_eval += str(V)
-                elif V in Config.mops:
-                    to_be_eval += str(V)
-                elif V == "DIV" or V == "MOD":
-                    if V == "MOD":
-                        to_be_eval += "%"
-                    else:
-                        to_be_eval += "//"
-                elif isinstance(V, str):
-                    to_be_eval += " " + str(V)
-            try:
-                to_be_eval = eval(to_be_eval)
-            except ValueError:
-                pass
-
-        if array:
-            Config.variables[var][pos_num] = to_be_eval
-        else:
-            Config.variables[var] = to_be_eval
+        Fun.assign(line_used)
     else:
         Fun.declare_array(lst)
 

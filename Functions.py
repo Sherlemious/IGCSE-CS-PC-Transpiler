@@ -165,3 +165,67 @@ def declare_array(lst):
     except ValueError:
         pass
     Config.variables[array_name][c] = added
+
+
+def assign(line_used):
+    to_be_eval = ""
+    lst = line_used.split()
+    var = lst[0]
+    pos_num = 0
+    array = False
+    string = False
+    # Check for array
+    A_S = var.find("[")
+    if A_S == -1:
+        if var not in Config.variables:
+            Config.variables[var] = 0
+    else:
+        array = True
+        pos_num = var[A_S + 1:-1]
+        try:
+            pos_num = int(pos_num)
+        except ValueError:
+            pos_num = Config.variables[pos_num]
+        var = var[:A_S]
+        if var not in Config.variables:
+            Config.variables[var] = {}
+        if pos_num not in Config.variables[var]:
+            Config.variables[var][pos_num] = 0
+    del lst[0:2]
+
+    if lst[0] != "USERINPUT":
+        for V in lst:
+            if V[0] == '"' and V[-1] == '"':
+                string = True
+                to_be_eval += V[1:-1]
+                continue
+            elif "[" in str(V):
+                to_be_eval += str(fetch_value(V))
+                continue
+            elif V in Config.variables:
+                to_be_eval += str(Config.variables[V])
+            elif isinstance(find_type(V), float) or isinstance(find_type(V), int):
+                to_be_eval += str(V)
+            elif V in Config.mops:
+                to_be_eval += str(V)
+            elif V == "DIV" or V == "MOD":
+                if V == "MOD":
+                    to_be_eval += "%"
+                else:
+                    to_be_eval += "//"
+            else:
+                to_be_eval += " " + str(V)
+        if not string:
+            try:
+                to_be_eval = eval(to_be_eval)
+            except ValueError:
+                pass
+            except NameError:
+                pass
+    else:
+        to_be_eval = take_input()
+
+    if array:
+        Config.variables[var][pos_num] = to_be_eval
+    else:
+        Config.variables[var] = to_be_eval
