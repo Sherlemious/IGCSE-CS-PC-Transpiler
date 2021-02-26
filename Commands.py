@@ -22,11 +22,11 @@ def main(line_used):
     elif line_used[0:2] == "IF":
         IF()
 
+    elif "=" in line_used:
+        ASSIGNMENT(line_used)
+
     elif line_used[0:2] == "//" or line_used == "":
         pass
-
-    else:
-        ASSIGNMENT(line_used)
 
 
 def IF():
