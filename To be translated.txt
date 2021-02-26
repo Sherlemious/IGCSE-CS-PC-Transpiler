@@ -1,51 +1,13 @@
-Name = "Class 10"
-St_num = USERINPUT
-INPUT Cand_num
-
-FOR Count = 1 TO Cand_num
-    PRINT "Enter Cand name:"
-    INPUT Candidate[Count]
-NEXT Count
-
-Abstain = 0
-
-FOR J = 1 TO Cand_num
-    Votes[J] = 0
-NEXT J
-
-FOR I = 1 TO St_num
-    vote = USERINPUT
-    IF vote = "abstain" THEN
-        Abstain = Abstain + 1
-    ENDIF
-    FOR J = 1 TO Cand_num
-        IF vote = Candidate[J] THEN
-        Votes[J] = Votes[J] + 1
+INPUT X
+IF X >= 0 THEN
+    PRINT "POSITIVE OR ZERO"
+    IF X = 0 THEN
+        PRINT "EQUAL TO ZERO"
+        ELSE
+        IF X > 0 THEN
+            PRINT "POSITIVE"
         ENDIF
-    NEXT J
-NEXT I
-
-Max = -1000
-FOR Count = 1 TO Cand_num
-    IF Votes[Count] > Max THEN
-        Max = Votes[Count]
     ENDIF
-NEXT Count
-
-NumOfWinners = 0
-Winner = ""
-
-FOR Count = 1 TO Cand_num
-    IF Votes[Count] = Max THEN
-        Winner = Candidate[Count]
-        NumOfWinners = NumOfWinners + 1
-    ENDIF
-NEXT Count
-
-PRINT Name
-
-FOR Count = 1 TO Cand_num
-    PRINT "candidate:" , Candidate[Count] , "got" , Votes[Count] , "votes"
-NEXT Count
-
-PRINT Winner , "Won the election"
+ELSE
+PRINT "Negative"
+ENDIF
