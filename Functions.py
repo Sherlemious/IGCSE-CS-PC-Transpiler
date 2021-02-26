@@ -101,7 +101,7 @@ def compare(lst):
 # Removes the escape character at the end of all lines
 def rem_end(the_list):
     for line in range(len(the_list)):
-        the_list[line] = the_list[line].rstrip('\n')
+        the_list[line] = the_list[line].strip()
 
 
 # Creates a string that is appended to the objects list. This string is to be of a function class, where it is going
