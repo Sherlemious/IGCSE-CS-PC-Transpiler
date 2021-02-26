@@ -1,10 +1,10 @@
-Name = "Whatever"
-St_num = 3
-Cand_num = 2
+Name = "Class 10"
+St_num = USERINPUT
+INPUT Cand_num
 
 FOR Count = 1 TO Cand_num
+    PRINT "Enter Cand name:"
     INPUT Candidate[Count]
-    PRINT Count
 NEXT Count
 
 Abstain = 0
@@ -42,15 +42,10 @@ FOR Count = 1 TO Cand_num
     ENDIF
 NEXT Count
 
-PRINT tutName
+PRINT Name
 
 FOR Count = 1 TO Cand_num
-    PRINT "candidate:"
-    PRINT Candidate[Count]
-    PRINT "got"
-    PRINT votesOfCand[Count]
-    PRINT "votes"
+    PRINT "candidate:" , Candidate[Count] , "got" , Votes[Count] , "votes"
 NEXT Count
 
-PRINT Winner
-PRINT "Won the election"
+PRINT Winner , "Won the election"
