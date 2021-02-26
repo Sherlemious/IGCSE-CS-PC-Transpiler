@@ -4,7 +4,7 @@ import Classes
 
 
 def main(line_used):
-    if line_used[0:5] == "PRINT":
+    if line_used[0:5] == "PRINT" or line_used[0:6] == "OUTPUT":
         PRINT(line_used)
 
     elif line_used[0:5] == "WHILE":
