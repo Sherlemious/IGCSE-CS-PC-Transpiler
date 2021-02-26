@@ -23,6 +23,23 @@ def log_dict(exp1, exp2):
     }
 
 
+def take_input():
+    x = input()
+    x = find_type(x)
+    return x
+
+
+def find_type(Obj):
+    try:
+        if "." in Obj:
+            Obj = float(Obj)
+        else:
+            Obj = int(Obj)
+    except ValueError:
+        obj = str(Obj)
+    return Obj
+
+
 def find_value(val):
     if val in Config.variables:
         try:
