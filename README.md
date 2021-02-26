@@ -36,12 +36,28 @@ This is a simple statement use as in the following examples
   ```
   PRINT "HELLO WORLD !"
   ```
+The OUTPUT keyword also works
+  ```
+  OUTPUT "HELLO WORLD !"
+  ```
 To print the string between two quotation marks " ".
-###### Note that you should ***never** nest another pair of quotations within pre-existing quotations and/or use a backslash character "\\".
+###### Note that you should ***never** put quotations within pre-existing quotations and/or use a backslash character "\\".
 It is also possible to print/output the contents of a variable.
   ```
   PRINT Variable
   ```
+The OUTPUT keyword also works
+  ```
+  OUTPUT Variable
+  ```
+To print multiple strings, or variable or both, separate them using commas.
+sum = 99
+  ```
+  PRINT "The sum is equal to:" , sum
+  ```
+Output: The sum is equal to: 99
+
+Note that spaces are automatically added between printed entites
 
 
 #### INPUT (Fully functional):
