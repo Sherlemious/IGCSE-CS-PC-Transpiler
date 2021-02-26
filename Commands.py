@@ -92,7 +92,7 @@ def IF():
 
     else:
         Classes.Loop_Counts.If = 1
-        while not (Classes.Loop_Counts.If == 1 and line_split[0] == "ELSE"):
+        while not (Classes.Loop_Counts.If >= 1 and line_split[0] == "ELSE"):
             Config.Iteratables[-2].line_number += 1
             Config.Iteratables[-2].cur_line = Config.Iteratables[-2].line_list[Config.Iteratables[-2].line_number]
             line_split = Config.Iteratables[-2].cur_line.split()
@@ -104,6 +104,7 @@ def IF():
                 alt_lines = False
                 break
 
+        Classes.Loop_Counts.If = 0
         while Classes.Loop_Counts.If > 0 and line_split[0] != "ENDIF" and alt_lines:
 
             Config.Iteratables[-2].line_number += 1
@@ -117,7 +118,8 @@ def IF():
                     Classes.Loop_Counts.If += 1
                 if line_split[0] == "ENDIF":
                     Classes.Loop_Counts.If -= 1
-                    del line_list[-1]
+                    if Classes.Loop_Counts.If == 0:
+                        del line_list[-1]
 
             except IndexError:
                 pass
