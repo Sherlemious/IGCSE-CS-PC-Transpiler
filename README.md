@@ -1,9 +1,11 @@
-# IGCSE CS PseudoCode Transpiler
+# IGCSE CS PseudoCode Transpiler ![Made with love in Egypt](https://madewithlove.now.sh/eg?heart=true&colorA=%23403f3f&colorB=%23c40310&template=for-the-badge)
+
 This program translates the Pseudocode syntax studied in the IGCSE Computer Science 0478/0984 Syllabus.
 
 
 ## Note
-This program is currently undergoing the final tweaks. For any suggestions or bug reports, please send me a message on GitHub. If you liked it, please don't forget to star this repository. Thanks!
+This program is usage-ready with just a couple additional features under development. For any suggestions or bug reports, please send me a message on GitHub. 
+If you liked it, please don't forget to star this repository. Thanks!
 
 ## Prerequisites
 [Python 3](https://www.python.org/downloads/)
