@@ -1,4 +1,4 @@
-# IGCSE CS PseudoCode Transpiler ![Made with love in Egypt](https://madewithlove.now.sh/eg?heart=true&colorA=%23403f3f&colorB=%23c40310&template=for-the-badge)
+# IGCSE CS PseudoCode Transpiler [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
 
 This program translates the Pseudocode syntax studied in the IGCSE Computer Science 0478/0984 Syllabus.
 
