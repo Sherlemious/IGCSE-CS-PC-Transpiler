@@ -4,7 +4,8 @@ This program translates the Pseudocode syntax studied in the IGCSE Computer Scie
 
 
 ## Note
-This program is usage-ready with just a couple additional features under development. For any suggestions or bug reports, please submit an issue on GitHub. 
+This program is usage-ready with just a couple additional features under development. For any suggestions or bug reports, please submit an issue on GitHub.
+
 If you liked it, please don't forget to star this repository. Thanks!
 
 ## Prerequisites
