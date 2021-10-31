@@ -4,7 +4,7 @@ This program translates the Pseudocode syntax studied in the IGCSE Computer Scie
 
 
 ## Note
-This Program is usage-ready with just a couple additional features under development. For any suggestions or bug reports, please submit an issue on GitHub.
+This program is usage-ready with just a couple additional features under development. For any suggestions or bug reports, please submit an issue on GitHub.
 
 If you liked it, please don't forget to star this repository. Thanks!
 
@@ -78,7 +78,7 @@ A conditional statement that carries out a number of statements between the IF s
   IF I = T THEN
   PRINT "HELLO WORLD !"
   I = I + 1
-  ELSE 
+  ELSE
   "Print Hello"
   ENDIF
   ```
