@@ -1,5 +1,7 @@
 # IGCSE CS PseudoCode Transpiler [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
 
+Succeeded by https://github.com/Sherlemious/IGCSE-Pseudocode-Online-Compiler
+
 This program translates the Pseudocode syntax studied in the IGCSE Computer Science 0478/0984 Syllabus.
 
 
